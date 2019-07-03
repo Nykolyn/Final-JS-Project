@@ -60,8 +60,6 @@ function openCard(event) {
     if (event.target === exitButton) {
         targetCard.classList.remove('modal-card')
         targetDiv.classList.remove('card-block');
-    } else {
-        
     }
 
     console.log(event.target);
