@@ -1,0 +1,19 @@
+.films-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.films-list__item {
+    margin: 0;
+    margin-bottom: 30px;
+    padding: 0;
+    list-style: none;
+    width: 30%;
+}
+
+.film-list__title {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}

@@ -42,5 +42,14 @@
     "micromodal": "^0.4.0",
     "notyf": "^3.0.4",
     "uuid": "^3.3.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nykolyn/Final-JS-Project.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Nykolyn/Final-JS-Project/issues"
+  },
+  "homepage": "https://github.com/Nykolyn/Final-JS-Project#readme"
 }
