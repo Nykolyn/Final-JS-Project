@@ -12,6 +12,14 @@
     background-color: aqua;
 }
 
+.modal-card p {
+    display: block;
+    width: 100%;
+}
+
+.image-wrap {
+}
+
 .card-inner {
     display: flex;
     justify-content: space-between;
@@ -20,12 +28,11 @@
 
 .card-wrap {
     display: none;
-
 }
 
 .card-block {
     display: block;
-    width: 40%;
+    width: 50%;
     background-color: tomato;
 }
 

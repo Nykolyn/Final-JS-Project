@@ -39,15 +39,36 @@ commentFilm(2, {
     comment: 'film govno'
 })
 
+
+//modal card 
 console.log(refs.filmsList);
 refs.filmsList.addEventListener('click', openCard);
+
+// function openCard(event) {
+//     const targetCard = event.target.closest('li');
+//     const targetDiv = targetCard.querySelector('.card-wrap');
+
+//     targetCard.classList.toggle('modal-card');
+//     targetDiv.classList.toggle('card-block');
+// }
 
 function openCard(event) {
     const targetCard = event.target.closest('li');
     const targetDiv = targetCard.querySelector('.card-wrap');
+    const exitButton = document.querySelector('.exit-button');
+    
+    if (event.target === exitButton) {
+        targetCard.classList.remove('modal-card')
+        targetDiv.classList.remove('card-block');
+    } else {
+        
+    }
 
-    console.log(targetDiv)
+    console.log(event.target);
 
-    targetCard.classList.toggle('modal-card');
-    targetDiv.classList.toggle('card-block');
+    if (!targetCard.className.includes('modal-card')) {
+        targetCard.classList.add('modal-card');
+        targetDiv.classList.add('card-block');
+        // refs.filmsList.removeEventListener('click', openCard);
+    }
 }
