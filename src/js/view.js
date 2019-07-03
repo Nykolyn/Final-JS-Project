@@ -15,6 +15,8 @@ export const createListItem = (film) => {
     const cardInner = createElementWithClass('div', 'card-inner');
     const cardWrap = createElementWithClass('div', 'card-wrap');    
     const favButton = createElementWithClass('button', 'fav-button');
+    const cardTitle = createElementWithClass('p', 'film-card_title')
+    cardTitle.textContent = film.title;
     const release = createElementWithClass('p', 'film-release');
     release.textContent = film.release;
     const voteCount = createElementWithClass('p', 'film-vote_count');
