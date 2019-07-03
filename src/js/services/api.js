@@ -30,8 +30,7 @@ export const commentFilm = async (id, comment) => {
         throw console.error('error while updating comment', error);
     }
 };
-        throw new Error("Error while fetching " + response.statusText)
-    })
-};
 
-
+commentFilm(2, {
+    comment: 'film govno'
+})
