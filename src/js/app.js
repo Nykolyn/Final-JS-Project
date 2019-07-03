@@ -12,3 +12,5 @@ films.getFilms().then(result =>
 films.updateComment(1, {
     comment: 'test'
 }).then()
+
+// timer
