@@ -1,3 +1,0 @@
-import {
-    refs
-} from './constants';

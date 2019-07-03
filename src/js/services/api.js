@@ -2,6 +2,10 @@ import {
     API
 } from '../constants';
 
+import {
+    refs
+} from '../constants';
+
 const FAVOURITE_FILMS_URL = 'http://localhost:3000/films';
 const USER_URL = 'http://localhost:3000/users';
 
@@ -34,3 +38,16 @@ export const commentFilm = async (id, comment) => {
 commentFilm(2, {
     comment: 'film govno'
 })
+
+console.log(refs.filmsList);
+refs.filmsList.addEventListener('click', openCard);
+
+function openCard(event) {
+    const targetCard = event.target.closest('li');
+    const targetDiv = targetCard.querySelector('.card-wrap');
+
+    console.log(targetDiv)
+
+    targetCard.classList.toggle('modal-card');
+    targetDiv.classList.toggle('card-block');
+}

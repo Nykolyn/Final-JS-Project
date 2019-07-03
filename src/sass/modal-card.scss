@@ -1,6 +1,5 @@
 
 .modal-card {
-    display: flex;
     justify-content: space-between;
     width: 100%;
     // height: 100vh;
@@ -11,6 +10,12 @@
     // transform: translate(-50% , -50%);    
     margin-bottom: 60px;
     background-color: aqua;
+}
+
+.card-inner {
+    display: flex;
+    justify-content: space-between;
+
 }
 
 .card-wrap {
