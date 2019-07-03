@@ -6,3 +6,5 @@ export const getFilms = () => {
         throw new Error("Error while fetching " + response.statusText)
     })
 };
+
+
