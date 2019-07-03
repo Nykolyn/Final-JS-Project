@@ -12,6 +12,7 @@ export const createListItem = (film) => {
     const filmTitle = createElementWithClass('p', 'film-list__title');
 
     //modal card
+    const cardInner = createElementWithClass('div', 'card-inner');
     const cardWrap = createElementWithClass('div', 'card-wrap');    
     const favButton = createElementWithClass('button', 'fav-button');
     const release = createElementWithClass('p', 'film-release');
@@ -25,8 +26,9 @@ export const createListItem = (film) => {
     filmTitle.textContent = film.title;
 
     cardWrap.append(release, voteCount, voteAverage, favButton); //modal-card
+    cardInner.append(poster, cardWrap);
 
-    liToCreate.append(poster, filmTitle, cardWrap);
+    liToCreate.append(cardInner, filmTitle);
     filmsList.appendChild(liToCreate);
 
 }
