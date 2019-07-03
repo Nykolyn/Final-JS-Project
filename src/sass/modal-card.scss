@@ -1,0 +1,30 @@
+
+.modal-card {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    // height: 100vh;
+    // height: 100vh;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50% , -50%);    
+    margin-bottom: 60px;
+    background-color: aqua;
+}
+
+.card-wrap {
+    display: none;
+
+}
+
+.card-block {
+    display: block;
+    width: 40%;
+    background-color: tomato;
+}
+
+.favorite-button {
+    display: block;
+    margin: 0 auto;
+}
