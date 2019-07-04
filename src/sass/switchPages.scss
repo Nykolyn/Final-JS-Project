@@ -1,0 +1,21 @@
+.switchPages{
+    height: 100px;
+    display: flex;
+    align-content: space-between;
+    justify-content: space-evenly;
+}
+
+.pageBtn { 
+    text-transform: uppercase;
+    width: 120px;
+    height: 40px;
+    border: 1px solid black;    
+    border-radius: 50px;
+    background-color: #2f889a;
+    color: white;
+    font-size: 14px;
+}
+
+.disabled {
+    background-color: #343642;
+}
