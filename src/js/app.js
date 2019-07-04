@@ -11,6 +11,7 @@ import {
 } from './view';
 import './authentication/authentication'
 import { isString, log } from 'util';
+import {onSearch} from './search';
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -24,7 +25,7 @@ setInterval(function () {
     document.getElementById('time').innerHTML = h + ':' + m + ':' + s;
 }, 1000);
 
-const films = new Films();
+export const films = new Films();
 
 films.getFilms().then(result =>
     result.forEach(item => createListItem(item))
@@ -88,3 +89,6 @@ function openCard(event) {
         }
     }
 }
+
+
+refs.searchForm.addEventListener('input', onSearch)

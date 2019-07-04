@@ -1,4 +1,4 @@
-const createElementWithClass = (tag, classTitle) => {
+export const createElementWithClass = (tag, classTitle) => {
     const elementToCreate = document.createElement(tag);
     elementToCreate.classList.add(classTitle);
     return elementToCreate;
