@@ -1,4 +1,3 @@
-
 import Films from './Fims/Films';
 import {
     refs
@@ -43,7 +42,7 @@ function openCard(event) {
 
     const list = document.querySelector('.container');
     const body = document.querySelector('body');
-    
+
 
     const targetCard = event.target.closest('li');
     const targetDiv = targetCard.querySelector('.card-wrap');
@@ -71,8 +70,8 @@ function openCard(event) {
         refs.filmsList.addEventListener('click', closedCard);
 
         function closedCard(event) {
-                console.log(event.target);
-                
+            console.log(event.target);
+
 
             if (event.target === exitButton || event.target === image || event.target === list || event.target.nodeName === 'IMG') {
                 targetCard.classList.remove('modal-card')

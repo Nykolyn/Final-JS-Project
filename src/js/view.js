@@ -27,19 +27,23 @@ export const createListItem = (film) => {
     voteCount.textContent = `Vote count - ${film.vote_count}`;
     const voteAverage = createElementWithClass('p', 'film-vote_average');
     voteAverage.textContent = `Vote average - ${film.vote_average}`;
+    const overviewFils = createElementWithClass('p', 'overview-film')
+    overviewFils.textContent = film.overview;
+  
     const imageWrap = createElementWithClass('div', 'image-wrap');
 
     //modal for comments
     const commWrap = createElementWithClass('div', 'comments-wrap');
     const commList = createElementWithClass('ul', 'comments-list');
     const commButton = createElementWithClass('button', 'comments-button')
+    commButton.textContent = 'Comments';
 
     poster.setAttribute('src', `https://image.tmdb.org/t/p/w500/${film.poster_path}`);
     filmTitle.textContent = film.title;
     
 
     //append DOM 
-    titleWrap.append(cardTitle, release, voteCount, voteAverage,);
+    titleWrap.append(cardTitle, release, voteCount, voteAverage,overviewFils);
     commWrap.append(commButton, commList)
 
     cardWrap.append(exitButton,titleWrap, commWrap, favButton);

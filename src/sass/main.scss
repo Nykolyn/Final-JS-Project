@@ -17,3 +17,13 @@ img {
     width: 70vw;
     margin: 0 auto;
 }
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing:inherit;
+}

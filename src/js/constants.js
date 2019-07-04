@@ -5,3 +5,6 @@ export const refs = {
     filmsList : document.querySelector('.films-list'),
     searchForm: document.querySelector('.search')
 }
+
+
+console.log('API :', API);
