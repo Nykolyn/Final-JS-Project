@@ -53,11 +53,13 @@ refs.filmsList.addEventListener('click', openCard);
 // }
 
 function openCard(event) {
-    // console.log(event.target);
-
+    
     const targetCard = event.target.closest('li');
     const targetDiv = targetCard.querySelector('.card-wrap');
     const exitButton = targetCard.querySelector('.exit-button');
+    
+    const cardStyle = window.getComputedStyle(targetCard);
+    console.log('cardStyle :', cardStyle);
 
     if (!targetCard.className.includes('modal-card')) {
         targetCard.classList.add('modal-card');
@@ -89,7 +91,6 @@ function openCard(event) {
 
     // var element = document.getElementById('image_1'),
 
-    const cardStyle = window.getComputedStyle(targetCard);
     // const top = style.getPropertyValue('top');
 
     
