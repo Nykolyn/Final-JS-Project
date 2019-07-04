@@ -5,8 +5,16 @@ import {
 import {
     createListItem
 } from './view';
-import './authentication/authentication'
+import './authentication/authentication';
+import MicroModal from 'micromodal';
+import '../sass/micromodal.scss';
 
+document.body.addEventListener('click', event => {
+    MicroModal.show('modal-1')
+    setTimeout(() => {
+        MicroModal.close('modal-1')
+    }, 2000)
+})
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -68,7 +76,7 @@ function openCard(event) {
         }
     }
 
-    console.log(event);
+    // console.log(event);
     // console.log('pageYOffset', pageYOffset);   
     // console.log(event.layerY);
     // console.log(event.offsetY);
@@ -79,4 +87,17 @@ function openCard(event) {
     // console.log(targetCard.style);
 }
 
+const handleComment = event => {
+    console.log(event.target)
+    const parentItem = event.target.closest('li');
+    const id = parentItem.id;
+    // console.log(parentItem)
+    // console.log(id)
+    // films.updateComment(id, {
+    //     id: id,
+    //     comment: 'asdasdas'
+    // })
+}
+
 refs.filmsList.addEventListener('click', openCard);
+refs.filmsList.addEventListener('click', handleComment)

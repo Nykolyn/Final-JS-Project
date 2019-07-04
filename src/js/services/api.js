@@ -8,6 +8,7 @@ import {
 
 const FAVOURITE_FILMS_URL = 'http://localhost:3000/films';
 const USER_URL = 'http://localhost:3000/users';
+const COMMENTS_URL = 'http://localhost:3000/comments';
 
 export const getFilms = () => {
     return fetch(API).then(response => {
@@ -16,11 +17,11 @@ export const getFilms = () => {
     });
 };
 
-export const getComments = async (id) => {
+export const getComments = async () => {
     try {
         const result = await fetch(USER_URL);
-        const user = result.json();
-        return user;
+        const comments = result.json();
+        return comments;
     } catch (error) {
         throw new Error('Error while getting comments', error)
     }
@@ -28,7 +29,7 @@ export const getComments = async (id) => {
 
 export const commentFilm = async (id, comment) => {
     const options = {
-        method: 'PATCH',
+        method: 'POST',
         body: JSON.stringify(comment),
         headers: {
             'Content-Type': 'application/json; charset=UTF-8',
@@ -36,10 +37,9 @@ export const commentFilm = async (id, comment) => {
     };
 
     try {
-        const result = await fetch(`${USER_URL}/${id}`, options);
-        const user = result.json();
-        const test = user.map(user => user.comments)
-        return test;
+        const result = await fetch(COMMENTS_URL, options);
+        const comment = result.json();
+        return comment
     } catch (error) {
         throw console.error('error while updating comment', error);
     }

@@ -56,8 +56,8 @@ const submitSingIn = (event) => {
         event.target.reset()
     })
 };
-getUser().then(data=>{
-    if(data.find(el => el.id === localStorage.getItem('key'))){
+getUser().then(data => {
+    if (data.find(el => el.id === localStorage.getItem('key'))) {
         document.querySelector('.cd-signin-modal').classList.remove('cd-signin-modal--is-visible')
         document.querySelector('.films-list').style.filter = "blur(0px)"
         document.querySelector('.films-list').style.transition = "1000ms"
@@ -74,12 +74,8 @@ getUser().then(data=>{
             buttons[1].style.backgroundColor = '#2f889a'
             buttons[1].removeEventListener('click', {})
         })
-        if (document.getElementById("remember-me").checked) {
-            localStorage.setItem('key', comprasion.id)
-        } else {
-            localStorage.removeItem('key')
-        }
-    }})
+    }
+})
 
 
 document.querySelector('.cd-signin-modal').classList.add('cd-signin-modal--is-visible')

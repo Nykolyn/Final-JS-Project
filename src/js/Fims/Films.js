@@ -21,6 +21,6 @@ export default class Films {
     }
 
     updateComment(id, comment) {
-        return api.commentFilm(id, comment).then()
+        return api.commentFilm(id, comment).then(console.log)
     }
 }
