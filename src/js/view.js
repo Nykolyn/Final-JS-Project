@@ -29,27 +29,39 @@ export const createListItem = (film) => {
     voteAverage.textContent = `Vote average - ${film.vote_average}`;
     const imageWrap = createElementWithClass('div', 'image-wrap');
 
+    
+    
+    
     //modal for comments
     const commWrap = createElementWithClass('div', 'comments-wrap');
     const commList = createElementWithClass('ul', 'comments-list');
     const commButton = createElementWithClass('button', 'comments-button')
     commButton.textContent = 'Comments';
-
+    
     poster.setAttribute('src', `https://image.tmdb.org/t/p/w500/${film.poster_path}`);
     filmTitle.textContent = film.title;
     
-
+    //=====like-dis===//
+    const cardBtn = createElementWithClass('div','click')
+    const like = createElementWithClass('button','button-like');
+    like.textContent = 'LIKE';
+    const dislike = createElementWithClass('button','button-dislike');
+    dislike.textContent = 'DISLIKE'
+    
+    cardWrap.append(cardBtn);
+    cardBtn.append(like,dislike);
+    
     //append DOM 
     titleWrap.append(cardTitle, release, voteCount, voteAverage,);
     commWrap.append(commButton, commList)
-
+    
     cardWrap.append(exitButton,titleWrap, commWrap, favButton);
     
     imageWrap.appendChild(poster)
-
+    
     cardInner.append(imageWrap, cardWrap); //left/right block
-
+    
     liToCreate.append(cardInner, filmTitle);
     filmsList.appendChild(liToCreate);
-
+    
 }

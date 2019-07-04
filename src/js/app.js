@@ -72,9 +72,6 @@ function openCard(event) {
         refs.filmsList.addEventListener('click', closedCard);
 
         function closedCard(event) {
-            console.log(event.target);
-
-
             if (event.target === exitButton || event.target === image || event.target === list || event.target.nodeName === 'IMG') {
                 targetCard.classList.remove('modal-card')
                 targetDiv.classList.remove('card-block');
@@ -90,3 +87,22 @@ function openCard(event) {
         }
     }
 }
+
+
+//========like-dis=========//
+let counter = 0;
+document.addEventListener('click', (e) => {
+    if (e.target.className === 'button-like') {
+        counter += 1;
+        console.log(counter);
+
+    }
+})
+let count = 0;
+document.addEventListener('click', (e) => {
+    if (e.target.className === 'button-dislike') {
+        count -= 1;
+        console.log(count);
+
+    }
+})
