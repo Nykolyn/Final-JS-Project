@@ -4,6 +4,13 @@
 @import './header/style.scss';
 @import './modal-card';
 @import './switchPages.scss';
+@import './search-form.scss';
+@import './main-section.scss';
+
+//modal card
+@import './modal-card/modal-card.scss';
+@import './modal-card/modal-card-text.scss';
+@import './modal-card/modal-card-button.scss';
 
 img {
     max-width: 100%;
@@ -15,4 +22,14 @@ img {
     position: relative;
     width: 70vw;
     margin: 0 auto;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing:inherit;
 }

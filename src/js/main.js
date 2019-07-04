@@ -11,29 +11,29 @@
 
 	ModalSignin.prototype.init = function() {
 		var self = this;
-		//open modal/switch form
-		for(var i =0; i < this.triggers.length; i++) {
-			(function(i){
-				self.triggers[i].addEventListener('click', function(event){
-					if( event.target.hasAttribute('data-signin') ) {
-						event.preventDefault();
-						self.showSigninForm(event.target.getAttribute('data-signin'));
-					}
-				});
-			})(i);
-		}
+		// open modal/switch form
+			// for(var i =0; i < this.triggers.length; i++) {
+			// 	(function(i){
+			// 		self.triggers[i].addEventListener('click', function(event){
+			// 			if( event.target.hasAttribute('data-signin') ) {
+			// 				event.preventDefault();
+			// 				self.showSigninForm(event.target.getAttribute('data-signin'));
+			// 			}
+			// 		});
+			// 	})(i);
+			// }
 
 		//close modal
-		this.element.addEventListener('click', function(event){
-			if( hasClass(event.target, 'js-signin-modal') || hasClass(event.target, 'js-close') ) {
-				event.preventDefault();
-				removeClass(self.element, 'cd-signin-modal--is-visible');
-			}
-		});
+		// this.element.addEventListener('click', function(event){
+		// 	if( hasClass(event.target, 'js-signin-modal') || hasClass(event.target, 'js-close') ) {
+		// 		event.preventDefault();
+		// 		removeClass(self.element, 'cd-signin-modal--is-visible');
+		// 	}
+		// });
 		//close modal when clicking the esc keyboard button
-		document.addEventListener('keydown', function(event){
-			(event.which=='27') && removeClass(self.element, 'cd-signin-modal--is-visible');
-		});
+		// document.addEventListener('keydown', function(event){
+		// 	(event.which=='27') && removeClass(self.element, 'cd-signin-modal--is-visible');
+		// });
 
 		//hide/show password
 		for(var i =0; i < this.hidePassword.length; i++) {
@@ -45,14 +45,14 @@
 		} 
 
 		//IMPORTANT - REMOVE THIS - it's just to show/hide error messages in the demo
-		this.blocks[0].getElementsByTagName('form')[0].addEventListener('submit', function(event){
-			event.preventDefault();
-			self.toggleError(document.getElementById('signin-email'), true);
-		});
-		this.blocks[1].getElementsByTagName('form')[0].addEventListener('submit', function(event){
-			event.preventDefault();
-			self.toggleError(document.getElementById('signup-username'), true);
-		});
+		// this.blocks[0].getElementsByTagName('form')[0].addEventListener('submit', function(event){
+		// 	event.preventDefault();
+		// 	self.toggleError(document.getElementById('signin-email'), true);
+		// });
+		// this.blocks[1].getElementsByTagName('form')[0].addEventListener('submit', function(event){
+		// 	event.preventDefault();
+		// 	self.toggleError(document.getElementById('signup-username'), true);
+		// });
 	};
 
 	ModalSignin.prototype.togglePassword = function(target) {
@@ -66,14 +66,14 @@
 		// show modal if not visible
 		!hasClass(this.element, 'cd-signin-modal--is-visible') && addClass(this.element, 'cd-signin-modal--is-visible');
 		// show selected form
-		for( var i=0; i < this.blocks.length; i++ ) {
-			this.blocks[i].getAttribute('data-type') == type ? addClass(this.blocks[i], 'cd-signin-modal__block--is-selected') : removeClass(this.blocks[i], 'cd-signin-modal__block--is-selected');
-		}
+		// for( var i=0; i < this.blocks.length; i++ ) {
+		// 	this.blocks[i].getAttribute('data-type') == type ? addClass(this.blocks[i], 'cd-signin-modal__block--is-selected') : removeClass(this.blocks[i], 'cd-signin-modal__block--is-selected');
+		// }
 		//update switcher appearance
-		var switcherType = (type == 'signup') ? 'signup' : 'login';
-		for( var i=0; i < this.switchers.length; i++ ) {
-			this.switchers[i].getAttribute('data-type') == switcherType ? addClass(this.switchers[i], 'cd-selected') : removeClass(this.switchers[i], 'cd-selected');
-		} 
+		// var switcherType = (type == 'signup') ? 'signup' : 'login';
+		// for( var i=0; i < this.switchers.length; i++ ) {
+		// 	this.switchers[i].getAttribute('data-type') == switcherType ? addClass(this.switchers[i], 'cd-selected') : removeClass(this.switchers[i], 'cd-selected');
+		// } 
 	};
 
 	ModalSignin.prototype.toggleError = function(input, bool) {

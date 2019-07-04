@@ -9,6 +9,9 @@ import {
     createListItem
 } from './view';
 import {switchPages} from './switchPages';
+import './authentication/authentication'
+import { isString, log } from 'util';
+import {onSearch} from './search';
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -22,46 +25,49 @@ setInterval(function () {
     document.getElementById('time').innerHTML = h + ':' + m + ':' + s;
 }, 1000);
 
-const films = new Films();
+export const films = new Films();
 
 films.getFilms().then(result =>
     result.forEach(item => createListItem(item))
-    );
-    
-    // timer
-    
-    
-    
-    
-    //modal card 
-    // console.log(refs.filmsList);
-    refs.filmsList.addEventListener('click', openCard);
-    
-    // function openCard(event) {
-        //     const targetCard = event.target.closest('li');
-        //     const targetDiv = targetCard.querySelector('.card-wrap');
-        
-        //     targetCard.classList.toggle('modal-card');
-        //     targetDiv.classList.toggle('card-block');
-        // }
-        
-        function openCard(event) {
-            
-            const targetCard = event.target.closest('li');
-            const targetDiv = targetCard.querySelector('.card-wrap');
-            const exitButton = targetCard.querySelector('.exit-button');
-            
-            const cardStyle = window.getComputedStyle(targetCard);
-            // console.log('cardStyle :', cardStyle);
-            
-            // mouse cord
+);
+
+// timer
+
+
+
+
+//modal card 
+refs.filmsList.addEventListener('click', openCard);
+
+function openCard(event) {
+
+    const list = document.querySelector('.container');
+    const body = document.querySelector('body');
+
+
+    const targetCard = event.target.closest('li');
+    const targetDiv = targetCard.querySelector('.card-wrap');
+    const exitButton = targetCard.querySelector('.exit-button');
+    const imageWrap = targetCard.querySelector('.image-wrap');
+    const image = targetCard.querySelector('img');
+
+    const filmListTitle = targetCard.querySelector('.film-list__title');
+
+
+    const cardStyle = window.getComputedStyle(targetCard);
+    // console.log('cardStyle :', cardStyle);
+
+    // mouse cord
     const clientX = event.layerX;
     const clientY = event.layerY;
     
     if (!targetCard.className.includes('modal-card')) {
         targetCard.classList.add('modal-card');
         targetDiv.classList.add('card-block');
-        
+        // imageWrap.classList.add('image-wrap_markup')  //test
+        image.classList.add('img-markup');
+        filmListTitle.classList.add('display-none')
+
         window.scroll(0, 100);
         
         //toggle event click 
@@ -69,10 +75,16 @@ films.getFilms().then(result =>
         refs.filmsList.addEventListener('click', closedCard);
         
         function closedCard(event) {
-            if (event.target === exitButton) {
+            console.log(event.target);
+
+
+            if (event.target === exitButton || event.target === image || event.target === list || event.target.nodeName === 'IMG') {
                 targetCard.classList.remove('modal-card')
                 targetDiv.classList.remove('card-block');
-                
+                imageWrap.classList.remove('image-wrap_markup')
+                image.classList.remove('img-markup');
+                filmListTitle.classList.remove('display-none')
+
                 window.scroll(clientX, clientY);
                 
                 //toggle event click 
@@ -81,14 +93,7 @@ films.getFilms().then(result =>
             }
         }
     }
-    
-    console.log(event);
-    // console.log('pageYOffset', pageYOffset);   
-    // console.log(event.layerY);
-    // console.log(event.offsetY);
-    // console.log(screenY);
-    // console.log('pageY :', event.pageY);
-    // console.log(event.y);
-    // console.log(event.target);
-    // console.log(targetCard.style);
 }
+
+
+refs.searchForm.addEventListener('input', onSearch)
