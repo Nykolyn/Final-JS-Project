@@ -6,10 +6,6 @@
 
 	<link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
-	<link rel="stylesheet" href="css/demo.css"> <!-- Demo style -->
-  	
 	<title>Log In &amp; Sign Up Form | CodyHouse</title>
 </head>
 <body>
@@ -28,8 +24,8 @@
 	<div class="cd-signin-modal js-signin-modal"> <!-- this is the entire modal form, including the background -->
 		<div class="cd-signin-modal__container"> <!-- this is the container wrapper -->
 			<ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
-				<li><a href="#0" data-signin="login" data-type="login">Sign in</a></li>
-				<li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
+				<li><a href="#0" id="sign-in-modal" data-signin="login" data-type="login">Sign in</a></li>
+				<li><a href="#0" id="sign-up-modal" data-signin="signup" data-type="signup">New account</a></li>
 			</ul>
 
 			<div class="cd-signin-modal__block js-signin-modal-block" data-type="login"> <!-- log in form -->
