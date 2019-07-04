@@ -41,32 +41,47 @@ commentFilm(2, {
 
 
 //modal card 
-console.log(refs.filmsList);
+// console.log(refs.filmsList);
 refs.filmsList.addEventListener('click', openCard);
-
-function openCard(event) {
-    const targetCard = event.target.closest('li');
-    const targetDiv = targetCard.querySelector('.card-wrap');
-
-    targetCard.classList.toggle('modal-card');
-    targetDiv.classList.toggle('card-block');
-}
 
 // function openCard(event) {
 //     const targetCard = event.target.closest('li');
 //     const targetDiv = targetCard.querySelector('.card-wrap');
-//     const exitButton = document.querySelector('.exit-button');
-    
-//     if (event.target === exitButton) {
-//         targetCard.classList.remove('modal-card')
-//         targetDiv.classList.remove('card-block');
-//     }
 
-//     console.log(event.target);
-
-//     if (!targetCard.className.includes('modal-card')) {
-//         targetCard.classList.add('modal-card');
-//         targetDiv.classList.add('card-block');
-//         // refs.filmsList.removeEventListener('click', openCard);
-//     }
+//     targetCard.classList.toggle('modal-card');
+//     targetDiv.classList.toggle('card-block');
 // }
+
+function openCard(event) {
+    // console.log(event.target);
+
+    const targetCard = event.target.closest('li');
+    const targetDiv = targetCard.querySelector('.card-wrap');
+    const exitButton = targetCard.querySelector('.exit-button');
+
+    if (!targetCard.className.includes('modal-card')) {
+        targetCard.classList.add('modal-card');
+        targetDiv.classList.add('card-block');
+        //remove click 
+        refs.filmsList.removeEventListener('click', openCard);
+        refs.filmsList.addEventListener('click', closedCard);
+
+        function closedCard(event) {
+            if (event.target === exitButton) {
+                targetCard.classList.remove('modal-card')
+                targetDiv.classList.remove('card-block');
+                //remove click 
+                refs.filmsList.removeEventListener('click', closedCard);
+                refs.filmsList.addEventListener('click', openCard);
+            }
+        }
+    }
+
+    console.log(event.pageY);
+    console.log(event.clientY);
+    
+
+    console.log(event.screenY);
+    console.log(event.top);
+    
+}

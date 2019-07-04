@@ -1,13 +1,16 @@
-
 .modal-card {
     justify-content: space-between;
     width: 100%;
+
+    position: absolute;
+    left: 0;
+
     // height: 100vh;
     // height: 100vh;
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
+    // top: 50vh;
     // transform: translate(-50% , -50%);    
+    // transform: translateY(-50%);
+
     margin-bottom: 60px;
     background-color: aqua;
 }
@@ -18,6 +21,7 @@
 }
 
 .image-wrap {
+    
 }
 
 .card-inner {
@@ -28,6 +32,7 @@
 
 .card-wrap {
     display: none;
+    position: relative;
 }
 
 .card-block {
@@ -36,7 +41,18 @@
     background-color: tomato;
 }
 
-.favorite-button {
-    display: block;
-    margin: 0 auto;
+.fav-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    // display: block;
+    // margin: 0 auto;
+}
+
+.exit-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
