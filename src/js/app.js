@@ -35,14 +35,6 @@ films.getFilms().then(result =>
 //modal card 
 refs.filmsList.addEventListener('click', openCard);
 
-// function openCard(event) {
-//     const targetCard = event.target.closest('li');
-//     const targetDiv = targetCard.querySelector('.card-wrap');
-
-//     targetCard.classList.toggle('modal-card');
-//     targetDiv.classList.toggle('card-block');
-// }
-
 function openCard(event) {
 
     const targetCard = event.target.closest('li');
@@ -63,13 +55,13 @@ function openCard(event) {
         targetDiv.classList.add('card-block');
         // imageWrap.classList.add('image-wrap_markup')  //test
         image.classList.add('img-markup');
-        
+
         window.scroll(0, 100);
-        
+
         //toggle event click 
         refs.filmsList.removeEventListener('click', openCard);
         refs.filmsList.addEventListener('click', closedCard);
-        
+
         function closedCard(event) {
             if (event.target === exitButton) {
                 targetCard.classList.remove('modal-card')
@@ -85,14 +77,4 @@ function openCard(event) {
             }
         }
     }
-
-    console.log(event);
-    // console.log('pageYOffset', pageYOffset);   
-    // console.log(event.layerY);
-    // console.log(event.offsetY);
-    // console.log(screenY);
-    // console.log('pageY :', event.pageY);
-    // console.log(event.y);
-    // console.log(event.target);
-    // console.log(targetCard.style);
 }
