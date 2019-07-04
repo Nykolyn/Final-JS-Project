@@ -1,4 +1,4 @@
-const createElementWithClass = (tag, classTitle) => {
+export const createElementWithClass = (tag, classTitle) => {
     const elementToCreate = document.createElement(tag);
     elementToCreate.classList.add(classTitle);
     return elementToCreate;
@@ -27,6 +27,9 @@ export const createListItem = (film) => {
     voteCount.textContent = `Vote count - ${film.vote_count}`;
     const voteAverage = createElementWithClass('p', 'film-vote_average');
     voteAverage.textContent = `Vote average - ${film.vote_average}`;
+    const overviewFils = createElementWithClass('p', 'overview-film')
+    overviewFils.textContent = film.overview;
+  
     const imageWrap = createElementWithClass('div', 'image-wrap');
 
     
@@ -52,9 +55,9 @@ export const createListItem = (film) => {
     cardBtn.append(like,dislike);
     
     //append DOM 
-    titleWrap.append(cardTitle, release, voteCount, voteAverage,);
-    commWrap.append(commButton, commList)
-    
+    titleWrap.append(cardTitle, release, voteCount, voteAverage,overviewFils);
+    commWrap.append(commList, commButton)
+
     cardWrap.append(exitButton,titleWrap, commWrap, favButton);
     
     imageWrap.appendChild(poster)
