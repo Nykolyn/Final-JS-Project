@@ -40,48 +40,32 @@ commentFilm(2, {
 })
 
 
-//modal card 
-// console.log(refs.filmsList);
-refs.filmsList.addEventListener('click', openCard);
+// ______________________________________________________________________
 
-// function openCard(event) {
-//     const targetCard = event.target.closest('li');
-//     const targetDiv = targetCard.querySelector('.card-wrap');
-
-//     targetCard.classList.toggle('modal-card');
-//     targetDiv.classList.toggle('card-block');
-// }
-
-function openCard(event) {
-    // console.log(event.target);
-
-    const targetCard = event.target.closest('li');
-    const targetDiv = targetCard.querySelector('.card-wrap');
-    const exitButton = targetCard.querySelector('.exit-button');
-
-    if (!targetCard.className.includes('modal-card')) {
-        targetCard.classList.add('modal-card');
-        targetDiv.classList.add('card-block');
-        //remove click 
-        refs.filmsList.removeEventListener('click', openCard);
-        refs.filmsList.addEventListener('click', closedCard);
-
-        function closedCard(event) {
-            if (event.target === exitButton) {
-                targetCard.classList.remove('modal-card')
-                targetDiv.classList.remove('card-block');
-                //remove click 
-                refs.filmsList.removeEventListener('click', closedCard);
-                refs.filmsList.addEventListener('click', openCard);
-            }
-        }
-    }
-
-    console.log(event.pageY);
-    console.log(event.clientY);
-    
-
-    console.log(event.screenY);
-    console.log(event.top);
-    
-}
+// Authentication 
+export const postUser = async (user) => {
+	const settings = {
+		method: 'POST',
+		headers: {
+			'Content-type': 'application/json'
+		},
+		body: JSON.stringify(user)
+	};
+	try {
+		const response = await fetch(USER_URL, settings);
+		const users = response.json();
+		return users;
+	} catch (err) {
+		throw err;
+	}
+};
+export const getUser = async () => {
+	try {
+		const response = await fetch(USER_URL)
+		const users = response.json()
+		return users
+	} catch (err) {
+		throw err;
+	}
+};
+// _______________________________________________________________________
