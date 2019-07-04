@@ -1,7 +1,7 @@
 import {getFilms} from './services/api';
 import {createListItem} from './view';
-const films = getFilms().then(result => result.results.forEach(item => createListItem(item)));
-
+import Films from './Fims/Films';
+import {refs} from './constants';
 
 // ------------  TIME  -------------------- 
 setInterval(function () {  
@@ -15,13 +15,6 @@ let s = date.getSeconds();
 document.getElementById('time').innerHTML = h + ':' + m + ':' + s;  
 }, 1000); 
 
-
-
-import {
-    createListItem
-} from "./view";
-import Films from './Fims/Films';
-import {refs} from './constants';
 
 const films = new Films();
 
