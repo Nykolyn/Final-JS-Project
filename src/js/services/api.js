@@ -62,7 +62,7 @@ function openCard(event) {
     if (!targetCard.className.includes('modal-card')) {
         targetCard.classList.add('modal-card');
         targetDiv.classList.add('card-block');
-        //remove click 
+        //toggle event click 
         refs.filmsList.removeEventListener('click', openCard);
         refs.filmsList.addEventListener('click', closedCard);
 
@@ -70,18 +70,30 @@ function openCard(event) {
             if (event.target === exitButton) {
                 targetCard.classList.remove('modal-card')
                 targetDiv.classList.remove('card-block');
-                //remove click 
+                //toggle event click 
                 refs.filmsList.removeEventListener('click', closedCard);
                 refs.filmsList.addEventListener('click', openCard);
             }
         }
     }
 
-    console.log(event.pageY);
-    console.log(event.clientY);
-    
+    console.log(event);
+    // console.log('pageYOffset', pageYOffset);   
+    // console.log(event.layerY);
+    // console.log(event.offsetY);
+    // console.log(screenY);
+    // console.log('pageY :', event.pageY);
+    // console.log(event.y);
+    // console.log(event.target);
+    // console.log(targetCard.style);
 
-    console.log(event.screenY);
-    console.log(event.top);
+    // var element = document.getElementById('image_1'),
+
+    const cardStyle = window.getComputedStyle(targetCard);
+    // const top = style.getPropertyValue('top');
+
     
+    
+    
+     
 }
