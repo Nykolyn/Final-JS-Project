@@ -9,8 +9,8 @@ import {
 import {
     createListItem
 } from './view';
-import './authentication/authentication'
-
+// import './authentication/authentication'
+import './banner'
 // ------------  TIME  -------------------- 
 setInterval(function () {
     const date = new Date();
@@ -83,6 +83,7 @@ function openCard(event) {
         }
     }
 
+    
     console.log(event);
     // console.log('pageYOffset', pageYOffset);   
     // console.log(event.layerY);
@@ -93,3 +94,4 @@ function openCard(event) {
     // console.log(event.target);
     // console.log(targetCard.style);
 }
+banner.addEventListener('mousemove', rotate)

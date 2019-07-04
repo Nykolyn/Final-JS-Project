@@ -1,0 +1,24 @@
+.content {
+    // display: flex;
+    // height: 100vp;
+    // background-color: black;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.banner {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 606%; 
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.banner-item {
+    background-color: aqua;
+    width: 302px;
+    height: 454px;
+    transition: transform 0.2s;
+}
