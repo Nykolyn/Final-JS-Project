@@ -76,9 +76,8 @@
 //comments 
 //comments div wrap
 .comments-wrap {
-    max-width: 80%;
     display: flex;
-    padding-left: 80px;
+    // padding-left: 80px;
 
 }
 
@@ -86,12 +85,9 @@
 //comments ul
 .comments-list {
     width: 80%;
-    height: 300px;
-    position: absolute;
+    height: 30%;
     background-color: #fff;
 }
-
-
 
 
 
