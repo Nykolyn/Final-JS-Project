@@ -62,9 +62,9 @@ Login/Signup modal window - by CodyHouse.co
 }
 
 #time {
-  position: absolute;
-  left: 3%;
-  top: 306%;
+  position: fixed;
+  left: 2%;
+  top: 50%;
   transform: translate(-50%, -50%);
   transform: rotate(-90deg);
   color: #2f889a;
