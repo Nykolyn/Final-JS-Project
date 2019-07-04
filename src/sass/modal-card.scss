@@ -28,9 +28,7 @@
 }
 
 //div image wrap (left)
-.image-wrap {
-
-}
+.image-wrap {}
 
 .img-markup {
     // max-width: 40%;
@@ -83,9 +81,9 @@
     right: 16px;
     width: 24px;
     height: 24px;
-    border-radius: 50%; 
+    border-radius: 50%;
     background-color: #FF3100;
-    border-color: #ffffff; 
+    border-color: #ffffff;
 
 }
 
@@ -96,4 +94,39 @@
     position: absolute;
     right: 20px;
     background-color: #fff;
+}
+
+
+
+//comments-button fav button
+.comments-button {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    margin: 20px auto;
+    color: #ccc;
+    background-color: #555;
+    background-image: linear-gradient(top, #888 0%, #555 100%);
+    border: none;
+    border-radius: 3px;
+    text-shadow: 0px -1px 0px #000;
+    box-shadow: 0px 1px 0px #666, 0px 5px 0px #444, 0px 6px 6px rgba(0, 0, 0, .6);
+    transition: ease .15s all;
+    animation: none;
+}
+
+.comments-button:hover,
+.comments-button:focus {
+    animation: linear 1.2s light infinite;
+}
+
+.comments-button:active {
+    color: #fff;
+    text-shadow: 0px -1px 0px #444, 0px 0px 5px #ffd, 0px 0px 8px #fff;
+    box-shadow: 0px 1px 0px #666, 0px 2px 0px #444, 0px 2px 2px rgba(0, 0, 0, .9);
+    transform: translateY(3px);
+    animation: none;
 }

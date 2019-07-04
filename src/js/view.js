@@ -33,6 +33,7 @@ export const createListItem = (film) => {
     const commWrap = createElementWithClass('div', 'comments-wrap');
     const commList = createElementWithClass('ul', 'comments-list');
     const commButton = createElementWithClass('button', 'comments-button')
+    commButton.textContent = 'Comments';
 
     poster.setAttribute('src', `https://image.tmdb.org/t/p/w500/${film.poster_path}`);
     filmTitle.textContent = film.title;
