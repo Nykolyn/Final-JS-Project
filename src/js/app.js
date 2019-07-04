@@ -3,11 +3,10 @@ import {
     refs
 } from './constants';
 import {
-    getFilms
-} from './services/api';
-import {
     createListItem
 } from './view';
+import './authentication/authentication'
+
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -21,7 +20,6 @@ setInterval(function () {
     document.getElementById('time').innerHTML = h + ':' + m + ':' + s;
 }, 1000);
 
-import './authentication/authentication'
 
 const films = new Films();
 
@@ -29,22 +27,9 @@ films.getFilms().then(result =>
     result.forEach(item => createListItem(item))
 );
 
-// timer
-
-
-
-
-//modal card 
 // console.log(refs.filmsList);
-refs.filmsList.addEventListener('click', openCard);
 
-// function openCard(event) {
-//     const targetCard = event.target.closest('li');
-//     const targetDiv = targetCard.querySelector('.card-wrap');
 
-//     targetCard.classList.toggle('modal-card');
-//     targetDiv.classList.toggle('card-block');
-// }
 
 function openCard(event) {
 
@@ -93,3 +78,5 @@ function openCard(event) {
     // console.log(event.target);
     // console.log(targetCard.style);
 }
+
+refs.filmsList.addEventListener('click', openCard);

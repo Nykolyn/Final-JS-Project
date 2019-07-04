@@ -4,10 +4,16 @@ const createElementWithClass = (tag, classTitle) => {
     return elementToCreate;
 };
 
+const setIdToElem = (elem, id) => {
+    elem.setAttribute('id', id);
+}
+
 export const createListItem = (film) => {
     const filmsList = document.querySelector('.films-list');
-    
+
     const liToCreate = createElementWithClass('li', 'films-list__item');
+
+    setIdToElem(liToCreate, film.id)
     const poster = createElementWithClass('img', 'films_list__poster');
     const filmTitle = createElementWithClass('p', 'film-list__title');
 
@@ -18,7 +24,7 @@ export const createListItem = (film) => {
     const exitButton = createElementWithClass('button', 'exit-button')
     exitButton.textContent = 'exit button'
     const cardInner = createElementWithClass('div', 'card-inner');
-    const cardWrap = createElementWithClass('div', 'card-wrap');    
+    const cardWrap = createElementWithClass('div', 'card-wrap');
     const favButton = createElementWithClass('button', 'fav-button');
     favButton.textContent = 'fav button'
     const titleWrap = createElementWithClass('dibv', 'title-wrap');
@@ -33,12 +39,12 @@ export const createListItem = (film) => {
     const imageWrap = createElementWithClass('div', 'image-wrap');
 
 
-    
+
     poster.setAttribute('src', `https://image.tmdb.org/t/p/w500/${film.poster_path}`);
     filmTitle.textContent = film.title;
 
-    titleWrap.append(cardTitle,release,voteCount,voteAverage );
-    cardWrap.append(exitButton,titleWrap, favButton);
+    titleWrap.append(cardTitle, release, voteCount, voteAverage);
+    cardWrap.append(exitButton, titleWrap, favButton);
     imageWrap.appendChild(poster)
     cardInner.append(imageWrap, cardWrap);
 
