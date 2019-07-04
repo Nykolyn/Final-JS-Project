@@ -70,3 +70,32 @@ function openCard(event) {
 //         // refs.filmsList.removeEventListener('click', openCard);
 //     }
 // }
+// ______________________________________________________________________
+
+// Authentication 
+export const postUser = async (user) => {
+	const settings = {
+		method: 'POST',
+		headers: {
+			'Content-type': 'application/json'
+		},
+		body: JSON.stringify(user)
+	};
+	try {
+		const response = await fetch(USER_URL, settings);
+		const users = response.json();
+		return users;
+	} catch (err) {
+		throw err;
+	}
+};
+export const getUser = async () => {
+	try {
+		const response = await fetch(USER_URL)
+		const users = response.json()
+		return users
+	} catch (err) {
+		throw err;
+	}
+};
+// _______________________________________________________________________

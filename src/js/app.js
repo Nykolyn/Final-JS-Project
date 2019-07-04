@@ -3,6 +3,8 @@ import {
 } from "./view";
 import Films from './Fims/Films'
 
+import './authentication/authentication'
+
 const films = new Films();
 
 films.getFilms().then(result =>
