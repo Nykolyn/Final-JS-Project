@@ -3,3 +3,5 @@ export const API = 'https://api.themoviedb.org/3/movie/popular?api_key=027ca1d5e
 export const refs = {
     filmsList : document.querySelector('.films-list'),
 }
+
+console.log('API :', API);

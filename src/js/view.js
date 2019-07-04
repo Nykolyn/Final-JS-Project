@@ -27,6 +27,9 @@ export const createListItem = (film) => {
     voteCount.textContent = `Vote count - ${film.vote_count}`;
     const voteAverage = createElementWithClass('p', 'film-vote_average');
     voteAverage.textContent = `Vote average - ${film.vote_average}`;
+    const overviewFils = createElementWithClass('p', 'overview-film')
+    overviewFils.textContent = film.overview;
+  
     const imageWrap = createElementWithClass('div', 'image-wrap');
 
     //modal for comments
@@ -40,7 +43,7 @@ export const createListItem = (film) => {
     
 
     //append DOM 
-    titleWrap.append(cardTitle, release, voteCount, voteAverage,);
+    titleWrap.append(cardTitle, release, voteCount, voteAverage,overviewFils);
     commWrap.append(commButton, commList)
 
     cardWrap.append(exitButton,titleWrap, commWrap, favButton);

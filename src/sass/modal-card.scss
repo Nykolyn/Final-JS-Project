@@ -1,5 +1,6 @@
 // li
 .modal-card {
+    border-radius: 4px;
     justify-content: space-between;
     width: 98%;
 
@@ -28,10 +29,13 @@
 }
 
 //div image wrap (left)
-.image-wrap {}
+.image-wrap {
+
+}
 
 .img-markup {
     // max-width: 40%;
+    border-radius: 6px;
 }
 
 .image-wrap_markup {
@@ -54,11 +58,13 @@
     background-color: tomato;
 }
 
+//title div
 .title-wrap {
     // position: absolute;
     // top: 50%;
     // left: 50%;
     // transform: translate(-50%, -50%);
+    display: block;
 }
 
 
