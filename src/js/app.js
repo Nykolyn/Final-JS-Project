@@ -104,11 +104,6 @@ let commentUserName = null;
 let commentToPost = null;
 
 const handleComment = event => {
-    // const commentsArr = [];
-    // films.getComments().then(comments => {
-    //     comments.map(comment => commentsArr.push(comment));
-    // });
-    // if (event.target.closest('li').nodeName !== 'li') return
     if (event.target.closest('li').nodeName !== 'LI') return
     console.log(event.target)
     const parentItem = event.target.closest('li');
