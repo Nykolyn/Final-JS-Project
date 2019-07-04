@@ -17,9 +17,20 @@ export const getFilms = () => {
     });
 };
 
+export const getUserName = async (id) => {
+    try {
+        const result = await fetch(`${USER_URL}/${id}`)
+        const user = result.json()
+        return user;
+
+    } catch (error) {
+        throw new Error('Erro while getting user', error)
+    }
+}
+
 export const getComments = async () => {
     try {
-        const result = await fetch(USER_URL);
+        const result = await fetch(COMMENTS_URL);
         const comments = result.json();
         return comments;
     } catch (error) {
@@ -27,7 +38,7 @@ export const getComments = async () => {
     }
 }
 
-export const commentFilm = async (id, comment) => {
+export const commentFilm = async (comment) => {
     const options = {
         method: 'POST',
         body: JSON.stringify(comment),
@@ -65,6 +76,7 @@ export const postUser = async (user) => {
         throw err;
     }
 };
+
 export const getUser = async () => {
     try {
         const response = await fetch(USER_URL)

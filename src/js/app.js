@@ -1,20 +1,20 @@
 import Films from './Fims/Films';
 import {
-    refs
+    refs,
+    commentForm,
+    list,
 } from './constants';
 import {
-    createListItem
+    createListItem,
+    commentItemCreate,
+    commentListRender,
 } from './view';
 import './authentication/authentication';
 import MicroModal from 'micromodal';
 import '../sass/micromodal.scss';
-
-document.body.addEventListener('click', event => {
-    MicroModal.show('modal-1')
-    // setTimeout(() => {
-    //     MicroModal.close('modal-1')
-    // }, 2000)
-})
+import {
+    getUserName
+} from './services/api'
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -79,17 +79,63 @@ function openCard(event) {
 }
 
 
+
+let filmId = null;
+let commentUserName = null;
+let commentToPost = null;
+
 const handleComment = event => {
+    // const commentsArr = [];
+    // films.getComments().then(comments => {
+    //     comments.map(comment => commentsArr.push(comment));
+    // });
+    // if (event.target.closest('li').nodeName !== 'li') return
+    if (event.target.closest('li').nodeName !== 'LI') return
     console.log(event.target)
     const parentItem = event.target.closest('li');
+    // if (event.target.closest('li') !== parentItem) return
     const id = parentItem.id;
-    // console.log(parentItem)
-    // console.log(id)
-    // films.updateComment(id, {
-    //     id: id,
-    //     comment: 'asdasdas'
-    // })
+    const commentsList = parentItem.querySelector('.comments-list');
+    commentsList.innerHTML = '';
+    commentsList.style.overflow = 'scroll';
+
+
+    films.getComments().then(comments => {
+        comments.map(comment => {
+            if (comment.filmId === id) {
+                commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date);
+            }
+        })
+    })
+
+    event.target.closest('li') === parentItem ? filmId = parentItem.id : null;
+    if (event.target.className === 'comments-button') {
+        MicroModal.show('modal-1')
+    }
 }
 
+const handleCommentSubmit = event => {
+    event.preventDefault();
+    const [comment] = event.currentTarget.elements;
+
+    if (comment.value.trim() === '') return console.log('Заполни все поля!');
+    commentToPost = comment.value;
+    getUserName(localStorage.getItem('key')).then(user => {
+        const newComment = {
+            filmId: filmId,
+            name: user.login,
+            comment: commentToPost,
+            date: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
+        }
+
+        films.updateComment(newComment)
+        MicroModal.close('modal-1')
+    })
+    event.currentTarget.reset();
+
+}
+
+
 refs.filmsList.addEventListener('click', openCard);
-refs.filmsList.addEventListener('click', handleComment)
+refs.filmsList.addEventListener('click', handleComment);
+commentForm.addEventListener('submit', handleCommentSubmit)

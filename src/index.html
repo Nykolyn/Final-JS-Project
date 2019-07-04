@@ -266,16 +266,27 @@
           aria-modal="true"
           aria-labelledby="modal-1-title"
         >
-          <footer class="modal__footer">
-            <button class="modal__btn modal__btn-primary">Post</button>
-            <button
-              class="modal__btn"
-              data-micromodal-close
-              aria-label="Close this dialog window"
-            >
-              Close
-            </button>
-          </footer>
+          <main class="modal__content">
+            <form class="comment-form">
+              <label for="userComment">
+                Your comment
+              </label>
+              <textarea
+                name="userComment"
+                id="userComment"
+                cols="30"
+                rows="10"
+              ></textarea>
+              <button class="modal__btn modal__btn-primary">Post</button>
+              <button
+                class="modal__btn"
+                data-micromodal-close
+                aria-label="Close this dialog window"
+              >
+                Close
+              </button>
+            </form>
+          </main>
         </div>
       </div>
     </div>

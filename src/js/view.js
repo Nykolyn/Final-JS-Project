@@ -58,3 +58,22 @@ export const createListItem = (film) => {
     filmsList.appendChild(liToCreate);
 
 }
+
+
+export const commentItemCreate = (name, comment, date) => {
+    return `<li class="comments-link">
+                <p class="comments-name">${name}</p>
+                <p class="comments-comment">${comment}</p>
+                <span class="comments-date">${date}</span>
+            </li>`
+}
+
+export const commentListRender = (link, arr) => {
+    link.innerHtml = arr.map(comment =>
+        `<li class="comments-link">
+            <p class="comments-name">${comment.name}</p>
+            <p class="comments-comment">${comment.comment}</p>
+            <span class="comments-date">${comment.date}</span>
+        </li>`
+    )
+}

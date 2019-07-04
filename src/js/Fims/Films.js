@@ -15,12 +15,10 @@ export default class Films {
     }
 
     getComments() {
-        return api.getComments()
-            .then(user => user.map(user => user.comments))
-            .then(comments => this._comments = comments)
+        return api.getComments().then(comments => this._comments = comments);
     }
 
-    updateComment(id, comment) {
-        return api.commentFilm(id, comment).then(console.log)
+    updateComment(comment) {
+        return api.commentFilm(comment).then(console.log)
     }
 }
