@@ -2,7 +2,9 @@
 @import './header/demo.scss';
 @import './header/reset.scss';
 @import './header/style.scss';
-@import './modal-card';
+@import './modal-card/modal-card';
+@import './modal-card/modal-card-text.scss';
+@import './modal-card/modal-card-button.scss';
 
 img {
     max-width: 100%;
