@@ -50,6 +50,9 @@ function openCard(event) {
     const imageWrap = targetCard.querySelector('.image-wrap');
     const image = targetCard.querySelector('img');
 
+    const filmListTitle = targetCard.querySelector('.film-list__title');
+
+
     const cardStyle = window.getComputedStyle(targetCard);
     // console.log('cardStyle :', cardStyle);
 
@@ -62,6 +65,7 @@ function openCard(event) {
         targetDiv.classList.add('card-block');
         // imageWrap.classList.add('image-wrap_markup')  //test
         image.classList.add('img-markup');
+        filmListTitle.classList.add('display-none')
 
         window.scroll(0, 100);
 
@@ -78,6 +82,7 @@ function openCard(event) {
                 targetDiv.classList.remove('card-block');
                 imageWrap.classList.remove('image-wrap_markup')
                 image.classList.remove('img-markup');
+                filmListTitle.classList.remove('display-none')
 
                 window.scroll(clientX, clientY);
 
