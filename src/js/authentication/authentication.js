@@ -19,10 +19,11 @@ const submitSingUp = (event) => {
         } else(
             postUser(user),
             document.querySelector('.cd-signin-modal').classList.remove('cd-signin-modal--is-visible'),
+
             event.target.reset(),
             console.log('added'))
-        })
-        event.preventDefault()
+    })
+    event.preventDefault()
 };
 const submitSingIn = (event) => {
     event.preventDefault()
@@ -31,26 +32,58 @@ const submitSingIn = (event) => {
         if (comprasion) {
             console.log('+');
             document.querySelector('.cd-signin-modal').classList.remove('cd-signin-modal--is-visible')
-                const buttons = document.querySelectorAll('.cd-main-nav__item')
-                buttons[0].style.display = 'none';
-                buttons[1].style.backgroundColor = 'red'
-                buttons[1].textContent = 'Sign out'
-                buttons[1].addEventListener('click',(event)=>{
-                    buttons[0].style.display = 'block'
-                    buttons[1].textContent = 'Sign up'
-                    buttons[1].style.backgroundColor = '#2f889a'
-                    buttons[1].removeEventListener('click',{})
-                })
-                if (document.getElementById("remember-me").checked) {
-                    localStorage.setItem('key', comprasion.id)
-                } else {
-                    localStorage.removeItem('key')
-                }
-            } else(console.log('-'))
-            event.target.reset()
+            document.querySelector('.films-list').style.filter = "blur(0px)"
+            document.querySelector('.films-list').style.transition = "1000ms"
+            const buttons = document.querySelectorAll('.cd-main-nav__item')
+            buttons[0].style.display = 'none';
+            buttons[1].style.backgroundColor = 'red'
+            buttons[1].textContent = 'Sign out'
+            buttons[1].addEventListener('click', (event) => {
+                localStorage.removeItem('key')
+                document.querySelector('.cd-signin-modal').classList.add('cd-signin-modal--is-visible')
+                document.querySelector('.films-list').style.filter = "blur(10px)"
+                buttons[0].style.display = 'block'
+                buttons[1].textContent = 'Sign up'
+                buttons[1].style.backgroundColor = '#2f889a'
+                buttons[1].removeEventListener('click', {})
+            })
+            if (document.getElementById("remember-me").checked) {
+                localStorage.setItem('key', comprasion.id)
+            } else {
+                localStorage.removeItem('key')
+            }
+        } else(console.log('-'))
+        event.target.reset()
+    })
+};
+getUser().then(data=>{
+    if(data.find(el => el.id === localStorage.getItem('key'))){
+        document.querySelector('.cd-signin-modal').classList.remove('cd-signin-modal--is-visible')
+        document.querySelector('.films-list').style.filter = "blur(0px)"
+        document.querySelector('.films-list').style.transition = "1000ms"
+        const buttons = document.querySelectorAll('.cd-main-nav__item')
+        buttons[0].style.display = 'none';
+        buttons[1].style.backgroundColor = 'red'
+        buttons[1].textContent = 'Sign out'
+        buttons[1].addEventListener('click', (event) => {
+            localStorage.removeItem('key')
+            document.querySelector('.cd-signin-modal').classList.add('cd-signin-modal--is-visible')
+            document.querySelector('.films-list').style.filter = "blur(10px)"
+            buttons[0].style.display = 'block'
+            buttons[1].textContent = 'Sign up'
+            buttons[1].style.backgroundColor = '#2f889a'
+            buttons[1].removeEventListener('click', {})
         })
-    };
-   
-    
+        if (document.getElementById("remember-me").checked) {
+            localStorage.setItem('key', comprasion.id)
+        } else {
+            localStorage.removeItem('key')
+        }
+    }})
+
+
+document.querySelector('.cd-signin-modal').classList.add('cd-signin-modal--is-visible')
+document.querySelector('.films-list').style.filter = "blur(15px)"
+
 formSingUp.addEventListener('submit', submitSingUp);
 formSingIn.addEventListener('submit', submitSingIn);
