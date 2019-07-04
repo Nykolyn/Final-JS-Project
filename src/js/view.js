@@ -21,8 +21,9 @@ export const createListItem = (film) => {
     const cardWrap = createElementWithClass('div', 'card-wrap');    
     const favButton = createElementWithClass('button', 'fav-button');
     favButton.textContent = 'fav button'
-    const cardTitle = createElementWithClass('p', 'film-card_title')
-    cardTitle.textContent = `${film.title}`;
+    const titleWrap = createElementWithClass('dibv', 'title-wrap');
+    const cardTitle = createElementWithClass('p', 'film-card_title');
+    cardTitle.textContent = film.title;
     const release = createElementWithClass('p', 'film-release');
     release.textContent = `Release - ${film.release_date}`;
     const voteCount = createElementWithClass('p', 'film-vote_count');
@@ -36,7 +37,8 @@ export const createListItem = (film) => {
     poster.setAttribute('src', `https://image.tmdb.org/t/p/w500/${film.poster_path}`);
     filmTitle.textContent = film.title;
 
-    cardWrap.append(exitButton,release, voteCount, voteAverage, favButton); //modal-card
+    titleWrap.append(cardTitle,release,voteCount,voteAverage );
+    cardWrap.append(exitButton,titleWrap, favButton);
     imageWrap.appendChild(poster)
     cardInner.append(imageWrap, cardWrap);
 
