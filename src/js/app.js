@@ -21,6 +21,8 @@ setInterval(function () {
     document.getElementById('time').innerHTML = h + ':' + m + ':' + s;
 }, 1000);
 
+import './authentication/authentication'
+
 const films = new Films();
 
 films.getFilms().then(result =>
