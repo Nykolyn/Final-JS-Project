@@ -15,6 +15,13 @@ import '../sass/micromodal.scss';
 import {
     getUserName
 } from './services/api'
+import {
+    isString,
+    log
+} from 'util';
+import {
+    onSearch
+} from './search';
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -28,13 +35,17 @@ setInterval(function () {
     document.getElementById('time').innerHTML = h + ':' + m + ':' + s;
 }, 1000);
 
-const films = new Films();
+export const films = new Films();
 
 films.getFilms().then(result =>
     result.forEach(item => createListItem(item))
 );
 
 function openCard(event) {
+
+    const list = document.querySelector('.container');
+    const body = document.querySelector('body');
+
 
     const targetCard = event.target.closest('li');
     const targetDiv = targetCard.querySelector('.card-wrap');
@@ -62,7 +73,10 @@ function openCard(event) {
         refs.filmsList.addEventListener('click', closedCard);
 
         function closedCard(event) {
-            if (event.target === exitButton) {
+            console.log(event.target);
+
+
+            if (event.target === exitButton || event.target === image || event.target === list || event.target.nodeName === 'IMG') {
                 targetCard.classList.remove('modal-card')
                 targetDiv.classList.remove('card-block');
                 imageWrap.classList.remove('image-wrap_markup')
@@ -139,3 +153,4 @@ const handleCommentSubmit = event => {
 refs.filmsList.addEventListener('click', openCard);
 refs.filmsList.addEventListener('click', handleComment);
 commentForm.addEventListener('submit', handleCommentSubmit)
+refs.searchForm.addEventListener('input', onSearch)

@@ -11,17 +11,17 @@
 
 	ModalSignin.prototype.init = function() {
 		var self = this;
-		//open modal/switch form
-		for(var i =0; i < this.triggers.length; i++) {
-			(function(i){
-				self.triggers[i].addEventListener('click', function(event){
-					if( event.target.hasAttribute('data-signin') ) {
-						event.preventDefault();
-						self.showSigninForm(event.target.getAttribute('data-signin'));
-					}
-				});
-			})(i);
-		}
+		// open modal/switch form
+			// for(var i =0; i < this.triggers.length; i++) {
+			// 	(function(i){
+			// 		self.triggers[i].addEventListener('click', function(event){
+			// 			if( event.target.hasAttribute('data-signin') ) {
+			// 				event.preventDefault();
+			// 				self.showSigninForm(event.target.getAttribute('data-signin'));
+			// 			}
+			// 		});
+			// 	})(i);
+			// }
 
 		//close modal
 		// this.element.addEventListener('click', function(event){
@@ -66,14 +66,14 @@
 		// show modal if not visible
 		!hasClass(this.element, 'cd-signin-modal--is-visible') && addClass(this.element, 'cd-signin-modal--is-visible');
 		// show selected form
-		for( var i=0; i < this.blocks.length; i++ ) {
-			this.blocks[i].getAttribute('data-type') == type ? addClass(this.blocks[i], 'cd-signin-modal__block--is-selected') : removeClass(this.blocks[i], 'cd-signin-modal__block--is-selected');
-		}
+		// for( var i=0; i < this.blocks.length; i++ ) {
+		// 	this.blocks[i].getAttribute('data-type') == type ? addClass(this.blocks[i], 'cd-signin-modal__block--is-selected') : removeClass(this.blocks[i], 'cd-signin-modal__block--is-selected');
+		// }
 		//update switcher appearance
-		var switcherType = (type == 'signup') ? 'signup' : 'login';
-		for( var i=0; i < this.switchers.length; i++ ) {
-			this.switchers[i].getAttribute('data-type') == switcherType ? addClass(this.switchers[i], 'cd-selected') : removeClass(this.switchers[i], 'cd-selected');
-		} 
+		// var switcherType = (type == 'signup') ? 'signup' : 'login';
+		// for( var i=0; i < this.switchers.length; i++ ) {
+		// 	this.switchers[i].getAttribute('data-type') == switcherType ? addClass(this.switchers[i], 'cd-selected') : removeClass(this.switchers[i], 'cd-selected');
+		// } 
 	};
 
 	ModalSignin.prototype.toggleError = function(input, bool) {
