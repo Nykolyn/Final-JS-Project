@@ -1,9 +1,42 @@
 //title style 
+//all
+.film-card_title,
+.film-release,
+.film-vote_count,
+.film-vote_average,
+.overview-film {
+    color: #ffffff;
+    display: block;
+}
+
+
+
+
+
+
 //title
 .film-card_title {
-    color: #ffffff;
     font-size: 18px;
     text-align: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Arial Narrow Bold', sans-serif;
+}
+
+// release
+.film-release {
+
+}
+
+//film count 
+.film-vote_count {
+
+}
+
+//film average
+.film-vote_average {
+
+}
+
+//film overview
+.overview-film {
 
 }
