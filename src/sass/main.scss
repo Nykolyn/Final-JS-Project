@@ -1,5 +1,8 @@
-// import './films-list';
 @import './films-list';
+@import './header/demo.scss';
+@import './header/reset.scss';
+@import './header/style.scss';
+@import './modal-card';
 
 img {
     max-width: 100%;
@@ -8,6 +11,7 @@ img {
 }
 
 .container {
+    position: relative;
     width: 70vw;
     margin: 0 auto;
 }

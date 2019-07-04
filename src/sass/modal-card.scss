@@ -1,0 +1,58 @@
+.modal-card {
+    justify-content: space-between;
+    width: 100%;
+
+    position: absolute;
+    left: 0;
+
+    // height: 100vh;
+    // height: 100vh;
+    // top: 50vh;
+    // transform: translate(-50% , -50%);    
+    // transform: translateY(-50%);
+
+    margin-bottom: 60px;
+    background-color: aqua;
+}
+
+.modal-card p {
+    display: block;
+    width: 100%;
+}
+
+.image-wrap {
+    
+}
+
+.card-inner {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.card-wrap {
+    display: none;
+    position: relative;
+}
+
+.card-block {
+    display: block;
+    width: 50%;
+    background-color: tomato;
+}
+
+.fav-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    // display: block;
+    // margin: 0 auto;
+}
+
+.exit-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}

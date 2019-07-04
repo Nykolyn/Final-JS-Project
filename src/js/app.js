@@ -13,4 +13,20 @@ let s = date.getSeconds();
  m = (m < 10) ? '0' + m : m;  
  s = (s < 10) ? '0' + s : s;  
 document.getElementById('time').innerHTML = h + ':' + m + ':' + s;  
-}, 1000);  
+}, 1000); 
+
+
+
+import {
+    createListItem
+} from "./view";
+import Films from './Fims/Films';
+import {refs} from './constants';
+
+const films = new Films();
+
+films.getFilms().then(result =>
+    result.forEach(item => createListItem(item))
+);
+
+// timer
