@@ -13,51 +13,7 @@
     <title>Log In &amp; Sign Up Form | CodyHouse</title>
   </head>
   <body>
-    <!-- MODAL COMMENT -->
-
-    <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
-      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-        <div
-          class="modal__container"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-1-title"
-        >
-          <header class="modal__header">
-            <h2 class="modal__title" id="modal-1-title">
-              Micromodal
-            </h2>
-            <button
-              class="modal__close"
-              aria-label="Close modal"
-              data-micromodal-close
-            ></button>
-          </header>
-          <main class="modal__content" id="modal-1-content">
-            <p>
-              Try hitting the <code>tab</code> key and notice how the focus
-              stays within the modal itself. Also, <code>esc</code> to close
-              modal.
-            </p>
-          </main>
-          <footer class="modal__footer">
-            <button class="modal__btn modal__btn-primary">Continue</button>
-            <button
-              class="modal__btn"
-              data-micromodal-close
-              aria-label="Close this dialog window"
-            >
-              Close
-            </button>
-          </footer>
-        </div>
-      </div>
-    </div>
-
-    <!-- END MODAL COMMENT -->
-
     <header class="cd-main-header">
-      <span id="time">00:00:00</span>
       <nav class="cd-main-nav js-main-nav">
         <ul class="cd-main-nav__list js-signin-modal-trigger">
           <!-- inser more links here -->
@@ -79,6 +35,7 @@
           </li>
         </ul>
       </nav>
+      <span id="time">00:00:00</span>
     </header>
 
     <div class="cd-signin-modal js-signin-modal">
@@ -89,10 +46,22 @@
           class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger"
         >
           <li>
-            <a href="#0" data-signin="login" data-type="login">Sign in</a>
+            <a
+              href="#0"
+              id="sign-in-modal"
+              data-signin="login"
+              data-type="login"
+              >Sign in</a
+            >
           </li>
           <li>
-            <a href="#0" data-signin="signup" data-type="signup">New account</a>
+            <a
+              href="#0"
+              id="sign-up-modal"
+              data-signin="signup"
+              data-type="signup"
+              >New account</a
+            >
           </li>
         </ul>
 
@@ -287,6 +256,31 @@
     <!-- cd-signin-modal -->
 
     <ul class="films-list container"></ul>
+    <!-- MODAL COMMENT -->
+
+    <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div
+          class="modal__container"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-1-title"
+        >
+          <footer class="modal__footer">
+            <button class="modal__btn modal__btn-primary">Post</button>
+            <button
+              class="modal__btn"
+              data-micromodal-close
+              aria-label="Close this dialog window"
+            >
+              Close
+            </button>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <!-- END MODAL COMMENT -->
 
     <script src="js/placeholders.min.js"></script>
     <!-- polyfill for the HTML5 placeholder attribute -->

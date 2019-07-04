@@ -1,51 +1,70 @@
+// li
 .modal-card {
     justify-content: space-between;
-    width: 90%;
-
+    width: 95%;
 
     position: absolute;
     // left: 0;  //work nolmal 
 
-    top: 50vh;
+    top: 43vh;
     left: 50%;
-    transform: translate(-50% , -50%);    
+    transform: translate(-50%, -65%);
 
     margin-bottom: 60px;
     background-color: aqua;
 }
 
+// p in li
 .modal-card p {
     display: block;
     width: 100%;
 }
 
-.image-wrap {
-    
-}
-
+//div card inner (image-wrap  / card-wrap) 
 .card-inner {
     display: flex;
     justify-content: space-between;
 
 }
 
+//div image wrap (left)
+.image-wrap {
+
+}
+
+.img-markup {
+    // max-width: 40%;
+}
+
+.image-wrap_markup {
+    width: 100%;
+}
+
+
+//div card wrap (exButton / div title / div comm / favButton)
 .card-wrap {
     display: none;
     position: relative;
 }
 
+//div card-wrap for block
 .card-block {
-    display: block;
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
     background-color: tomato;
 }
 
 .title-wrap {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
 }
+
+
+
 
 .fav-button {
     position: absolute;
@@ -57,8 +76,24 @@
     // margin: 0 auto;
 }
 
+//ex button 
 .exit-button {
     position: absolute;
-    top: 20px;
+    top: 16px;
+    right: 16px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%; 
+    background-color: #FF3100;
+    border-color: #ffffff; 
+
+}
+
+//ul
+.comments-list {
+    width: 80%;
+    height: 300px;
+    position: absolute;
     right: 20px;
+    background-color: #fff;
 }

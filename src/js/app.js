@@ -11,9 +11,9 @@ import '../sass/micromodal.scss';
 
 document.body.addEventListener('click', event => {
     MicroModal.show('modal-1')
-    setTimeout(() => {
-        MicroModal.close('modal-1')
-    }, 2000)
+    // setTimeout(() => {
+    //     MicroModal.close('modal-1')
+    // }, 2000)
 })
 
 // ------------  TIME  -------------------- 
@@ -28,22 +28,19 @@ setInterval(function () {
     document.getElementById('time').innerHTML = h + ':' + m + ':' + s;
 }, 1000);
 
-
 const films = new Films();
 
 films.getFilms().then(result =>
     result.forEach(item => createListItem(item))
 );
 
-// console.log(refs.filmsList);
-
-
-
 function openCard(event) {
 
     const targetCard = event.target.closest('li');
     const targetDiv = targetCard.querySelector('.card-wrap');
     const exitButton = targetCard.querySelector('.exit-button');
+    const imageWrap = targetCard.querySelector('.image-wrap');
+    const image = targetCard.querySelector('img');
 
     const cardStyle = window.getComputedStyle(targetCard);
     // console.log('cardStyle :', cardStyle);
@@ -55,6 +52,8 @@ function openCard(event) {
     if (!targetCard.className.includes('modal-card')) {
         targetCard.classList.add('modal-card');
         targetDiv.classList.add('card-block');
+        // imageWrap.classList.add('image-wrap_markup')  //test
+        image.classList.add('img-markup');
 
         window.scroll(0, 100);
 
@@ -66,6 +65,8 @@ function openCard(event) {
             if (event.target === exitButton) {
                 targetCard.classList.remove('modal-card')
                 targetDiv.classList.remove('card-block');
+                imageWrap.classList.remove('image-wrap_markup')
+                image.classList.remove('img-markup');
 
                 window.scroll(clientX, clientY);
 
@@ -75,17 +76,8 @@ function openCard(event) {
             }
         }
     }
-
-    // console.log(event);
-    // console.log('pageYOffset', pageYOffset);   
-    // console.log(event.layerY);
-    // console.log(event.offsetY);
-    // console.log(screenY);
-    // console.log('pageY :', event.pageY);
-    // console.log(event.y);
-    // console.log(event.target);
-    // console.log(targetCard.style);
 }
+
 
 const handleComment = event => {
     console.log(event.target)

@@ -17,17 +17,14 @@ export const createListItem = (film) => {
     const poster = createElementWithClass('img', 'films_list__poster');
     const filmTitle = createElementWithClass('p', 'film-list__title');
 
-
-    // console.log('film :', film);
-
     //modal card
     const exitButton = createElementWithClass('button', 'exit-button')
-    exitButton.textContent = 'exit button'
+    // exitButton.textContent = 'exit button'  //comm for test
     const cardInner = createElementWithClass('div', 'card-inner');
     const cardWrap = createElementWithClass('div', 'card-wrap');
     const favButton = createElementWithClass('button', 'fav-button');
     favButton.textContent = 'fav button'
-    const titleWrap = createElementWithClass('dibv', 'title-wrap');
+    const titleWrap = createElementWithClass('div', 'title-wrap');
     const cardTitle = createElementWithClass('p', 'film-card_title');
     cardTitle.textContent = film.title;
     const release = createElementWithClass('p', 'film-release');
@@ -38,15 +35,24 @@ export const createListItem = (film) => {
     voteAverage.textContent = `Vote average - ${film.vote_average}`;
     const imageWrap = createElementWithClass('div', 'image-wrap');
 
-
+    //modal for comments
+    const commWrap = createElementWithClass('div', 'comments-wrap');
+    const commList = createElementWithClass('ul', 'comments-list');
+    const commButton = createElementWithClass('button', 'comments-button')
 
     poster.setAttribute('src', `https://image.tmdb.org/t/p/w500/${film.poster_path}`);
     filmTitle.textContent = film.title;
 
-    titleWrap.append(cardTitle, release, voteCount, voteAverage);
-    cardWrap.append(exitButton, titleWrap, favButton);
+
+    //append DOM 
+    titleWrap.append(cardTitle, release, voteCount, voteAverage, );
+    commWrap.append(commButton, commList)
+
+    cardWrap.append(exitButton, titleWrap, commWrap, favButton);
+
     imageWrap.appendChild(poster)
-    cardInner.append(imageWrap, cardWrap);
+
+    cardInner.append(imageWrap, cardWrap); //left/right block
 
     liToCreate.append(cardInner, filmTitle);
     filmsList.appendChild(liToCreate);
