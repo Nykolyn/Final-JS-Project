@@ -21,7 +21,7 @@ export const createListItem = (film) => {
     const cardWrap = createElementWithClass('div', 'card-wrap');    
     const favButton = createElementWithClass('button', 'fav-button');
     favButton.textContent = 'fav button'
-    const titleWrap = createElementWithClass('dibv', 'title-wrap');
+    const titleWrap = createElementWithClass('div', 'title-wrap');
     const cardTitle = createElementWithClass('p', 'film-card_title');
     cardTitle.textContent = film.title;
     const release = createElementWithClass('p', 'film-release');

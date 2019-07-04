@@ -33,7 +33,6 @@ films.getFilms().then(result =>
 
 
 //modal card 
-// console.log(refs.filmsList);
 refs.filmsList.addEventListener('click', openCard);
 
 // function openCard(event) {
@@ -49,6 +48,8 @@ function openCard(event) {
     const targetCard = event.target.closest('li');
     const targetDiv = targetCard.querySelector('.card-wrap');
     const exitButton = targetCard.querySelector('.exit-button');
+    const imageWrap = targetCard.querySelector('.image-wrap');
+    const image = targetCard.querySelector('img');
 
     const cardStyle = window.getComputedStyle(targetCard);
     // console.log('cardStyle :', cardStyle);
@@ -60,17 +61,21 @@ function openCard(event) {
     if (!targetCard.className.includes('modal-card')) {
         targetCard.classList.add('modal-card');
         targetDiv.classList.add('card-block');
-
+        // imageWrap.classList.add('image-wrap_markup')  //test
+        image.classList.add('img-markup');
+        
         window.scroll(0, 100);
-
+        
         //toggle event click 
         refs.filmsList.removeEventListener('click', openCard);
         refs.filmsList.addEventListener('click', closedCard);
-
+        
         function closedCard(event) {
             if (event.target === exitButton) {
                 targetCard.classList.remove('modal-card')
                 targetDiv.classList.remove('card-block');
+                imageWrap.classList.remove('image-wrap_markup')
+                image.classList.remove('img-markup');
 
                 window.scroll(clientX, clientY);
 
