@@ -1,3 +1,4 @@
+
 import Films from './Fims/Films';
 import {
     refs
@@ -8,6 +9,7 @@ import {
 import {
     createListItem
 } from './view';
+import './authentication/authentication'
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
