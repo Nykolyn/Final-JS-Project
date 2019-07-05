@@ -34,10 +34,7 @@ export const commentFilm = async (id, comment) => {
         throw console.error('error while updating comment', error);
     }
 };
-
-commentFilm(2, {
-    comment: 'film govno'
-})
+    
 
 
 //modal card 
