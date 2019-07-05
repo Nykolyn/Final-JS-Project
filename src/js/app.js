@@ -22,7 +22,6 @@ import {
 import {
     onSearch
 } from './search';
-// import './gifs'
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -58,7 +57,7 @@ function openCard(event) {
 
 
     const cardStyle = window.getComputedStyle(targetCard);
-    // console.log('cardStyle :', cardStyle);
+
 
     // mouse cord
     const clientX = event.layerX;
