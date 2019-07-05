@@ -1,0 +1,101 @@
+// li
+.modal-card {
+    background-color: #343642;
+    border-radius: 4px;
+    justify-content: space-between;
+    width: 98%;
+
+    position: absolute;
+    // left: 0;  //work nolmal 
+    
+    top: 43vh;
+    left: 50%;
+    transform: translate(-50%, -65%);
+
+    margin-bottom: 60px;
+    // background-color: aqua;
+}
+
+// p in li
+.modal-card p {
+    display: block;
+    width: 100%;
+}
+
+//div card inner (image-wrap  / card-wrap) 
+.card-inner {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+//div image wrap (left)
+.image-wrap {
+
+}
+
+.img-markup {
+    // max-width: 40%;
+    border-radius: 4px;
+}
+
+.image-wrap_markup {
+    width: 100%;
+}
+
+
+//div card wrap (exButton / div title / div comm / favButton)
+.card-wrap {
+    width: 100%;
+    position: relative;
+    // background-color: tomato; //rigth block bg
+
+    display: none; //hide block
+}
+
+//div card-wrap for visually block
+.card-block {
+    display: flex;
+    flex-direction: column;
+
+}
+
+//title div
+.title-wrap {
+    padding-top: 16px;
+    padding-left: 6px;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    display: block;
+}
+
+
+
+//comments 
+//comments div wrap
+.comments-wrap {
+    display: flex;
+    // padding-left: 80px;
+
+}
+
+
+//comments ul
+.comments-list {
+    width: 80%;
+    height: 90%;
+    background-color: #fff;
+}
+
+
+
+
+
+
+//display none 
+.display-none {
+    display: none;
+    opacity: 0;
+}

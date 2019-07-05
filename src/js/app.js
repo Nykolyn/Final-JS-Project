@@ -9,8 +9,10 @@ import {
     createListItem
 } from './view';
 import './authentication/authentication'
-import { isString, log } from 'util';
-import {onSearch} from './search';
+import {
+    isString,
+    log
+} from 'util';
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -24,7 +26,7 @@ setInterval(function () {
     document.getElementById('time').innerHTML = h + ':' + m + ':' + s;
 }, 1000);
 
-export const films = new Films();
+const films = new Films();
 
 films.getFilms().then(result =>
     result.forEach(item => createListItem(item))
@@ -37,18 +39,18 @@ films.getFilms().then(result =>
 
 //modal card 
 refs.filmsList.addEventListener('click', openCard);
-
 function openCard(event) {
 
     const list = document.querySelector('.container');
     const body = document.querySelector('body');
-
 
     const targetCard = event.target.closest('li');
     const targetDiv = targetCard.querySelector('.card-wrap');
     const exitButton = targetCard.querySelector('.exit-button');
     const imageWrap = targetCard.querySelector('.image-wrap');
     const image = targetCard.querySelector('img');
+
+    const filmListTitle = targetCard.querySelector('.film-list__title');
 
     const cardStyle = window.getComputedStyle(targetCard);
     // console.log('cardStyle :', cardStyle);
@@ -62,6 +64,7 @@ function openCard(event) {
         targetDiv.classList.add('card-block');
         // imageWrap.classList.add('image-wrap_markup')  //test
         image.classList.add('img-markup');
+        filmListTitle.classList.add('display-none')
 
         window.scroll(0, 100);
 
@@ -70,14 +73,13 @@ function openCard(event) {
         refs.filmsList.addEventListener('click', closedCard);
 
         function closedCard(event) {
-            console.log(event.target);
-
 
             if (event.target === exitButton || event.target === image || event.target === list || event.target.nodeName === 'IMG') {
                 targetCard.classList.remove('modal-card')
                 targetDiv.classList.remove('card-block');
                 imageWrap.classList.remove('image-wrap_markup')
                 image.classList.remove('img-markup');
+                filmListTitle.classList.remove('display-none')
 
                 window.scroll(clientX, clientY);
 
@@ -88,6 +90,5 @@ function openCard(event) {
         }
     }
 }
-
 
 refs.searchForm.addEventListener('change', onSearch);

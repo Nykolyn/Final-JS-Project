@@ -1,5 +1,4 @@
-import * as api from '../services/api';
-
+import * as api from '../services/api'
 
 export default class Films {
     constructor(films = []) {
@@ -17,5 +16,4 @@ export default class Films {
     updateComment(id, comment) {
         return api.commentFilm(id, comment).then()
     }
-
 }

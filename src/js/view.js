@@ -1,4 +1,4 @@
-export const createElementWithClass = (tag, classTitle) => {
+const createElementWithClass = (tag, classTitle) => {
     const elementToCreate = document.createElement(tag);
     elementToCreate.classList.add(classTitle);
     return elementToCreate;
@@ -44,7 +44,7 @@ export const createListItem = (film) => {
 
     //append DOM 
     titleWrap.append(cardTitle, release, voteCount, voteAverage,overviewFils);
-    commWrap.append(commButton, commList)
+    commWrap.append(commList, commButton)
 
     cardWrap.append(exitButton,titleWrap, commWrap, favButton);
     
