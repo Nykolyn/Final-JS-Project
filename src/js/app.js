@@ -25,9 +25,9 @@ import {
 
 import Swal from 'sweetalert2';
 
-const open = document.querySelector('.open__modal');
+const open = document.getElementById('submit-signin');
 
-const user = new User();
+// const user = new User();
 
 const handleModal = event => {
     Swal.fire({
@@ -50,8 +50,8 @@ const handleModal = event => {
         `
     })
 
-    user.getUser().then(user => user.map(user.login))
-    
+    // user.getUser().then(user => user.map(user.login))
+
 };
 
 open.addEventListener('click', handleModal)
@@ -75,8 +75,6 @@ films.getFilms().then(result =>
     result.forEach(item => createListItem(item))
 );
 
-
-
 function openCard(event) {
 
     const list = document.querySelector('.container');
@@ -93,7 +91,7 @@ function openCard(event) {
 
 
     const cardStyle = window.getComputedStyle(targetCard);
-    // console.log('cardStyle :', cardStyle);
+
 
     // mouse cord
     const clientX = event.layerX;
@@ -170,7 +168,7 @@ const handleCommentSubmit = event => {
 
     if (comment.value.trim() === '') return console.log('Заполни все поля!');
     commentToPost = comment.value;
-    getUserName(localStorage.getItem('key')).then(user => {
+    getUserName(sessionStorage.getItem('id')).then(user => {
         const newComment = {
             filmId: filmId,
             name: user.login,
@@ -189,4 +187,4 @@ const handleCommentSubmit = event => {
 refs.filmsList.addEventListener('click', openCard);
 refs.filmsList.addEventListener('click', handleComment);
 commentForm.addEventListener('submit', handleCommentSubmit)
-refs.searchForm.addEventListener('input', onSearch)
+// refs.searchForm.addEventListener('input', onSearch)
