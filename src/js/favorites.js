@@ -5,7 +5,7 @@ import { createListItem } from './view';
 import { getFilms, saveFilm } from '../js/services/api';
 
 // ID користувача
-const idUser = '1111';
+const idUser = '';
 console.log(idUser);
 
 // КЛИК НА КНОПКУ ДОДАТИ В МОЇ УЛЮБЛЕНІ

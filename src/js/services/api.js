@@ -90,7 +90,6 @@ export const updateUser = async (id, film) => {
     throw err;
   }
 };
-
 export const getUser = async () => {
   try {
     const response = await fetch(USER_URL);
