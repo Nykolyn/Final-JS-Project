@@ -71,6 +71,8 @@ function openCard(event) {
     // console.log('cardStyle :', cardStyle);
 
     // mouse cord
+
+    
     const clientX = event.layerX;
     const clientY = event.layerY;
 
