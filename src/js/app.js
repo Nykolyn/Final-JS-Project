@@ -22,6 +22,7 @@ import {
 import {
     onSearch
 } from './search';
+// import './gifs'
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -40,8 +41,6 @@ export const films = new Films();
 films.getFilms().then(result =>
     result.forEach(item => createListItem(item))
 );
-
-alert('SPASIBO BOHDAN');
 
 function openCard(event) {
 
@@ -136,7 +135,7 @@ const handleCommentSubmit = event => {
 
     if (comment.value.trim() === '') return console.log('Заполни все поля!');
     commentToPost = comment.value;
-    getUserName(localStorage.getItem('key')).then(user => {
+    getUserName(sessionStorage.getItem('id')).then(user => {
         const newComment = {
             filmId: filmId,
             name: user.login,
@@ -155,4 +154,4 @@ const handleCommentSubmit = event => {
 refs.filmsList.addEventListener('click', openCard);
 refs.filmsList.addEventListener('click', handleComment);
 commentForm.addEventListener('submit', handleCommentSubmit)
-refs.searchForm.addEventListener('input', onSearch)
+// refs.searchForm.addEventListener('input', onSearch)
