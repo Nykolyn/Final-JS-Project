@@ -13,6 +13,10 @@ import {
     isString,
     log
 } from 'util';
+import {
+    onSearch
+} from './search';
+
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -91,4 +95,4 @@ function openCard(event) {
     }
 }
 
-refs.searchForm.addEventListener('change', onSearch);
+refs.searchForm.addEventListener('submit', onSearch);
