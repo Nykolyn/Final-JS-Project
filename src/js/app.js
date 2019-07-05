@@ -1,4 +1,3 @@
-
 import Films from './Fims/Films';
 import {
     refs
@@ -10,7 +9,12 @@ import {
     createListItem
 } from './view';
 // import './authentication/authentication'
+import {startRotate, stopRotate} from './banner'
 import './banner'
+import './authentication/authentication'
+import { isString, log } from 'util';
+import {onSearch} from './search';
+
 // ------------  TIME  -------------------- 
 setInterval(function () {
     const date = new Date();
@@ -23,7 +27,7 @@ setInterval(function () {
     document.getElementById('time').innerHTML = h + ':' + m + ':' + s;
 }, 1000);
 
-const films = new Films();
+export const films = new Films();
 
 films.getFilms().then(result =>
     result.forEach(item => createListItem(item))
@@ -35,22 +39,19 @@ films.getFilms().then(result =>
 
 
 //modal card 
-// console.log(refs.filmsList);
 refs.filmsList.addEventListener('click', openCard);
 
-// function openCard(event) {
-//     const targetCard = event.target.closest('li');
-//     const targetDiv = targetCard.querySelector('.card-wrap');
-
-//     targetCard.classList.toggle('modal-card');
-//     targetDiv.classList.toggle('card-block');
-// }
-
 function openCard(event) {
+
+    const list = document.querySelector('.container');
+    const body = document.querySelector('body');
+
 
     const targetCard = event.target.closest('li');
     const targetDiv = targetCard.querySelector('.card-wrap');
     const exitButton = targetCard.querySelector('.exit-button');
+    const imageWrap = targetCard.querySelector('.image-wrap');
+    const image = targetCard.querySelector('img');
 
     const cardStyle = window.getComputedStyle(targetCard);
     // console.log('cardStyle :', cardStyle);
@@ -62,6 +63,8 @@ function openCard(event) {
     if (!targetCard.className.includes('modal-card')) {
         targetCard.classList.add('modal-card');
         targetDiv.classList.add('card-block');
+        // imageWrap.classList.add('image-wrap_markup')  //test
+        image.classList.add('img-markup');
 
         window.scroll(0, 100);
 
@@ -70,9 +73,14 @@ function openCard(event) {
         refs.filmsList.addEventListener('click', closedCard);
 
         function closedCard(event) {
-            if (event.target === exitButton) {
+            console.log(event.target);
+
+
+            if (event.target === exitButton || event.target === image || event.target === list || event.target.nodeName === 'IMG') {
                 targetCard.classList.remove('modal-card')
                 targetDiv.classList.remove('card-block');
+                imageWrap.classList.remove('image-wrap_markup')
+                image.classList.remove('img-markup');
 
                 window.scroll(clientX, clientY);
 
@@ -82,6 +90,8 @@ function openCard(event) {
             }
         }
     }
+}
+
 
     
     console.log(event);
@@ -93,5 +103,9 @@ function openCard(event) {
     // console.log(event.y);
     // console.log(event.target);
     // console.log(targetCard.style);
-}
-banner.addEventListener('mousemove', rotate)
+
+
+// refs.banner.addEventListener('mousemove', startRotate)
+refs.searchForm.addEventListener('input', onSearch)
+refs.banner.addEventListener('mousemove', startRotate);
+refs.banner.addEventListener('mouseout', stopRotate);

@@ -12,6 +12,7 @@
 
 <body>
 	<header class="cd-main-header">
+
 		<nav class="cd-main-nav js-main-nav">
 			<ul class="cd-main-nav__list js-signin-modal-trigger">
 				<!-- inser more links here -->
@@ -21,6 +22,9 @@
 				</li>
 			</ul>
 		</nav>
+		<form>
+				<input type="text"size='40' placeholder="Find a film..." class="search">
+		</form>
 		<span id="time">00:00:00</span>
 	</header>
 
@@ -29,12 +33,11 @@
 		<div class="cd-signin-modal__container">
 			<!-- this is the container wrapper -->
 			<ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
-				<li><a href="#0" data-signin="login" data-type="login">Sign in</a></li>
-				<li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
+				<li><a href="#0" id="sign-in-modal" data-signin="login" data-type="login">Sign in</a></li>
+				<li><a href="#0" id="sign-up-modal" data-signin="signup" data-type="signup">New account</a></li>
 			</ul>
 
-			<div class="cd-signin-modal__block js-signin-modal-block" data-type="login">
-				<!-- log in form -->
+			<div class="cd-signin-modal__block js-signin-modal-block" id="login-form" data-type="login"> <!-- log in form -->
 				<form class="cd-signin-modal__form">
 					<p class="cd-signin-modal__fieldset">
 						<label
@@ -72,8 +75,7 @@
 						data-signin="reset">Forgot your password?</a></p>
 			</div> <!-- cd-signin-modal__block -->
 
-			<div class="cd-signin-modal__block js-signin-modal-block" data-type="signup">
-				<!-- sign up form -->
+			<div class="cd-signin-modal__block js-signin-modal-block" id="signup-form" data-type="signup"> <!-- sign up form -->
 				<form class="cd-signin-modal__form">
 					<p class="cd-signin-modal__fieldset">
 						<label
@@ -145,16 +147,15 @@
 				<p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="login">Back
 						to log-in</a></p>
 			</div> <!-- cd-signin-modal__block -->
-			<a href="#0" class="cd-signin-modal__close js-close">Close</a>
+			<!-- <a href="#0" class="cd-signin-modal__close js-close">Close</a> -->
 		</div> <!-- cd-signin-modal__container -->
 	</div> <!-- cd-signin-modal -->
 
-	<section class="content">
+	<section class="main-section">
+			<div class="banner">
+					<div class="banner-item"></div>
+				</div>
 		<ul class="films-list container"></ul>
-
-		<div class="banner">
-			<div class="banner-item"></div>
-		</div>
 	</section>
 
 	<script src="js/placeholders.min.js"></script> <!-- polyfill for the HTML5 placeholder attribute -->

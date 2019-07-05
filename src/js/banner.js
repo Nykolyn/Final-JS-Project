@@ -1,8 +1,9 @@
-const banner = document.querySelector('.banner');
+
+// const banner = document.querySelector('.banner');
 
 
-banner.addEventListener('mousemove', startRotate);
-banner.addEventListener('mouseout', stopRotate);
+// banner.addEventListener('mousemove', startRotate);
+// banner.addEventListener('mouseout', stopRotate);
 
 
 
@@ -14,6 +15,5 @@ function startRotate(event) {
 
 function stopRotate(event) {
     const bannerItem = this.querySelector('.banner-item'); 
-    // const halfHeight = bannerItem.offsetHeight / 2; 
     bannerItem.style.transform = 'rotateX(0)';  
 }

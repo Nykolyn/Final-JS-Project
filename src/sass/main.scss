@@ -4,6 +4,8 @@
 @import './header/style.scss';
 @import './modal-card';
 @import './banner.scss';
+@import './search-form.scss';
+@import './main-section.scss';
 
 img {
     max-width: 100%;
@@ -15,4 +17,14 @@ img {
     position: relative;
     width: 70vw;
     margin: 0 auto;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing:inherit;
 }
