@@ -41,7 +41,7 @@ films.getFilms().then(result =>
     result.forEach(item => createListItem(item))
 );
 
-alert('SPASIBO BOHDAN');
+// alert('SPASIBO BOHDAN');
 
 function openCard(event) {
 
