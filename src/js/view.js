@@ -12,7 +12,7 @@ export const createListItem = (film) => {
     const filmTitle = createElementWithClass('p', 'film-list__title');
 
 
-    console.log('film :', film);
+    // console.log('film :', film);
 
     //modal card
     const exitButton = createElementWithClass('button', 'exit-button')

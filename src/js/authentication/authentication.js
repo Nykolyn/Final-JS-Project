@@ -6,83 +6,186 @@ import {
 const forms = document.querySelectorAll('form');
 const formSingIn = forms[0];
 const formSingUp = forms[1];
+const modalSwitcher = document.querySelector('.cd-signin-modal__switcher')
+const signupUserName = document.getElementById("signup-username")
+const signupEmail = document.getElementById("signup-email")
+const signupPassword = document.getElementById("signup-password")
+const signinEmail = document.getElementById("signin-email")
+const signinPassword = document.getElementById("signin-password")
+const signinModal = document.getElementById('sign-in-modal')
+const signupModal = document.getElementById('sign-up-modal')
+const signinForm = document.getElementById('login-form')
+const signupForm = document.getElementById('signup-form')
+
+
 const LogedIn = () => {
     document.querySelector('.cd-signin-modal').classList.remove('cd-signin-modal--is-visible')
     document.querySelector('.films-list').style.filter = "blur(0px)"
     document.querySelector('.films-list').style.transition = "1000ms"
     const buttons = document.querySelectorAll('.cd-main-nav__item')
-    buttons[0].textContent = 'My Movies'
-    buttons[1].style.backgroundColor = 'red'
-    buttons[1].textContent = 'Sign out'
+    buttons[1].style.backgroundColor = '#2f889a'
     buttons[0].style.display = 'block'
     buttons[1].style.display = 'block'
     buttons[1].addEventListener('click', (event) => {
         localStorage.removeItem('key')
-        document.getElementById('signup-form').classList.remove('cd-signin-modal__block--is-selected')
-        document.getElementById('login-form').classList.remove('cd-signin-modal__block--is-selected')
-        document.getElementById('sign-in-modal').classList.remove('cd-selected')
-        document.getElementById('sign-up-modal').classList.add('cd-selected')
         document.querySelector('.cd-signin-modal').classList.add('cd-signin-modal--is-visible')
-        document.querySelector('.films-list').style.filter = "blur(10px)"
-        buttons[1].style.backgroundColor = '#2f889a'
+        document.querySelector('.films-list').style.filter = "blur(15px)"
         buttons[0].style.display = 'none'
         buttons[1].style.display = 'none'
-        buttons[1].removeEventListener('click', {})
     })
 }
-const submitSingUp = (event) => {
+
+
+const submitSignUp = (event) => {
     const user = {
-        login: `${document.getElementById("signup-username").value}`,
-        email: `${document.getElementById("signup-email").value}`,
-        password: `${document.getElementById("signup-password").value}`
+        login: `${signupUserName.value}`,
+        email: `${signupEmail.value.toLowerCase()}`,
+        password: `${signupPassword.value}`
     };
     getUser().then(data => {
-        if (data.find(el => el.login.toLowerCase() === document.getElementById("signup-username").value.toLowerCase() || el.email === document.getElementById("signup-email").value.toLowerCase())) {
-            console.log('fail')
-        } else(
-            postUser(user),
-            LogedIn(),
-            event.target.reset(),
-            console.log('added'))
-    })
-    event.preventDefault()
-};
-const submitSingIn = (event) => {
-    event.preventDefault()
-    getUser().then(data => {
-        const comprasion = data.find(el => el.email.toLowerCase() === document.getElementById("signin-email").value.toLowerCase() && el.password === document.getElementById("signin-password").value)
-        if (comprasion) {
-            LogedIn()
-            if (document.getElementById("remember-me").checked) {
-                localStorage.setItem('key', comprasion.id)
-            } else {
-                localStorage.removeItem('key')
+        const a = data.map(el => el.login).includes(signupUserName.value)
+        const b = data.map(el => el.email).includes(signupEmail.value.toLowerCase())
+        const c = !(signupPassword.value !== '' && signupPassword.value.length > 5)
+
+        signupUserName.classList.toggle('cd-signin-modal__input--has-error', a)
+        signupEmail.classList.toggle('cd-signin-modal__input--has-error', b)
+        signupPassword.classList.toggle('cd-signin-modal__input--has-error', c)
+
+        if (signupUserName.value === '') {
+            signupUserName.closest('p').querySelector('span').classList.add("error")
+            signupUserName.closest('p').querySelector('span').textContent = 'Enter your UserName'
+            setTimeout(() => {
+                signupUserName.closest('p').querySelector('span').classList.remove("error")
+            }, 1000);
+        }
+        if (signupEmail.value === '') {
+            signupEmail.closest('p').querySelector('span').classList.add("error")
+            signupEmail.closest('p').querySelector('span').textContent = 'Enter valid email'
+            setTimeout(() => {
+                signupEmail.closest('p').querySelector('span').classList.remove("error")
+            }, 1000);
+        }
+        if (signupPassword.value === '') {
+            signupPassword.closest('p').querySelector('span').classList.add("error")
+            signupPassword.closest('p').querySelector('span').textContent = 'Enter password'
+            setTimeout(() => {
+                signupPassword.closest('p').querySelector('span').classList.remove("error")
+            }, 1000);
+        }
+        if (signupUserName.value !== '') {
+            if(a){
+                signupUserName.closest('p').querySelector('span').classList.add("error")
+                signupUserName.closest('p').querySelector('span').textContent = 'This name is already in use '
+                setTimeout(() => {
+                    signupUserName.closest('p').querySelector('span').classList.remove("error")
+                }, 1000);
+            } 
+        }
+        if (signupEmail.value !== '') {
+            if (b) {
+                signupEmail.closest('p').querySelector('span').classList.add("error")
+                signupEmail.closest('p').querySelector('span').textContent = 'This email is already in use '
+                setTimeout(() => {
+                    signupEmail.closest('p').querySelector('span').classList.remove("error")
+                }, 1000);
             }
-        } else(console.log('-'))
-        event.target.reset()
+        }
+        if(signupPassword.value.length < 5){
+            signupPassword.closest('p').querySelector('span').classList.add("error")
+            signupPassword.closest('p').querySelector('span').textContent = 'password must be at least 6 characters'
+            setTimeout(() => {
+                signupPassword.closest('p').querySelector('span').classList.remove("error")
+            }, 1000);
+        }
+
+        if (signupPassword.value !== '' && signupEmail.value !== '' && signupUserName.value !== '' && signupPassword.value.length > 5) {
+            if (data.find(el => el.login.toLowerCase() === signupUserName.value.toLowerCase() || el.email === signupEmail.value)) {
+                console.log('fail')
+            } else(
+                event.target.reset(),
+                postUser(user),
+                LogedIn(),
+                signupModal.classList.remove('cd-selected'),
+                signupForm.classList.remove('cd-signin-modal__block--is-selected'),
+                console.log('added'))
+        }
+    })
+    event.preventDefault()
+};
+
+const submitSignIn = (event) => {
+
+    signinEmail.classList.toggle('cd-signin-modal__input--has-error', signinEmail.value === '')
+    signinPassword.classList.toggle('cd-signin-modal__input--has-error', signinPassword.value === '')
+
+    getUser().then(data => {
+
+        const comprasion = data.find(el => el.password === signinPassword.value && el.email === signinEmail.value.toLowerCase())
+        const a = !data.map(el => el.email).includes(signinEmail.value.toLowerCase())
+        const b = !data.map(el => el.password).includes(signinPassword.value)
+
+        if (signinEmail.value === '') {
+            signinEmail.closest('p').querySelector('span').classList.add("error")
+            signinEmail.closest('p').querySelector('span').textContent = 'Enter your email'
+            setTimeout(() => {
+                signinEmail.closest('p').querySelector('span').classList.remove("error")
+            }, 1000);
+        }
+        if (signinPassword.value === '') {
+            signinPassword.closest('p').querySelector('span').classList.add("error")
+            signinPassword.closest('p').querySelector('span').textContent = 'Enter your password'
+            setTimeout(() => {
+                signinPassword.closest('p').querySelector('span').classList.remove("error")
+            }, 1000);
+        }
+        if (signinEmail.value !== '' || signinPassword.value !== '') {
+            if (a) {
+                signinEmail.closest('p').querySelector('span').classList.add("error")
+                signinEmail.closest('p').querySelector('span').textContent = "Can't find :("
+                setTimeout(() => {
+                    signinEmail.closest('p').querySelector('span').classList.remove("error")
+                }, 1000);
+            }
+            if (b) {
+                signinPassword.closest('p').querySelector('span').classList.add("error")
+                signinPassword.closest('p').querySelector('span').textContent = 'Wrong password'
+                signinPassword.value = ''
+                setTimeout(() => {
+                    signinPassword.closest('p').querySelector('span').classList.remove("error")
+                }, 1000);
+            }
+        }
+        if (signinEmail.value !== '' && signinPassword.value !== '') {
+            if (!a && !b) {
+                LogedIn()
+                event.target.reset()
+                document.getElementById('sign-in-modal').classList.remove('cd-selected')
+                document.getElementById('login-form').classList.remove('cd-signin-modal__block--is-selected')
+                sessionStorage.setItem('id', comprasion.id)
+                if (document.getElementById("remember-me").checked) {
+                    localStorage.setItem('key', comprasion.id)
+                }
+            }
+        }
+
     })
 };
+const switcher = (event) => {
+
+    signupModal.classList.toggle('cd-selected', event.target === signupModal)
+    signupForm.classList.toggle('cd-signin-modal__block--is-selected', event.target === signupModal)
+    signinModal.classList.toggle('cd-selected', event.target === signinModal)
+    signinForm.classList.toggle('cd-signin-modal__block--is-selected', event.target === signinModal)
+};
+
+modalSwitcher.addEventListener('click', switcher)
+formSingUp.addEventListener('submit', submitSignUp);
+formSingIn.addEventListener('submit', submitSignIn);
+
+// ______________________Cheking local storage after init on page_________________________________________
 getUser().then(data => {
     if (data.find(el => el.id === localStorage.getItem('key'))) {
         LogedIn()
     }
-})
-const switcher = (event) => {
-    if (event.target === document.getElementById('sign-in-modal')) {
-        document.getElementById('signup-form').classList.remove('cd-signin-modal__block--is-selected')
-        document.getElementById('sign-up-modal').classList.remove('cd-selected')
-        document.getElementById('sign-in-modal').classList.add('cd-selected')
-        document.getElementById('login-form').classList.add('cd-signin-modal__block--is-selected')
-    } else if (event.target === document.getElementById('sign-up-modal')) {
-        document.getElementById('login-form').classList.remove('cd-signin-modal__block--is-selected')
-        document.getElementById('sign-in-modal').classList.remove('cd-selected')
-        document.getElementById('sign-up-modal').classList.add('cd-selected')
-        document.getElementById('signup-form').classList.add('cd-signin-modal__block--is-selected')
-    }
-}
-window.addEventListener('click', switcher)
-
-document.querySelector('.cd-signin-modal').classList.add('cd-signin-modal--is-visible')
-document.querySelector('.films-list').style.filter = "blur(15px)"
-formSingUp.addEventListener('submit', submitSingUp);
-formSingIn.addEventListener('submit', submitSingIn);
+});
+// _______________________________________________________________

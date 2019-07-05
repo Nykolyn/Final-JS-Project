@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    filter: blur(15px);
 }
 
 .films-list__item {

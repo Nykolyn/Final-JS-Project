@@ -41,7 +41,7 @@ commentFilm(2, {
 
 
 //modal card 
-console.log(refs.filmsList);
+// console.log(refs.filmsList);
 refs.filmsList.addEventListener('click', openCard);
 
 function openCard(event) {
@@ -98,4 +98,23 @@ export const getUser = async () => {
 		throw err;
 	}
 };
+// export const patchUser=(id,data)=>{
+//     const settings = {
+// 		method: 'PATCH',
+// 		headers: {
+// 			'Content-type': 'application/json'
+// 		},
+// 		body: JSON.stringify(data)
+// 	};
+// 	try {
+// 		const response = await fetch(`${USER_URL}/${id}`, settings);
+// 		const users = response.json();
+// 		return users;
+// 	} catch (err) {
+// 		throw err;
+// 	}
+// }g
+getUser().then(data =>{})
+
+
 // _______________________________________________________________________

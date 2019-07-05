@@ -46,6 +46,7 @@ textarea::-ms-clear {
 Login/Signup modal window - by CodyHouse.co
 
 -------------------------------- */
+
 .cd-main-header {
   position: relative;
   z-index: 1;
@@ -177,10 +178,6 @@ Login/Signup modal window - by CodyHouse.co
 
   .cd-main-nav__item.cd-main-nav__item--signin {
     border: 1px solid rgba(255, 255, 255, 0.6);
-  }
-
-  .cd-main-nav__item.cd-main-nav__item--signup {
-    background: #2f889a;
   }
 }
 
@@ -400,6 +397,7 @@ x sigin/signup popup
   color: #343642;
 }
 
+
 .cd-signin-modal__error {
   display: inline-block;
   position: absolute;
@@ -413,12 +411,15 @@ x sigin/signup popup
   border-radius: 0.25em;
   /* prevent click and touch events */
   pointer-events: none;
-  visibility: hidden;
+  visibility: none;
   opacity: 0;
   -webkit-transition: opacity 0.2s 0s, visibility 0s 0.2s;
   transition: opacity 0.2s 0s, visibility 0s 0.2s;
 }
-
+.error{
+  opacity: 1;
+  visibility: visible;
+}
 .cd-signin-modal__error::after {
   /* triangle */
   content: '';
