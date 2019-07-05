@@ -5,8 +5,9 @@ import {
 
 
 export default class Films {
-    constructor(films = []) {
-        this._films = films
+    constructor(films = [], comments = []) {
+        this._films = films,
+            this._comments = comments;
     }
 
     get films() {
@@ -17,8 +18,12 @@ export default class Films {
         return api.getFilms().then(films => this._films = films.results)
     }
 
-    updateComment(id, comment) {
-        return api.commentFilm(id, comment).then()
+    getComments() {
+        return api.getComments().then(comments => this._comments = comments);
+    }
+
+    updateComment(comment) {
+        return api.commentFilm(comment).then(console.log)
     }
 
     // searchFilm(value) {

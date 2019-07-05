@@ -2,14 +2,17 @@
 @import './header/demo.scss';
 @import './header/reset.scss';
 @import './header/style.scss';
-@import './header/like/dis.css';
+@import './header/like/dis.scss';
 @import './search-form.scss';
+@import './micromodal.scss';
 @import './main-section.scss';
 
-//modal card
+//modal-card
 @import './modal-card/modal-card.scss';
 @import './modal-card/modal-card-text.scss';
 @import './modal-card/modal-card-button.scss';
+
+
 
 img {
     max-width: 100%;
@@ -30,5 +33,5 @@ html {
 *,
 *::after,
 *::before {
-    box-sizing:inherit;
+    box-sizing: inherit;
 }
