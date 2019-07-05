@@ -58,32 +58,32 @@
         height: 60px;
         font-size: 18px;
         margin-bottom: 40px;
-        // position: fixed;
+        position: fixed;
     }
 
     .prvs{
-        // left: 30%;
+        left: 30%;
 
-        left: 0%;
+        // left: 0%;
     }
     
     .next{
-        // right: 30%;
-        right: 0%;
+        right: 30%;
+        // right: 0%;
     }
 
 }
 
 @media (min-width: 1400px){
     .prvs{
-        // left: 36%;
+        left: 36%;
 
-        left: 5%;       
+        // left: 5%;       
     }
     
     .next{
-        // right: 36%;
+        right: 36%;
         
-        right: 5%;
+        // right: 5%;
     }
 }
