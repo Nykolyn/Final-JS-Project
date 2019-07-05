@@ -33,8 +33,7 @@ const LogedIn = () => {
         buttons[0].style.display = 'none'
         buttons[1].style.display = 'none'
     })
-}
-
+};
 
 const submitSignUp = (event) => {
     const user = {
@@ -52,34 +51,40 @@ const submitSignUp = (event) => {
         signupPassword.classList.toggle('cd-signin-modal__input--has-error', c)
 
         if (signupUserName.value === '') {
+            signupUserName.classList.add('cd-signin-modal__input--has-error')
             signupUserName.closest('p').querySelector('span').classList.add("error")
             signupUserName.closest('p').querySelector('span').textContent = 'Enter your UserName'
             setTimeout(() => {
+                signupUserName.classList.remove('cd-signin-modal__input--has-error')
                 signupUserName.closest('p').querySelector('span').classList.remove("error")
             }, 1000);
         }
         if (signupEmail.value === '') {
+            signupEmail.classList.add('cd-signin-modal__input--has-error')
             signupEmail.closest('p').querySelector('span').classList.add("error")
             signupEmail.closest('p').querySelector('span').textContent = 'Enter valid email'
             setTimeout(() => {
+                signupEmail.classList.remove('cd-signin-modal__input--has-error')
                 signupEmail.closest('p').querySelector('span').classList.remove("error")
             }, 1000);
         }
         if (signupPassword.value === '') {
+            signupPassword.classList.add('cd-signin-modal__input--has-error')
             signupPassword.closest('p').querySelector('span').classList.add("error")
             signupPassword.closest('p').querySelector('span').textContent = 'Enter password'
             setTimeout(() => {
+                signupPassword.classList.remove('cd-signin-modal__input--has-error')
                 signupPassword.closest('p').querySelector('span').classList.remove("error")
             }, 1000);
         }
         if (signupUserName.value !== '') {
-            if(a){
+            if (a) {
                 signupUserName.closest('p').querySelector('span').classList.add("error")
                 signupUserName.closest('p').querySelector('span').textContent = 'This name is already in use '
                 setTimeout(() => {
                     signupUserName.closest('p').querySelector('span').classList.remove("error")
                 }, 1000);
-            } 
+            }
         }
         if (signupEmail.value !== '') {
             if (b) {
@@ -90,7 +95,7 @@ const submitSignUp = (event) => {
                 }, 1000);
             }
         }
-        if(signupPassword.value.length < 5){
+        if (signupPassword.value.length < 5) {
             signupPassword.closest('p').querySelector('span').classList.add("error")
             signupPassword.closest('p').querySelector('span').textContent = 'password must be at least 6 characters'
             setTimeout(() => {
@@ -115,26 +120,30 @@ const submitSignUp = (event) => {
 
 const submitSignIn = (event) => {
 
-    signinEmail.classList.toggle('cd-signin-modal__input--has-error', signinEmail.value === '')
-    signinPassword.classList.toggle('cd-signin-modal__input--has-error', signinPassword.value === '')
-
+    
     getUser().then(data => {
-
+        
         const comprasion = data.find(el => el.password === signinPassword.value && el.email === signinEmail.value.toLowerCase())
         const a = !data.map(el => el.email).includes(signinEmail.value.toLowerCase())
         const b = !data.map(el => el.password).includes(signinPassword.value)
-
+        signinEmail.classList.toggle('cd-signin-modal__input--has-error', !data.map(el => el.email).includes(signinEmail.value.toLowerCase()))
+        signinPassword.classList.toggle('cd-signin-modal__input--has-error', !data.map(el => el.password).includes(signinPassword.value))
+        
         if (signinEmail.value === '') {
+            signinEmail.classList.add('cd-signin-modal__input--has-error')
             signinEmail.closest('p').querySelector('span').classList.add("error")
             signinEmail.closest('p').querySelector('span').textContent = 'Enter your email'
             setTimeout(() => {
+                signinEmail.classList.remove('cd-signin-modal__input--has-error')
                 signinEmail.closest('p').querySelector('span').classList.remove("error")
             }, 1000);
         }
         if (signinPassword.value === '') {
+            signinPassword.classList.add('cd-signin-modal__input--has-error')
             signinPassword.closest('p').querySelector('span').classList.add("error")
             signinPassword.closest('p').querySelector('span').textContent = 'Enter your password'
             setTimeout(() => {
+                signinPassword.classList.remove('cd-signin-modal__input--has-error')
                 signinPassword.closest('p').querySelector('span').classList.remove("error")
             }, 1000);
         }
@@ -158,18 +167,21 @@ const submitSignIn = (event) => {
         if (signinEmail.value !== '' && signinPassword.value !== '') {
             if (!a && !b) {
                 LogedIn()
-                event.target.reset()
                 document.getElementById('sign-in-modal').classList.remove('cd-selected')
                 document.getElementById('login-form').classList.remove('cd-signin-modal__block--is-selected')
                 sessionStorage.setItem('id', comprasion.id)
+                console.log(document.getElementById("remember-me").checked);
+                
                 if (document.getElementById("remember-me").checked) {
                     localStorage.setItem('key', comprasion.id)
                 }
+                event.target.reset()
             }
         }
 
     })
 };
+
 const switcher = (event) => {
 
     signupModal.classList.toggle('cd-selected', event.target === signupModal)
@@ -182,10 +194,10 @@ modalSwitcher.addEventListener('click', switcher)
 formSingUp.addEventListener('submit', submitSignUp);
 formSingIn.addEventListener('submit', submitSignIn);
 
-// ______________________Cheking local storage after init on page_________________________________________
+// ______________________Cheking local storage after init on page__________________________________
 getUser().then(data => {
     if (data.find(el => el.id === localStorage.getItem('key'))) {
         LogedIn()
     }
 });
-// _______________________________________________________________
+// ________________________________________________________________________________________________
