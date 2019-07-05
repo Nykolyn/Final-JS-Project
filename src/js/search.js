@@ -17,9 +17,7 @@ export const onSearch = event => {
 
 
         if (value !== '') {
-            fetch(`https://api.themoviedb.org/3/search/movie?api_key=027ca1d5e779abba9fcdc8b6b57f2385&language=en-US&query=${value}`).then(response => {
-                if (response.ok) return response.json()
-            }).then(films => {
+            api.searchFilm(value).then(films => {
                 if (films.results.length < 1) {
                         const noFilmText = createElementWithClass('h2', 'film-not-found');  
                         noFilmText.textContent = "Sorry, no films are found... :(";
