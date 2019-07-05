@@ -90,4 +90,4 @@ function openCard(event) {
 }
 
 
-refs.searchForm.addEventListener('change', onSearch);
+refs.searchForm.addEventListener('submit', onSearch);

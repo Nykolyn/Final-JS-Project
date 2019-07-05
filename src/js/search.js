@@ -9,9 +9,10 @@ import * as api from './services/api';
 
 
 export const onSearch = event => {
-    event.preventDefault()
+    event.preventDefault();
+
     console.log(event);
-    const value = event.target.value.trim()
+    const value = refs.searchInput.value.trim();
     refs.filmsList.innerHTML = '';
     Array.from(refs.mainSection.children).forEach(child => child.textContent === "Sorry, no films are found... :(" ? child.remove() : null)
 
