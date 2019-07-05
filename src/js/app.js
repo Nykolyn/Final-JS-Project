@@ -23,6 +23,40 @@ import {
     onSearch
 } from './search';
 
+import Swal from 'sweetalert2';
+
+const open = document.querySelector('.open__modal');
+
+const user = new User();
+
+const handleModal = event => {
+    Swal.fire({
+        title: 'Welcome!',
+        text: 'In your collection',
+        width: 600,
+        showConfirmButton: false,
+        customClass: {
+            popup: 'animated tada',
+        },
+        // timer: 1500,
+        type: 'success',
+        padding: '10em',
+        // background: '#fff url("http://www.coolwebmasters.com/uploads/posts/2010-10/1287573191_patterns-42.jpg")',
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url("https://i.gifer.com/PYh.gif")
+          center left
+          no-repeat
+        `
+    })
+
+    user.getUser().then(user => user.map(user.login))
+    
+};
+
+open.addEventListener('click', handleModal)
+
+
 // ------------  TIME  -------------------- 
 setInterval(function () {
     const date = new Date();
@@ -41,7 +75,7 @@ films.getFilms().then(result =>
     result.forEach(item => createListItem(item))
 );
 
-alert('SPASIBO BOHDAN');
+
 
 function openCard(event) {
 
