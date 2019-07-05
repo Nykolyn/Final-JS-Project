@@ -19,7 +19,7 @@ export default class Films {
 
     searchFilm() {
         return api.getFilms().then(films => {
-                 if(value !== ''){
+                 if(value !== ''){  
                     films.forEach(elen =>{
                     if (elen.textContent.search(value) == -1){
                         elen.classList.add('hide')
