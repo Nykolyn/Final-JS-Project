@@ -19,8 +19,8 @@
     opacity: 0.8;
     position: relative;
     bottom: 24px;    
-    outline: none
-    
+    outline: none;
+    z-index: 1; 
 }
 
 
@@ -58,24 +58,32 @@
         height: 60px;
         font-size: 18px;
         margin-bottom: 40px;
-        position: fixed;
+        // position: fixed;
     }
 
     .prvs{
-        left: 30%;
+        // left: 30%;
+
+        left: 0%;
     }
     
     .next{
-        right: 30%;
+        // right: 30%;
+        right: 0%;
     }
+
 }
 
 @media (min-width: 1400px){
     .prvs{
-        left: 36%;
+        // left: 36%;
+
+        left: 5%;       
     }
     
     .next{
-        right: 36%;
+        // right: 36%;
+        
+        right: 5%;
     }
 }
