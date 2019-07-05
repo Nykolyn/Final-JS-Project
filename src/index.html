@@ -22,8 +22,12 @@
 				</li>
 			</ul>
 		</nav>
-		<form>
-				<input type="text"size='40' placeholder="Find a film..." class="search">
+		<form class="search-form">
+			<input type="text" size='40' placeholder="Find a film..." class="search">
+			<button type='submit' class='search-form-button'><svg class="button-svg" width="18px"
+				height="18px">
+				<use href="img/symbol-defs.svg#icon-search">search</use>
+			</svg></button>
 		</form>
 		<span id="time">00:00:00</span>
 	</header>
@@ -37,7 +41,8 @@
 				<li><a href="#0" id="sign-up-modal" data-signin="signup" data-type="signup">New account</a></li>
 			</ul>
 
-			<div class="cd-signin-modal__block js-signin-modal-block" id="login-form" data-type="login"> <!-- log in form -->
+			<div class="cd-signin-modal__block js-signin-modal-block" id="login-form" data-type="login">
+				<!-- log in form -->
 				<form class="cd-signin-modal__form">
 					<p class="cd-signin-modal__fieldset">
 						<label
@@ -75,7 +80,8 @@
 						data-signin="reset">Forgot your password?</a></p>
 			</div> <!-- cd-signin-modal__block -->
 
-			<div class="cd-signin-modal__block js-signin-modal-block" id="signup-form" data-type="signup"> <!-- sign up form -->
+			<div class="cd-signin-modal__block js-signin-modal-block" id="signup-form" data-type="signup">
+				<!-- sign up form -->
 				<form class="cd-signin-modal__form">
 					<p class="cd-signin-modal__fieldset">
 						<label

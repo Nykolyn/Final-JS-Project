@@ -1,11 +1,35 @@
-.search{
-   margin: 0;
-   position: absolute;
-       top: 50%;
-       left: 50%;
-       margin-right: -50%;
-       transform: translate(-50%, -50%);
-       border-radius: 10px 10px 10px 10px;
-        outline: none;
+.search-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
 
+.search {
+    margin: 0;
+    border-radius: 10px 10px 10px 10px;
+    outline: none;
+    height: 35px;
+
+}
+
+.search-form-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid white;
+    background: transparent;
+    cursor: pointer;
+}
+
+.search-form-button:hover, .search-form-button:focus {
+    border-color: red;
+}
+
+.button-svg {
+    fill: white;
+}
+
+.search-form-button:hover .button-svg, .search-form-button:focus .button-svg {
+    fill: red;
 }
