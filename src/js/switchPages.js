@@ -10,9 +10,18 @@ prvsBtn.disabled = true;
 
 let counter = 1;
 
+if (counter < 2) { 
+    prvsBtn.classList.add('disabled')
+}
+
 function switchPages (event)  {
     refs.filmsList.innerHTML = '';
     
+    
+    if ( counter >= 1 ){
+        prvsBtn.classList.remove('disabled')
+    } 
+     
     if (event.target === nextBtn){
         counter++;
         prvsBtn.disabled = false;
@@ -31,6 +40,10 @@ function switchPages (event)  {
             counter = 1;
             prvsBtn.disabled = true;
         }
+        if (counter < 2) { 
+            prvsBtn.classList.add('disabled')
+        }
+    
 
         return fetch (`https://api.themoviedb.org/3/movie/popular?api_key=027ca1d5e779abba9fcdc8b6b57f2385&language=en-US&page=${counter}`) 
             .then(response => response.json())

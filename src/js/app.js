@@ -9,7 +9,7 @@ import {
     createListItem
 } from './view';
 import {switchPages} from './switchPages';
-import './authentication/authentication'
+// import './authentication/authentication'
 import { isString, log } from 'util';
 import {onSearch} from './search';
 

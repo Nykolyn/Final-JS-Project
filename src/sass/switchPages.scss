@@ -7,22 +7,49 @@
 
 .pageBtn { 
     text-transform: uppercase;
+    margin-top: 40px;
+    margin-bottom: 40px;
     width: 120px;
-    height: 40px;
-    border: 1px solid black;    
+    height: 50px;
+    border: 1px solid rgb(206, 206, 206);    
     border-radius: 50px;
     background-color: #2f889a;
     color: white;
     font-size: 14px;
+    opacity: 0.8;
+    position: relative;
+    bottom: 24px;    
+    outline: none
+    
 }
+
 
 .pageBtn:hover{
-    background-color: tomato;
+    background-color:rgb(4, 221, 221);
+    opacity: 1;
+}
+
+.prvs{
+    left: -10%;
+}
+
+.next{
+    right: -10%;
+}
+
+.disabled {
+     background-color: #3b3d4b;
+
+}
+
+.disabled:hover{
+    background-color: #3b3d4b;
+    opacity: 0.8;
 
 }
 
 
-@media (min-width: 940px){
+@media screen and (min-width: 940px){
     .switchPages{
         height: 100px;
     }
@@ -31,5 +58,24 @@
         height: 60px;
         font-size: 18px;
         margin-bottom: 40px;
+        position: fixed;
+    }
+
+    .prvs{
+        left: 30%;
+    }
+    
+    .next{
+        right: 30%;
+    }
+}
+
+@media (min-width: 1400px){
+    .prvs{
+        left: 36%;
+    }
+    
+    .next{
+        right: 36%;
     }
 }
