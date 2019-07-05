@@ -37,7 +37,7 @@ const submitSingUp = (event) => {
         password: `${document.getElementById("signup-password").value}`
     };
     getUser().then(data => {
-        if (data.find(el => el.login.toLowerCase() === document.getElementById("signup-username").value.toLowerCase() || el.email === document.getElementById("signup-email").value.toLowerCase())) {
+        if (data.find(el => {el.login.toLowerCase() === document.getElementById("signup-username").value.toLowerCase() || el.email === document.getElementById("signup-email").value.toLowerCase()})) {
             console.log('fail')
         } else(
             postUser(user),
