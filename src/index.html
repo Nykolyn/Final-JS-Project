@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -252,7 +252,7 @@
       <ul class="films-list container"></ul>
       <!-- MODAL COMMENT -->
 
-      <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+      <div class="modal micromodal-slide " id="modal-1" aria-hidden="true">
         <div class="modal__overlay" tabindex="-1" data-micromodal-close>
           <div
             class="modal__container"
@@ -262,23 +262,25 @@
           >
             <main class="modal__content">
               <form class="comment-form">
-                <label for="userComment">
-                  Your comment
-                </label>
                 <textarea
+                  class="modal-comment__texarea"
                   name="userComment"
                   id="userComment"
                   cols="30"
                   rows="10"
+                  placeholder="Insert your comment here"
+                  required
                 ></textarea>
-                <button class="modal__btn modal__btn-primary">Post</button>
-                <button
-                  class="modal__btn"
-                  data-micromodal-close
-                  aria-label="Close this dialog window"
-                >
-                  Close
-                </button>
+                <div class="comment-modal__button-wrapp">
+                  <button class="modal__btn modal__btn-primary">Post</button>
+                  <button
+                    class="modal__btn"
+                    data-micromodal-close
+                    aria-label="Close this dialog window"
+                  >
+                    Close
+                  </button>
+                </div>
               </form>
             </main>
           </div>

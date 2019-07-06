@@ -7,3 +7,5 @@ export const refs = {
 }
 
 export const commentForm = document.querySelector('.comment-form');
+
+export const addingEventListener = (myConst, type, listener) => myConst.addEventListener(type, listener);

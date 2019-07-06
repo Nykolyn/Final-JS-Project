@@ -1,0 +1,72 @@
+.comments-list {
+    width: 100%;
+    height: 200px;
+    background-color: inherit;
+    padding: 10px;
+    color: #fff;
+}
+
+.comments-item {
+    position: relative;
+    padding: 5px;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    ;
+    transition: all 1s;
+    // border-bottom: 1px solid rgb(245, 233, 64);
+
+    border-radius: 10px;
+}
+
+.comments-item:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.comments-item:hover {
+    // box-shadow: 1px 2px 8px 2px rgb(243, 227, 10);
+    box-shadow: 0px 3px 18px 0px rgba(196, 188, 188, 0.75);
+    border-radius: 15px;
+    transform: translateY(-3px);
+}
+
+.comments-name {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.comments-comment {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.comments-date {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.comments-span_name {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.63);
+}
+
+.comments-span_date {
+    font-size: 12px;
+}
+
+.scroll {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 12px;
+}
+
+.scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
