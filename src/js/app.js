@@ -24,6 +24,7 @@ import {
 } from './search';
 
 import Swal from 'sweetalert2';
+import { get } from 'http';
 
 const open = document.getElementById('submit-signin');
 
@@ -50,7 +51,9 @@ const handleModal = event => {
         `
     })
 
-    // user.getUser().then(user => user.map(user.login))
+    // getUserName().then(
+
+
 
 };
 
