@@ -29,6 +29,7 @@ import { get } from 'http';
 const open = document.getElementById('submit-signin');
 
 // const user = new User();
+getUser(sessionStorage.getUserName).then(users => console.log(users.login));
 
 const handleModal = event => {
     Swal.fire({
@@ -49,12 +50,7 @@ const handleModal = event => {
           center left
           no-repeat
         `
-    })
-
-    // getUserName().then(
-
-
-
+    });
 };
 
 open.addEventListener('click', handleModal)
