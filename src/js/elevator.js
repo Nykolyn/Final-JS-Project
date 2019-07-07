@@ -283,7 +283,7 @@ const elevator = new Elevator({
 const downEl = document.querySelector('.elevatorDown')
 const down = new Elevator({
     element: downEl,
-    mainAudio: "../music/in_the_end.mp3",
+    mainAudio: "../music/be_happy.mp3",
     endAudio: "./music/ding.mp3",
     targetElement: elementButton,
     verticalPadding: 850,
