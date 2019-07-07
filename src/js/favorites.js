@@ -1,35 +1,11 @@
 import { refs } from './constants';
 import { createListItem } from './view';
 import { getFilms, saveFilm } from '../js/services/api';
+import { getFilmsFavorite, deleteFilm } from './services/api';
 
 const idUser = '1111';
 
-const getFilmsFavorite = async () => {
-  const response = await fetch(`http://localhost:3000/films`);
-  try {
-    if (response.ok) {
-      console.log(response);
-      return response.json();
-    }
-  } catch (error) {
-    throw error;
-  }
-};
-
 // // DELETE FILM
-export const deleteFilm = async id => {
-  const settings = {
-    method: 'DELETE',
-  };
-  const response = await fetch(`http://localhost:3000/films/${id}`, settings);
-  try {
-    if (response.ok) {
-      return response.json();
-    }
-  } catch (error) {
-    throw error;
-  }
-};
 
 export const handleFavBtnClick = ({ target = { textContent } }) => {
   if (target.textContent === 'fav button') {
@@ -42,43 +18,32 @@ export const handleFavBtnClick = ({ target = { textContent } }) => {
         break;
       }
     }
-
     const film = {
       poster_path: result,
       title: title,
       idUser: idUser,
     };
-
     // ПЕРЕВІРКА НА НАЯВНІСТЬ ФІЛЬМА В МАСИВІ
     getFilmsFavorite(idUser).then(result => {
       const resultSearch = result.some(film => film.title === title);
       if (resultSearch) {
-        console.log('УЖЕ ЕСТЬ');
       } else {
-        console.log('ТАКОГО НЕТУ');
         saveFilm(film);
       }
     });
-    console.log('FAVBUTTON');
   } else {
-    console.log('DELETE');
-
     let titleDelete = target.closest('li').children[1].textContent;
-    // console.log('TITLEDELETE',);
 
     getFilmsFavorite(idUser)
       .then(result => {
-        console.log('RESULT !', result);
         let deleteObj = result.find(film => film.title === titleDelete);
         deleteFilm(deleteObj.id);
         return result.filter(el => el.id !== deleteObj.id);
-        // return ;
       })
       .then(data => {
         refs.filmsList.innerHTML = '';
 
         data.forEach(film => film.idUser === idUser && createListItem(film, true));
-        console.log('data', data);
       });
   }
 };
@@ -97,8 +62,6 @@ function exitToFilm() {
 const favorite = document.querySelector('.favorite');
 favorite.addEventListener('click', showFavoriteFilm);
 
-// favorite.textContent = 'All Movies';
-
 // ПОКАЗАННЯ УЛЮБЛЕННИХ ФІЛЬМІВ
 function showFavoriteFilm(e) {
   favorite.textContent = 'All Movies';
@@ -106,16 +69,11 @@ function showFavoriteFilm(e) {
   getFilmsFavorite(idUser).then(result => {
     result.forEach(film => {
       if (film.idUser === idUser) {
-        //     console.log(film.idUser);
         createListItem(film, true);
-        console.log(film);
       } else {
-        console.log('not');
       }
     });
   });
-
-  console.log('E.TARGET', e.target);
 
   favorite.removeEventListener('click', showFavoriteFilm);
   favorite.addEventListener('click', exitToFilm);

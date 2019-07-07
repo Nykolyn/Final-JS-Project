@@ -13,6 +13,32 @@ export const getFilms = () => {
   });
 };
 
+export const getFilmsFavorite = async () => {
+  const response = await fetch(`http://localhost:3000/films`);
+  try {
+    if (response.ok) {
+      console.log(response);
+      return response.json();
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteFilm = async id => {
+  const settings = {
+    method: 'DELETE',
+  };
+  const response = await fetch(`http://localhost:3000/films/${id}`, settings);
+  try {
+    if (response.ok) {
+      return response.json();
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getUserName = async id => {
   try {
     const result = await fetch(`${USER_URL}/${id}`);
