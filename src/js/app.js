@@ -162,7 +162,7 @@ const handleCommentSubmit = event => {
         commentItem.name = newComment.name;
         commentItem.comment = newComment.comment;
         commentItem.date = newComment.date;
-        MicroModal.close('modal-1')
+        MicroModal.close('modal-1');
     })
     event.currentTarget.reset();
 }

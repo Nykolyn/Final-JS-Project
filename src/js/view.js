@@ -12,7 +12,6 @@ export const createListItem = (film) => {
     const filmsList = document.querySelector('.films-list');
 
     const liToCreate = createElementWithClass('li', 'films-list__item');
-
     setIdToElem(liToCreate, film.id)
     const poster = createElementWithClass('img', 'films_list__poster');
     const filmTitle = createElementWithClass('p', 'film-list__title');

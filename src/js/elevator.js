@@ -279,3 +279,12 @@ const elevator = new Elevator({
     mainAudio: "../music/star_wars_rock.mp3",
     endAudio: "./music/ding.mp3",
 });
+
+const downEl = document.querySelector('.elevatorDown')
+const down = new Elevator({
+    element: downEl,
+    mainAudio: "../music/in_the_end.mp3",
+    endAudio: "./music/ding.mp3",
+    targetElement: elementButton,
+    verticalPadding: 850,
+})
