@@ -271,11 +271,9 @@ if (typeof module !== "undefined" && module.exports) {
     module.exports = Elevator;
 }
 
-
 const elementButton = document.querySelector(".elevator");
 const elevator = new Elevator({
     element: elementButton,
-    // duration: 10000,
     mainAudio: "../music/star_wars_rock.mp3",
     endAudio: "./music/ding.mp3",
 });
@@ -283,8 +281,8 @@ const elevator = new Elevator({
 const downEl = document.querySelector('.elevatorDown')
 const down = new Elevator({
     element: downEl,
-    mainAudio: "../music/be_happy.mp3",
+    mainAudio: "../music/alarm.mp3",
     endAudio: "./music/ding.mp3",
     targetElement: elementButton,
-    verticalPadding: 850,
+    verticalPadding: 600,
 })

@@ -24,6 +24,7 @@ import {
 } from './search';
 import './nanobar';
 import './elevator';
+import './sal'
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
