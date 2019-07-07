@@ -1,36 +1,20 @@
 import { refs } from './constants';
-// import Films from './Fims/Films';
-// import { films } from './app';
 import { createListItem } from './view';
 import { getFilms, saveFilm } from '../js/services/api';
 
-// ID користувача
-const idUser = '';
-console.log(idUser);
+const idUser = '1111';
 
-// КЛИК НА КНОПКУ ДОДАТИ В МОЇ УЛЮБЛЕНІ
-document.body.addEventListener('click', addFilmToServer);
-
-// ОТРИМАННЯ ФІЛЬМІВ З МАСИВУ МОЇХ УЛЮБЛЕННИХ
-const getFilmsFavorite = () => {
-  return fetch(`http://localhost:3000/films`).then(response => {
-    if (response.ok) return response.json();
-    console.log(response);
-
-    throw new Error('Error while fetching ' + response.statusText);
-  });
+const getFilmsFavorite = async () => {
+  const response = await fetch(`http://localhost:3000/films`);
+  try {
+    if (response.ok) {
+      console.log(response);
+      return response.json();
+    }
+  } catch (error) {
+    throw error;
+  }
 };
-
-//ВИХІД З МОЇХ ФІЛЬМІВ ДО ГОЛОВНОЇ СТОРІНКИ
-function exitToFilm() {
-  favorite.textContent = 'My Movies';
-  refs.filmsList.innerHTML = '';
-  getFilms().then(result => {
-    result.results.forEach(item => createListItem(item));
-  });
-  favorite.removeEventListener('click', exitToFilm);
-  favorite.addEventListener('click', showFavoriteFilm);
-}
 
 // // DELETE FILM
 export const deleteFilm = async id => {
@@ -47,6 +31,68 @@ export const deleteFilm = async id => {
   }
 };
 
+export const handleFavBtnClick = ({ target = { textContent } }) => {
+  if (target.textContent === 'fav button') {
+    const src = target.closest('li').children[0].children[0].children[0].src;
+    const title = target.closest('li').children[1].textContent;
+    let result;
+    for (let i = src.length; i > 0; i--) {
+      if (src[i] === '/') {
+        result = src.substr(src.length - i + 1);
+        break;
+      }
+    }
+
+    const film = {
+      poster_path: result,
+      title: title,
+      idUser: idUser,
+    };
+
+    // ПЕРЕВІРКА НА НАЯВНІСТЬ ФІЛЬМА В МАСИВІ
+    getFilmsFavorite(idUser).then(result => {
+      const resultSearch = result.some(film => film.title === title);
+      if (resultSearch) {
+        console.log('УЖЕ ЕСТЬ');
+      } else {
+        console.log('ТАКОГО НЕТУ');
+        saveFilm(film);
+      }
+    });
+    console.log('FAVBUTTON');
+  } else {
+    console.log('DELETE');
+
+    let titleDelete = target.closest('li').children[1].textContent;
+    // console.log('TITLEDELETE',);
+
+    getFilmsFavorite(idUser)
+      .then(result => {
+        console.log('RESULT !', result);
+        let deleteObj = result.find(film => film.title === titleDelete);
+        deleteFilm(deleteObj.id);
+        return result.filter(el => el.id !== deleteObj.id);
+        // return ;
+      })
+      .then(data => {
+        refs.filmsList.innerHTML = '';
+
+        data.forEach(film => film.idUser === idUser && createListItem(film, true));
+        console.log('data', data);
+      });
+  }
+};
+
+function exitToFilm() {
+  favorite.textContent = 'My Movies';
+  refs.filmsList.innerHTML = '';
+  getFilms().then(result => {
+    result.results.forEach(item => createListItem(item));
+  });
+  favorite.removeEventListener('click', exitToFilm);
+  favorite.addEventListener('click', showFavoriteFilm);
+}
+
 // КНОПКА НА ГОЛОВНОМУ ЕКРАНІ МОЇ УЛУБЛЕННІ
 const favorite = document.querySelector('.favorite');
 favorite.addEventListener('click', showFavoriteFilm);
@@ -61,7 +107,7 @@ function showFavoriteFilm(e) {
     result.forEach(film => {
       if (film.idUser === idUser) {
         //     console.log(film.idUser);
-        createListItem(film);
+        createListItem(film, true);
         console.log(film);
       } else {
         console.log('not');
@@ -73,32 +119,4 @@ function showFavoriteFilm(e) {
 
   favorite.removeEventListener('click', showFavoriteFilm);
   favorite.addEventListener('click', exitToFilm);
-}
-
-//ДОБАВЛЕННЯ НА СЕРВЕР В МАСИВ МОЇ УЛЮБЛЕННІ
-function addFilmToServer(e) {
-  if (e.target.className === 'fav-button') {
-    e.target.textContent = 'delete';
-
-    // document.body.removeEventListener('click', addFilmToServer);
-
-    const src = e.target.closest('li').children[0].children[0].children[0].src;
-    const title = e.target.closest('li').children[1].textContent;
-    let result;
-    for (let i = src.length; i > 0; i--) {
-      if (src[i] === '/') {
-        result = src.substr(src.length - i + 1);
-
-        break;
-      }
-    }
-
-    const film = {
-      poster_path: result,
-      title: title,
-      idUser: idUser,
-    };
-
-    saveFilm(film);
-  }
 }
