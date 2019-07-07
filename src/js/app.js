@@ -147,7 +147,9 @@ const handleCommentSubmit = event => {
 
     if (comment.value.trim() === '') return console.log('Заполни все поля!');
     commentToPost = comment.value;
-    getUserName(sessionStorage.getItem('id')).then(user => {
+    const id = sessionStorage.getItem('id') === null ? localStorage.getItem('key') : sessionStorage.getItem('id')
+
+    getUserName(id).then(user => {
         const newComment = {
             filmId: filmId,
             name: user.login,
