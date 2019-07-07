@@ -147,7 +147,9 @@ const handleCommentSubmit = event => {
 
     if (comment.value.trim() === '') return console.log('Заполни все поля!');
     commentToPost = comment.value;
-    getUserName(sessionStorage.getItem('id')).then(user => {
+    const id = sessionStorage.getItem('id') === null ? localStorage.getItem('key') : sessionStorage.getItem('id')
+
+    getUserName(id).then(user => {
         const newComment = {
             filmId: filmId,
             name: user.login,
@@ -160,7 +162,7 @@ const handleCommentSubmit = event => {
         commentItem.name = newComment.name;
         commentItem.comment = newComment.comment;
         commentItem.date = newComment.date;
-        MicroModal.close('modal-1')
+        MicroModal.close('modal-1');
     })
     event.currentTarget.reset();
 }

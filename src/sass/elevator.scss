@@ -1,18 +1,25 @@
-.elevator {
+.elevator,
+.elevatorDown {
     text-align: center;
     cursor: pointer;
     width: 140px;
     margin: auto;
 }
 
-.elevator:hover {
+.elevator:hover,
+.elevatorDown img:hover {
     opacity: 0.7;
 }
 
-.elevator img {
+.elevator img,
+.elevatorDown img {
     width: 40px;
     height: 40px;
     display: block;
     margin: auto;
     margin-bottom: 5px;
+}
+
+.elevatorDown img {
+    transform: rotate(180deg);
 }
