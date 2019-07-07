@@ -22,6 +22,8 @@ import {
 import {
     onSearch
 } from './search';
+import './nanobar';
+import './elevator';
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
