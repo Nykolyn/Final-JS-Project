@@ -54,15 +54,18 @@ export const createListItem = (film) => {
     //like dis button 
     const buttonInner = createElementWithClass('div', 'button-inner');
     buttonInner.classList.add('button-none');
-
     const buttonInnerLike = createElementWithClass('div', 'button-inner-like');
+    
     const buttonInnerDislike = createElementWithClass('div', 'button-inner-dislike');
-
+    
     const buttonLike = createElementWithClass('button', 'button-like');
+    buttonLike.classList.add('button-like');
     const buttonDislike = createElementWithClass('button', 'button-dislike');
+    buttonDislike.classList.add('button-dislike');
 
     const likeCount = createElementWithClass('p', 'like-count');
     likeCount.textContent = '0';
+    
     const dislikeCount = createElementWithClass('p', 'dislike-count');
     dislikeCount.textContent = '0';
 

@@ -80,10 +80,12 @@ function openCard(event) {
 
         window.scroll(0, 100);
 
+        
+        
         //toggle event click 
         refs.filmsList.removeEventListener('click', openCard);
         refs.filmsList.addEventListener('click', closedCard);
-
+        
         function closedCard(event) {
             if (event.target === exitButton || event.target === image || event.target === list || event.target.nodeName === 'IMG') {
                 targetCard.classList.remove('modal-card')
@@ -93,9 +95,9 @@ function openCard(event) {
                 filmListTitle.classList.remove('display-none')
                 
                 buttonInner.classList.add('button-none');
-
+                
                 window.scroll(clientX, clientY);
-
+                
                 //toggle event click 
                 refs.filmsList.removeEventListener('click', closedCard);
                 refs.filmsList.addEventListener('click', openCard);
@@ -110,7 +112,50 @@ let filmId = null;
 let commentToPost = null;
 const commentItem = {};
 
+//like/dis
+let counter = localStorage.getItem('like') || 0
+
 const handleComment = event => {
+    const text =  document.querySelector('.like-count')
+    if(event.target.className === 'button-like') {
+        counter ++
+        console.log(counter)
+        localStorage.setItem('like', counter);
+
+    }
+    
+    text.textContent = localStorage.getItem('like')
+
+
+    
+    let counterDislike = localStorage.getItem('dislike')
+
+        const textDislike =  document.querySelector('.dislike-count')
+        if(event.target.className === 'button-dislike') {
+            counterDislike --
+            localStorage.setItem('dislike', counterDislike)
+            // console.log(localStorage.getItem('dislike'))
+        }
+            
+            
+        textDislike.textContent = localStorage.getItem('dislike')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if (event.target.closest('li').nodeName !== 'LI') return
     const parentItem = event.target.closest('li');
     const id = parentItem.id;
@@ -120,41 +165,41 @@ const handleComment = event => {
         commentsList.innerHTML = '';
         films.getComments().then(comments => {
             comments.sort((a, b) => b.id - a.id)
-                .map(comment => {
-                    if (comment.filmId === id) {
-                        commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date)
-                    }
-                })
+            .map(comment => {
+                if (comment.filmId === id) {
+                    commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date)
+                }
+            })
         })
     }
-
+    
     if (event.target.className === 'refresh-comments-button') {
         commentsList.innerHTML = '';
         films.getComments().then(comments => {
             comments.sort((a, b) => b.id - a.id)
-                .map(comment => {
-                    if (comment.filmId === id) {
-                        commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date)
-                    }
-                })
+            .map(comment => {
+                if (comment.filmId === id) {
+                    commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date)
+                }
+            })
         })
     }
-
+    
     event.target.closest('li') === parentItem ? filmId = parentItem.id : null;
     if (event.target.className === 'comments-button') {
         MicroModal.show('modal-1')
     }
-
+    
 }
 
 const handleCommentSubmit = event => {
     event.preventDefault();
     const [comment] = event.currentTarget.elements;
-
+    
     if (comment.value.trim() === '') return console.log('Заполни все поля!');
     commentToPost = comment.value;
     const id = sessionStorage.getItem('id') === null ? localStorage.getItem('key') : sessionStorage.getItem('id')
-
+    
     getUserName(id).then(user => {
         const newComment = {
             filmId: filmId,
@@ -162,8 +207,8 @@ const handleCommentSubmit = event => {
             comment: commentToPost,
             date: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
         }
-
-
+        
+        
         films.updateComment(newComment)
         commentItem.name = newComment.name;
         commentItem.comment = newComment.comment;
@@ -178,17 +223,17 @@ const cardRotation = event => {
     // const card = event.target.closest('li');
     if (event.target.nodeName !== 'IMG') return
     const card = event.target;
-
+    
     const startRotate = event => {
         const halfHieight = card.offsetHeight / 2;
         const halfWidth = card.offsetWidth / 2;
         card.style.transform = 'rotateX(' + -(event.offsetY - halfHieight) / 8 + 'deg) rotateY(' + (event.offsetX - halfWidth) / 8 + 'deg)';
     }
-
+    
     const stopRotate = event => {
         card.style.transform = 'rotate(0)';
     }
-
+    
     card.addEventListener('mousemove', startRotate);
     card.addEventListener('mouseout', stopRotate);
 }
@@ -198,3 +243,4 @@ refs.filmsList.addEventListener('click', handleComment);
 refs.searchForm.addEventListener('submit', onSearch);
 commentForm.addEventListener('submit', handleCommentSubmit);
 // refs.filmsList.addEventListener('mouseover', cardRotation)
+
