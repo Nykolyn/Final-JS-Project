@@ -13,7 +13,11 @@ let counter = 1;
 if (counter < 2) { 
     prvsBtn.classList.add('disabled')
 }
+//-----------------------------------------------------------   
 
+    
+
+//------------------------------------------------------------
 function switchPages (event)  {
     refs.filmsList.innerHTML = '';
     
