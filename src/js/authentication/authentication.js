@@ -4,8 +4,8 @@ import {
 } from '../services/api'
 
 const forms = document.querySelectorAll('form');
-const formSingIn = forms[0];
-const formSingUp = forms[1];
+const formSingIn = forms[1];
+const formSingUp = forms[2];
 const modalSwitcher = document.querySelector('.cd-signin-modal__switcher')
 const signupUserName = document.getElementById("signup-username")
 const signupEmail = document.getElementById("signup-email")
@@ -108,7 +108,9 @@ const submitSignUp = (event) => {
                 console.log('fail')
             } else(
                 event.target.reset(),
-                postUser(user),
+                postUser(user).then(data => {
+                    sessionStorage.setItem('id', data.id)
+                }),
                 LogedIn(),
                 signupModal.classList.remove('cd-selected'),
                 signupForm.classList.remove('cd-signin-modal__block--is-selected'),
@@ -120,15 +122,14 @@ const submitSignUp = (event) => {
 
 const submitSignIn = (event) => {
 
-    
+
     getUser().then(data => {
-        
+
         const comprasion = data.find(el => el.password === signinPassword.value && el.email === signinEmail.value.toLowerCase())
         const a = !data.map(el => el.email).includes(signinEmail.value.toLowerCase())
         const b = !data.map(el => el.password).includes(signinPassword.value)
         signinEmail.classList.toggle('cd-signin-modal__input--has-error', !data.map(el => el.email).includes(signinEmail.value.toLowerCase()))
         signinPassword.classList.toggle('cd-signin-modal__input--has-error', !data.map(el => el.password).includes(signinPassword.value))
-        
         if (signinEmail.value === '') {
             signinEmail.classList.add('cd-signin-modal__input--has-error')
             signinEmail.closest('p').querySelector('span').classList.add("error")
@@ -171,7 +172,7 @@ const submitSignIn = (event) => {
                 document.getElementById('login-form').classList.remove('cd-signin-modal__block--is-selected')
                 sessionStorage.setItem('id', comprasion.id)
                 console.log(document.getElementById("remember-me").checked);
-                
+
                 if (document.getElementById("remember-me").checked) {
                     localStorage.setItem('key', comprasion.id)
                 }
@@ -200,4 +201,4 @@ getUser().then(data => {
         LogedIn()
     }
 });
-// ________________________________________________________________________________________________
+// 

@@ -1,17 +1,29 @@
 .films-list {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
-    filter: blur(15px);
+    align-content: center;
+
+    &__item {
+
+        margin: 0;
+        margin-bottom: 30px;
+        padding: 0;
+        list-style: none;
+        width: 30%;
+
+
+    }
+
+    // &__item:not(last-child) {
+    //     margin-right: 30px;
+    // }
+
+    &__item:not(:nth-child(3n)) {
+        margin-right: 40px;
+    }
 }
 
-.films-list__item {
-    margin: 0;
-    margin-bottom: 30px;
-    padding: 0;
-    list-style: none;
-    width: 30%;
-}
 
 .film-list__title {
     text-align: center;

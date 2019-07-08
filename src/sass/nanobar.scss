@@ -1,0 +1,13 @@
+#nanobar .bar {
+    background: #000;
+    border-radius: 4px;
+    box-shadow: 0 0 10px #59d;
+    height: 4px;
+}
+
+#nanobar {
+    margin-bottom: 0px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
