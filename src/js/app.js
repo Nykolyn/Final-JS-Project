@@ -122,9 +122,9 @@ const handleComment = event => {
                         commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date)
                     }
                 })
-        })
+            })
     }
-
+    
     event.target.closest('li') === parentItem ? filmId = parentItem.id : null;
     if (event.target.className === 'comments-button') {
         MicroModal.show('modal-1')
@@ -147,7 +147,7 @@ const handleCommentSubmit = event => {
             comment: commentToPost,
             date: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
         }
-
+        
 
         films.updateComment(newComment)
         commentItem.name = newComment.name;
@@ -180,6 +180,6 @@ const cardRotation = event => {
 
 refs.filmsList.addEventListener('click', openCard);
 refs.filmsList.addEventListener('click', handleComment);
+refs.searchForm.addEventListener('submit', onSearch);
 commentForm.addEventListener('submit', handleCommentSubmit);
 // refs.filmsList.addEventListener('mouseover', cardRotation)
-// refs.searchForm.addEventListener('input', onSearch)
