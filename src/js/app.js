@@ -9,6 +9,8 @@ import {
     commentItemCreate,
     commentListRender,
 } from './view';
+
+import {switchPages} from './switchPages';
 import './authentication/authentication';
 import MicroModal from 'micromodal';
 import '../sass/micromodal.scss';
@@ -25,6 +27,7 @@ import {
 import './nanobar';
 import './elevator';
 import './sal'
+
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -65,7 +68,7 @@ function openCard(event) {
     // mouse cord
     const clientX = event.layerX;
     const clientY = event.layerY;
-
+    
     if (!targetCard.className.includes('modal-card')) {
         targetCard.classList.add('modal-card');
         targetDiv.classList.add('card-block');
@@ -74,17 +77,14 @@ function openCard(event) {
         filmListTitle.classList.add('display-none')
 
         window.scroll(0, 100);
-
+        
         //toggle event click 
         refs.filmsList.removeEventListener('click', openCard);
         refs.filmsList.addEventListener('click', closedCard);
-
+        
         function closedCard(event) {
-<<<<<<< HEAD
-=======
 
 
->>>>>>> master
             if (event.target === exitButton || event.target === image || event.target === list || event.target.nodeName === 'IMG') {
                 targetCard.classList.remove('modal-card')
                 targetDiv.classList.remove('card-block');
@@ -93,7 +93,7 @@ function openCard(event) {
                 filmListTitle.classList.remove('display-none')
 
                 window.scroll(clientX, clientY);
-
+                
                 //toggle event click 
                 refs.filmsList.removeEventListener('click', closedCard);
                 refs.filmsList.addEventListener('click', openCard);
@@ -103,24 +103,6 @@ function openCard(event) {
 }
 
 
-//========like-dis=========//
-let counter = 0;
-document.addEventListener('click', (e) => {
-    if (e.target.className === 'button-like') {
-        counter += 1;
-        console.log(counter);
-
-    }
-})
-let count = 0;
-document.addEventListener('click', (e) => {
-    if (e.target.className === 'button-dislike') {
-        count -= 1;
-        console.log(count);
-
-    }
-})
-refs.searchForm.addEventListener('input', onSearch)
 
 let filmId = null;
 let commentToPost = null;
@@ -153,9 +135,9 @@ const handleComment = event => {
                         commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date)
                     }
                 })
-        })
+            })
     }
-
+    
     event.target.closest('li') === parentItem ? filmId = parentItem.id : null;
     if (event.target.className === 'comments-button') {
         MicroModal.show('modal-1')
@@ -178,7 +160,7 @@ const handleCommentSubmit = event => {
             comment: commentToPost,
             date: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
         }
-
+        
 
         films.updateComment(newComment)
         commentItem.name = newComment.name;
@@ -211,11 +193,6 @@ const cardRotation = event => {
 
 refs.filmsList.addEventListener('click', openCard);
 refs.filmsList.addEventListener('click', handleComment);
-<<<<<<< HEAD
-commentForm.addEventListener('submit', handleCommentSubmit)
-refs.searchForm.addEventListener('input', onSearch)
-=======
+refs.searchForm.addEventListener('submit', onSearch);
 commentForm.addEventListener('submit', handleCommentSubmit);
 // refs.filmsList.addEventListener('mouseover', cardRotation)
-// refs.searchForm.addEventListener('input', onSearch)
->>>>>>> master

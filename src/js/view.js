@@ -37,37 +37,20 @@ export const createListItem = (film) => {
 
     const imageWrap = createElementWithClass('div', 'image-wrap');
 
-    
-    
-    
     //modal for comments
     const commWrap = createElementWithClass('div', 'comments-wrap');
     const commList = createElementWithClass('ul', 'comments-list');
     const commButton = createElementWithClass('button', 'comments-button')
-<<<<<<< HEAD
-    commButton.textContent = 'Comments';
-    
-=======
     const commRefresh = createElementWithClass('button', 'refresh-comments-button')
     commButton.textContent = 'Add comment';
     commRefresh.textContent = 'Refresh comments';
 
 
     const buttonsWrapp = createElementWithClass('div', 'buttons-wrap')
->>>>>>> master
     poster.setAttribute('src', `https://image.tmdb.org/t/p/w500/${film.poster_path}`);
     filmTitle.textContent = film.title;
-    
-    //=====like-dis===//
-    const cardBtn = createElementWithClass('div','click')
-    const like = createElementWithClass('button','button-like');
-    like.textContent = 'LIKE';
-    const dislike = createElementWithClass('button','button-dislike');
-    dislike.textContent = 'DISLIKE'
-    
-    cardWrap.append(cardBtn);
-    cardBtn.append(like,dislike);
-    
+
+
     //append DOM 
     titleWrap.append(cardTitle, release, voteCount, voteAverage, overviewFils);
     commWrap.append(commList)
@@ -79,9 +62,9 @@ export const createListItem = (film) => {
     cardWrap.append(exitButton, titleWrap, commWrap, buttonsWrapp);
 
     imageWrap.appendChild(poster)
-    
+
     cardInner.append(imageWrap, cardWrap); //left/right block
-    
+
     liToCreate.append(cardInner, filmTitle);
     filmsList.appendChild(liToCreate);
 
