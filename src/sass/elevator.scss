@@ -2,6 +2,7 @@
 .elevatorDown {
     cursor: pointer;
     width: 50px;
+    z-index: 99999;
 }
 
 .elevatorDown {
@@ -9,6 +10,7 @@
     position: absolute;
     top: 10%;
     right: 3%;
+
 }
 
 .elevator {
@@ -216,5 +218,32 @@
     90% {
         -webkit-transform: translate3d(0, -4px, 0);
         transform: translate3d(0, -4px, 0);
+    }
+}
+
+@keyframes heartBeat {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    14% {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+
+    28% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    42% {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+
+    70% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
     }
 }

@@ -31,6 +31,7 @@ import './nanobar';
 import './elevator';
 import './sal';
 import './welcomeModal';
+import './timer'
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -153,6 +154,8 @@ const handleComment = event => {
         MicroModal.show('modal-1');
     }
 };
+
+
 
 const handleCommentSubmit = event => {
     event.preventDefault();
