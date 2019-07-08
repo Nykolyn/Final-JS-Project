@@ -7,3 +7,6 @@ export const refs = {
     searchInput: document.querySelector('.search'),
 }
 
+export const commentForm = document.querySelector('.comment-form');
+
+export const addingEventListener = (myConst, type, listener) => myConst.addEventListener(type, listener);
