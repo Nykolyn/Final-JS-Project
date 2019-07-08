@@ -26,7 +26,7 @@ export const handleFavBtnClick = ({ target = { textContent } }) => {
     };
     // ПЕРЕВІРКА НА НАЯВНІСТЬ ФІЛЬМА В МАСИВІ
     getFilmsFavorite(idUser).then(result => {
-      const resultSearch = result.some(film => film.title === title);
+      const resultSearch = result.some(film => film.title === title && film.idUser === idUser);
       !resultSearch ? saveFilm(film) : null;
     });
   } else {
