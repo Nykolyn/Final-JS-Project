@@ -1,15 +1,39 @@
-import { refs } from './constants';
-import { createListItem } from './view';
-import { getFilms, saveFilm } from '../js/services/api';
-import { getFilmsFavorite, deleteFilm } from './services/api';
+import {
+  refs
+} from './constants';
+import {
+  createListItem
+} from './view';
+import {
+  getFilms,
+  saveFilm
+} from '../js/services/api';
+import {
+  getFilmsFavorite,
+  deleteFilm
+} from './services/api';
 
 const personalIdUser = sessionStorage.getItem('id');
 console.log('id', personalIdUser);
 const idUser = personalIdUser;
 
 // ДОДАЄМО В МОЇ УЛЮБЛЕНІ
-export const handleFavBtnClick = ({ target = { textContent } }) => {
+export const handleFavBtnClick = ({
+  target = {
+    textContent
+  }
+}) => {
   if (target.textContent === 'my movies') {
+    const release = target.closest('li').children[0].children[1].children[1].children[1]
+      .textContent;
+
+    const count = target.closest('li').children[0].children[1].children[1].children[2].textContent;
+
+    const average = target.closest('li').children[0].children[1].children[1].children[3]
+      .textContent;
+
+    const overview = target.closest('li').children[0].children[1].children[1].children[4]
+      .textContent;
     const src = target.closest('li').children[0].children[0].children[0].src;
     const title = target.closest('li').children[1].textContent;
     let result;
@@ -22,6 +46,10 @@ export const handleFavBtnClick = ({ target = { textContent } }) => {
     const film = {
       poster_path: result,
       title: title,
+      release_date: release,
+      vote_count: count,
+      vote_average: average,
+      overview: overview,
       idUser: idUser,
     };
     // ПЕРЕВІРКА НА НАЯВНІСТЬ ФІЛЬМА В МАСИВІ

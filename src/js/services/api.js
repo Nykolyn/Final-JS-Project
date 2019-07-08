@@ -1,15 +1,26 @@
-import { API } from '../constants';
+import {
+  API
+} from '../constants';
 
-import { refs } from '../constants';
+import {
+  refs
+} from '../constants';
 
 const FAVOURITE_FILMS_URL = 'http://localhost:3000/films';
 const USER_URL = 'http://localhost:3000/users';
 const COMMENTS_URL = 'http://localhost:3000/comments';
+const FIND_FILM_URL = 'https://api.themoviedb.org/3/search/movie?api_key=027ca1d5e779abba9fcdc8b6b57f2385&language=en-US&query=';
 
 export const getFilms = () => {
   return fetch(API).then(response => {
     if (response.ok) return response.json();
     throw new Error('Error while fetching ' + response.statusText);
+  });
+};
+
+export const searchFilm = (value) => {
+  return fetch(FIND_FILM_URL + value).then(response => {
+    if (response.ok) return response.json()
   });
 };
 
@@ -26,17 +37,17 @@ export const getFilmsFavorite = async () => {
 };
 
 export const getUserName = async (id) => {
-    try {
-        const result = await fetch(`${USER_URL}/${id}`)
-        const user = result.json()
-        return user;
+  try {
+    const result = await fetch(`${USER_URL}/${id}`)
+    const user = result.json()
+    return user;
 
-    } catch (error) {
-        throw new Error('Error while getting user', error)
-    } 
-    
+  } catch (error) {
+    throw new Error('Error while getting user', error)
+  }
+
 }
-   
+
 export const deleteFilm = async id => {
   const settings = {
     method: 'DELETE',
