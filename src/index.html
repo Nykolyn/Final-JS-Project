@@ -267,6 +267,40 @@
 
     <section class="main-section" id="main">
       <ul class="films-list container fly"></ul>
+      <div class="modal micromodal-slide " id="modal-1" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+          <div
+            class="modal__container"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-1-title"
+          >
+            <main class="modal__content">
+              <form class="comment-form">
+                <textarea
+                  class="modal-comment__texarea"
+                  name="userComment"
+                  id="userComment"
+                  cols="30"
+                  rows="10"
+                  placeholder="Insert your comment here"
+                  required
+                ></textarea>
+                <div class="comment-modal__button-wrapp">
+                  <button class="modal__btn modal__btn-primary">Post</button>
+                  <button
+                    class="modal__btn"
+                    data-micromodal-close
+                    aria-label="Close this dialog window"
+                  >
+                    Close
+                  </button>
+                </div>
+              </form>
+            </main>
+          </div>
+        </div>
+      </div>
       <!-- Switch  -->
       <div class="switchPages container">
         <button class="prvs pageBtn"><< back</button>
@@ -276,7 +310,7 @@
 
     <!-- MODAL COMMENT -->
 
-    <div class="modal micromodal-slide " id="modal-1" aria-hidden="true">
+    <!-- <div class="modal micromodal-slide " id="modal-1" aria-hidden="true">
       <div class="modal__overlay" tabindex="-1" data-micromodal-close>
         <div
           class="modal__container"
@@ -309,7 +343,7 @@
           </main>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="elevator" data-sal="fade" data-sal-delay="300">
       <img src="./img/rocket.png" alt="" />

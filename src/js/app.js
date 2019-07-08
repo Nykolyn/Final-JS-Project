@@ -32,48 +32,6 @@ import './elevator';
 import './sal';
 import './welcomeModal';
 
-// import Swal from 'sweetalert2';
-
-
-// const open = document.getElementById('submit-signin')
-// console.log(open);
-
-// const welcomeModale = () => {
-//     const welcomeId = sessionStorage.getItem('id') === null ? localStorage.getItem('key') : sessionStorage.getItem('id')
-//     getUserName(welcomeId).then(user => {
-//         Swal.fire({
-//             title: `Welcome ${user.login}! `,
-//             text: 'In your collection',
-//             width: 600,
-//             // animation: false,
-//             showConfirmButton: false,
-//             customClass: 'animated bounce',
-//             timer: 10500,
-//             type: 'success',
-//             padding: '10em',
-//             // background: '#fff url("http://www.coolwebmasters.com/uploads/posts/2010-10/1287573191_patterns-42.jpg")',
-//             backdrop: `
-//         rgba(0,0,123,0.4)
-//         url("https://i.gifer.com/PYh.gif")
-//         center left
-//         no-repeat
-//         `,
-//         });
-//     })
-// }
-
-// const handleModalWelcome = () => {
-//     welcomeModale()
-// };
-
-// if (localStorage.getItem('key')) {
-//     welcomeModale()
-// }
-
-
-// open.addEventListener('click', handleModalWelcome);
-
-
 // ------------  TIME  -------------------- 
 setInterval(function () {
     const date = new Date();
@@ -117,7 +75,7 @@ function openCard(event) {
         image.classList.add('img-markup');
         filmListTitle.classList.add('display-none');
 
-        window.scroll(0, 100);
+        window.scroll(0, 50);
 
         //toggle event click
         refs.filmsList.removeEventListener('click', openCard);
@@ -149,7 +107,6 @@ function openCard(event) {
 
 let filmId = null;
 let commentToPost = null;
-const commentItem = {};
 
 const handleComment = event => {
     if (event.target.closest('li').nodeName !== 'LI') return;
@@ -203,10 +160,7 @@ const handleCommentSubmit = event => {
 
     if (comment.value.trim() === '') return console.log('Заполни все поля!');
     commentToPost = comment.value;
-    const id =
-        sessionStorage.getItem('id') === null ?
-        localStorage.getItem('key') :
-        sessionStorage.getItem('id');
+    const id = sessionStorage.getItem('id');
 
     getUserName(id).then(user => {
         const newComment = {
@@ -217,9 +171,13 @@ const handleCommentSubmit = event => {
         };
 
         films.updateComment(newComment);
-        commentItem.name = newComment.name;
-        commentItem.comment = newComment.comment;
-        commentItem.date = newComment.date;
+
+        const commentsList = document.querySelector(`li[id="${filmId}"] .comments-list`)
+        commentsList.insertAdjacentHTML('afterbegin', commentItemCreate(
+            newComment.name,
+            newComment.comment,
+            newComment.date,
+        ))
         MicroModal.close('modal-1');
     });
     event.currentTarget.reset();
@@ -251,7 +209,7 @@ const cardRotation = event => {
 };
 
 refs.filmsList.addEventListener('click', openCard);
-refs.filmsList.addEventListener('click', handleComment);
+refs.mainSection.addEventListener('click', handleComment);
 refs.searchForm.addEventListener('submit', onSearch);
 commentForm.addEventListener('submit', handleCommentSubmit);
 // refs.filmsList.addEventListener('mouseover', cardRotation)

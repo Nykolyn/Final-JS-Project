@@ -6,9 +6,6 @@ import {
     createListItem
 } from './view';
 import * as api from './services/api';
-import {
-    string
-} from 'postcss-selector-parser';
 
 
 export const onSearch = event => {
