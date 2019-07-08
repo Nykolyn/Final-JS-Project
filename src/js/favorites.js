@@ -5,8 +5,7 @@ import { getFilmsFavorite, deleteFilm } from './services/api';
 
 const idUser = '1111';
 
-// // DELETE FILM
-
+// ДОДАЄМО В МОЇ УЛЮБЛЕНІ
 export const handleFavBtnClick = ({ target = { textContent } }) => {
   if (target.textContent === 'fav button') {
     const src = target.closest('li').children[0].children[0].children[0].src;
@@ -26,10 +25,7 @@ export const handleFavBtnClick = ({ target = { textContent } }) => {
     // ПЕРЕВІРКА НА НАЯВНІСТЬ ФІЛЬМА В МАСИВІ
     getFilmsFavorite(idUser).then(result => {
       const resultSearch = result.some(film => film.title === title);
-      if (resultSearch) {
-      } else {
-        saveFilm(film);
-      }
+      !resultSearch ? saveFilm(film) : null;
     });
   } else {
     let titleDelete = target.closest('li').children[1].textContent;
@@ -48,6 +44,7 @@ export const handleFavBtnClick = ({ target = { textContent } }) => {
   }
 };
 
+//ВИХІД НА ГОЛОВНУ СТОРІНКУ
 function exitToFilm() {
   favorite.textContent = 'My Movies';
   refs.filmsList.innerHTML = '';
@@ -68,10 +65,7 @@ function showFavoriteFilm(e) {
   refs.filmsList.innerHTML = '';
   getFilmsFavorite(idUser).then(result => {
     result.forEach(film => {
-      if (film.idUser === idUser) {
-        createListItem(film, true);
-      } else {
-      }
+      film.idUser === idUser ? createListItem(film, true) : null;
     });
   });
 
