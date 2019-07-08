@@ -65,20 +65,20 @@ export const createListItem = (film, content) => {
 };
 
 export const commentItemCreate = (name, comment, date) => {
-  return `<li class="comments-link">
-                <p class="comments-name">${name}</p>
+  return `<li class="comments-item">
+                <p class="comments-name"><span class="comments-span_name">Name: </span>${name}</p>
                 <p class="comments-comment">${comment}</p>
-                <span class="comments-date">${date}</span>
+                <p class="comments-date"><span class="comments-span_name">When: </span>${date}</p>
             </li>`;
 };
 
-export const commentListRender = (link, arr) => {
-  link.innerHtml = arr.map(
-    comment =>
-      `<li class="comments-link">
-            <p class="comments-name">${comment.name}</p>
-            <p class="comments-comment">${comment.comment}</p>
-            <span class="comments-date">${comment.date}</span>
-        </li>`,
-  );
+export const commentListRender = (link, arr, id) => {
+  const render = arr.reduce((acc, cur) => {
+    if (cur.filmId === id) {
+      return acc + commentItemCreate(cur.name, cur.comment, cur.date);
+    }
+  }, '');
+  console.log(render);
+
+  return (link.innerHTML = render);
 };
