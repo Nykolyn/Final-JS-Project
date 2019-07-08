@@ -19,9 +19,12 @@ export const onSearch = event => {
         if (value !== '') {
             api.searchFilm(value).then(films => {
                 if (films.results.length < 1) {
-                        const noFilmText = createElementWithClass('h2', 'film-not-found');  
+                        const noFilmText = createElementWithClass('h2', 'film-not-found'); 
+                        const noFilmDiv = createElementWithClass('div', 'outer-div');
+                        const innerDiv = createElementWithClass('div', 'film-not-found-div');
+                        noFilmDiv.prepend(noFilmText, innerDiv); 
                         noFilmText.textContent = "Sorry, no films are found... :(";
-                        refs.mainSection.prepend(noFilmText)
+                        refs.mainSection.prepend(noFilmDiv)
                 } else {
                     films.results.forEach(film => createListItem(film))
                 }
