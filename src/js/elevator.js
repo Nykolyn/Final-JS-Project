@@ -274,7 +274,7 @@ if (typeof module !== "undefined" && module.exports) {
 const elevatorButton = document.querySelector(".elevator");
 const elevator = new Elevator({
     element: elevatorButton,
-    mainAudio: "../music/rising_sun.mp3",
+    mainAudio: "../music/be_happy.mp3",
     endAudio: "./music/ding.mp3",
 });
 
@@ -283,7 +283,7 @@ const down = new Elevator({
     element: downEl,
     mainAudio: "../music/losing_my_religion.mp3",
     endAudio: "./music/ding.mp3",
-    targetElement: document.querySelector('.switchPages'),
+    targetElement: document.querySelector('.nanobar-scroll-down'),
     duration: 500,
     verticalPadding: 0,
 })
@@ -294,8 +294,6 @@ const scrollFunction = () => {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
     const percentage = winScroll / height * 100;
-    console.log(percentage)
-
     if (percentage >= 0 || percentage <= 90) {
         downEl.style.display = "block";
     } else {

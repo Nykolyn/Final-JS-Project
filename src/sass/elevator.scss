@@ -1,18 +1,18 @@
 .elevator,
 .elevatorDown {
-    display: none;
     cursor: pointer;
     width: 50px;
-    // margin-right: 30px;
 }
 
 .elevatorDown {
+    display: block;
     position: absolute;
     top: 10%;
     right: 3%;
 }
 
 .elevator {
+    display: none;
     position: fixed;
     bottom: 5%;
     right: 3%;
