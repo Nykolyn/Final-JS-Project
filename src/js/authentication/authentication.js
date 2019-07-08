@@ -4,7 +4,6 @@ import {
 } from '../services/api'
 
 const forms = document.querySelectorAll('form');
-console.log(forms);
 const formSingIn = forms[1];
 const formSingUp = forms[2];
 const modalSwitcher = document.querySelector('.cd-signin-modal__switcher')
