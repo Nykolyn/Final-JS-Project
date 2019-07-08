@@ -8,28 +8,29 @@ import {
 import * as api from './services/api';
 
 
-export const onSearch = (event) => {
-    const value = event.target.value.trim()
+export const onSearch = event => {
+    event.preventDefault();
+
+    const value = refs.searchInput.value.trim();
     refs.filmsList.innerHTML = '';
+    Array.from(refs.mainSection.children).forEach(child => child.textContent === "Sorry, no films are found... :(" ? child.remove() : null)
 
-    if (value !== '') {
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=027ca1d5e779abba9fcdc8b6b57f2385&language=en-US&query=${value}`).then(response => {
-            if (response.ok) return response.json()
-        }).then(films => {
-            if (films.results.length < 1) {
-                console.log(refs.mainSection.children);
-                do {
-                    refs.mainSection.removeChild(refs.mainSection.lastChild);
-                } while (refs.mainSection.children.length > 1);
 
-                const noFilmText = createElementWithClass('h2', 'film-not-found');
-                noFilmText.textContent = "Sorry, no films are found... :(";
-                refs.mainSection.append(noFilmText)
-            } else {
-                films.results.forEach(film => createListItem(film))
-            }
-        })
-    } else {
-        api.getFilms().then(films => films.results.forEach(film => createListItem(film)))
-    };
+        if (value !== '') {
+            api.searchFilm(value).then(films => {
+                if (films.results.length < 1) {
+                        const noFilmText = createElementWithClass('h2', 'film-not-found'); 
+                        const noFilmDiv = createElementWithClass('div', 'outer-div');
+                        const innerDiv = createElementWithClass('div', 'film-not-found-div');
+                        noFilmDiv.prepend(noFilmText, innerDiv); 
+                        noFilmText.textContent = "Sorry, no films are found... :(";
+                        refs.mainSection.prepend(noFilmDiv)
+                } else {
+                    films.results.forEach(film => createListItem(film))
+                }
+            })
+        } else {
+            api.getFilms().then(films => films.results.forEach(film => createListItem(film)))
+        };
+    
 }

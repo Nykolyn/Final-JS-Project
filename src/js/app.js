@@ -9,6 +9,8 @@ import {
     commentItemCreate,
     commentListRender,
 } from './view';
+
+import {switchPages} from './switchPages';
 import './authentication/authentication';
 import MicroModal from 'micromodal';
 import '../sass/micromodal.scss';
@@ -25,6 +27,8 @@ import {
 } from './search';
 import './nanobar';
 import './elevator';
+import './sal'
+
 
 import Swal from 'sweetalert2';
 
@@ -33,15 +37,17 @@ const open = document.getElementById('submit-signin')
 console.log(open);
 
 
-const handleModal = event => {
-    Swal.fire({
-        title: 'Welcome!',
+
+const handleModalWelcome = () => {
+    const welcomeId = sessionStorage.getItem('id') === null ? localStorage.getItem('key') : sessionStorage.getItem('id')
+    getUserName(welcomeId).then(user => {  Swal.fire({
+        title: `Welcome ${user.login}! `,
         text: 'In your collection',
         width: 600,
         // animation: false,
         showConfirmButton: false,
         customClass: 'animated bounce',
-        // timer: 1500,
+        timer: 1500,
         type: 'success',
         padding: '10em',
         // background: '#fff url("http://www.coolwebmasters.com/uploads/posts/2010-10/1287573191_patterns-42.jpg")',
@@ -53,12 +59,35 @@ const handleModal = event => {
         `,
         
 
-    });
+    });}
+      
+
+    )
+    // Swal.fire({
+    //     title: `Welcome ${getUserName(welcomeId).then(user => user.login)}! `,
+    //     text: 'In your collection',
+    //     width: 600,
+    //     // animation: false,
+    //     showConfirmButton: false,
+    //     customClass: 'animated bounce',
+    //     // timer: 1500,
+    //     type: 'success',
+    //     padding: '10em',
+    //     // background: '#fff url("http://www.coolwebmasters.com/uploads/posts/2010-10/1287573191_patterns-42.jpg")',
+    //     backdrop: `
+    //     rgba(0,0,123,0.4)
+    //     url("https://i.gifer.com/PYh.gif")
+    //     center left
+    //     no-repeat
+    //     `,
+        
+
+    // });
 };
 
 
 
-open.addEventListener('click', handleModal)
+open.addEventListener('click', handleModalWelcome);
 
 
 // ------------  TIME  -------------------- 
@@ -100,7 +129,7 @@ function openCard(event) {
     // mouse cord
     const clientX = event.layerX;
     const clientY = event.layerY;
-
+    
     if (!targetCard.className.includes('modal-card')) {
         targetCard.classList.add('modal-card');
         targetDiv.classList.add('card-block');
@@ -109,11 +138,11 @@ function openCard(event) {
         filmListTitle.classList.add('display-none')
 
         window.scroll(0, 100);
-
+        
         //toggle event click 
         refs.filmsList.removeEventListener('click', openCard);
         refs.filmsList.addEventListener('click', closedCard);
-
+        
         function closedCard(event) {
 
 
@@ -125,7 +154,7 @@ function openCard(event) {
                 filmListTitle.classList.remove('display-none')
 
                 window.scroll(clientX, clientY);
-
+                
                 //toggle event click 
                 refs.filmsList.removeEventListener('click', closedCard);
                 refs.filmsList.addEventListener('click', openCard);
@@ -167,9 +196,9 @@ const handleComment = event => {
                         commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date)
                     }
                 })
-        })
+            })
     }
-
+    
     event.target.closest('li') === parentItem ? filmId = parentItem.id : null;
     if (event.target.className === 'comments-button') {
         MicroModal.show('modal-1')
@@ -192,7 +221,7 @@ const handleCommentSubmit = event => {
             comment: commentToPost,
             date: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
         }
-
+        
 
         films.updateComment(newComment)
         commentItem.name = newComment.name;
@@ -225,6 +254,6 @@ const cardRotation = event => {
 
 refs.filmsList.addEventListener('click', openCard);
 refs.filmsList.addEventListener('click', handleComment);
+refs.searchForm.addEventListener('submit', onSearch);
 commentForm.addEventListener('submit', handleCommentSubmit);
 // refs.filmsList.addEventListener('mouseover', cardRotation)
-// refs.searchForm.addEventListener('input', onSearch)
