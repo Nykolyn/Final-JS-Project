@@ -3,11 +3,13 @@ import { createListItem } from './view';
 import { getFilms, saveFilm } from '../js/services/api';
 import { getFilmsFavorite, deleteFilm } from './services/api';
 
-const idUser = '1111';
+const personalIdUser = sessionStorage.getItem('id');
+console.log(personalIdUser);
+const idUser = personalIdUser;
 
 // ДОДАЄМО В МОЇ УЛЮБЛЕНІ
 export const handleFavBtnClick = ({ target = { textContent } }) => {
-  if (target.textContent === 'fav button') {
+  if (target.textContent === 'my movies') {
     const src = target.closest('li').children[0].children[0].children[0].src;
     const title = target.closest('li').children[1].textContent;
     let result;
