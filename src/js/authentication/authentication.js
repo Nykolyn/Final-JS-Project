@@ -42,6 +42,7 @@ const submitSignUp = (event) => {
         password: `${signupPassword.value}`
     };
     getUser().then(data => {
+        const comprasion = data.find(el => el.password === signinPassword.value && el.email === signinEmail.value.toLowerCase())
         const a = data.map(el => el.login).includes(signupUserName.value)
         const b = data.map(el => el.email).includes(signupEmail.value.toLowerCase())
         const c = !(signupPassword.value !== '' && signupPassword.value.length > 5)
@@ -103,12 +104,15 @@ const submitSignUp = (event) => {
             }, 1000);
         }
 
+
         if (signupPassword.value !== '' && signupEmail.value !== '' && signupUserName.value !== '' && signupPassword.value.length > 5) {
             if (data.find(el => el.login.toLowerCase() === signupUserName.value.toLowerCase() || el.email === signupEmail.value)) {
                 console.log('fail')
             } else(
                 event.target.reset(),
-                postUser(user),
+                postUser(user).then(data => {
+                    sessionStorage.setItem('id', data.id)
+                }),
                 LogedIn(),
                 signupModal.classList.remove('cd-selected'),
                 signupForm.classList.remove('cd-signin-modal__block--is-selected'),

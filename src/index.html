@@ -19,18 +19,24 @@
         <a href="#0"><img src="img/cd-logo.svg" alt="Logo"/></a>
       </div>
       <form class="search-form">
-        <input type="text" size='40' placeholder="Find a film..." class="search">
-        <button type='submit' class='search-form-button'><svg class="button-svg" width="18px"
-          height="18px">
-          <use href="img/symbol-defs.svg#icon-search">search</use>
-        </svg></button>
+        <input
+          type="text"
+          size="40"
+          placeholder="Find a film..."
+          class="search"
+        />
+        <button type="submit" class="search-form-button">
+          <svg class="button-svg" width="18px" height="18px">
+            <use href="img/symbol-defs.svg#icon-search">search</use>
+          </svg>
+        </button>
       </form>
       <nav class="cd-main-nav js-main-nav">
         <ul class="cd-main-nav__list js-signin-modal-trigger">
           <!-- inser more links here -->
           <li>
             <a
-              class="cd-main-nav__item cd-main-nav__item--signin"
+              class="favorite cd-main-nav__item cd-main-nav__item--signin"
               href="#0"
               data-signin="login"
               >My movies</a
@@ -129,7 +135,7 @@
             </p>
             <p class="cd-signin-modal__fieldset">
               <input
-                class="cd-signin-modal__input cd-signin-modal__input--full-width"
+                class="cd-signin-modal__input cd-signin-modal__input--full-width animated"
                 id="submit-signin"
                 type="submit"
                 value="Login"
@@ -263,8 +269,8 @@
       <ul class="films-list container fly"></ul>
       <!-- Switch  -->
       <div class="switchPages container">
-          <button class="prvs pageBtn"> << back </button>
-          <button class="next pageBtn"> next >> </button>
+        <button class="prvs pageBtn"><< back</button>
+        <button class="next pageBtn">next >></button>
       </div>
       <div class="searchSwitchPages container">
           <button class="searchPrvs pageBtn"> << back </button>
@@ -313,23 +319,21 @@
       <img src="./img/rocket.png" alt="" />
     </div>
 
-
-
-
-	<script src="js/placeholders.min.js"></script> <!-- polyfill for the HTML5 placeholder attribute -->
-  <script src="js/main.js"></script> <!-- Resource JavaScript -->
-      <!-- END MODAL COMMENT -->
-      <script src="./js/three.r92.min.js"></script>
-      <script src="./js/vanta.clouds.min.js"></script>
-      <!-- <script>
+    <script src="js/placeholders.min.js"></script>
+    <!-- polyfill for the HTML5 placeholder attribute -->
+    <script src="js/main.js"></script>
+    <!-- Resource JavaScript -->
+    <!-- END MODAL COMMENT -->
+    <script src="./js/three.r92.min.js"></script>
+    <script src="./js/vanta.clouds.min.js"></script>
+    <!-- <script>
         VANTA.CLOUDS({
           el: ".cd-main-header"
         });
       </script> -->
-      <script src="js/placeholders.min.js"></script>
-      <!-- polyfill for the HTML5 placeholder attribute -->
-      <script src="js/main.js"></script>
-      <!-- Resource JavaScript -->
-</body>
-
+    <script src="js/placeholders.min.js"></script>
+    <!-- polyfill for the HTML5 placeholder attribute -->
+    <script src="js/main.js"></script>
+    <!-- Resource JavaScript -->
+  </body>
 </html>
