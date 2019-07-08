@@ -4,7 +4,7 @@ import { getFilms, saveFilm } from '../js/services/api';
 import { getFilmsFavorite, deleteFilm } from './services/api';
 
 const personalIdUser = sessionStorage.getItem('id');
-console.log(personalIdUser);
+console.log('id', personalIdUser);
 const idUser = personalIdUser;
 
 // ДОДАЄМО В МОЇ УЛЮБЛЕНІ
