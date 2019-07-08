@@ -38,11 +38,14 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "animate.css": "^3.7.2",
+    "brusher": "^0.1.4",
     "handlebars": "^4.1.0",
     "json-server": "^0.15.0",
     "micromodal": "^0.4.0",
+    "nanobar": "^0.4.2",
     "notyf": "^3.0.4",
     "sweetalert2": "^8.13.1",
+    "sal.js": "^0.6.1",
     "uuid": "^3.3.2"
   },
   "repository": {

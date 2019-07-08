@@ -13,6 +13,7 @@ import './authentication/authentication';
 import MicroModal from 'micromodal';
 import '../sass/micromodal.scss';
 import {
+    getUser,
     getUserName
 } from './services/api'
 import {
@@ -22,36 +23,40 @@ import {
 import {
     onSearch
 } from './search';
+import './nanobar';
+import './elevator';
 
 import Swal from 'sweetalert2';
-import { get } from 'http';
 
-const open = document.getElementById('submit-signin');
 
-// const user = new User();
-getUser(sessionStorage.getUserName).then(users => console.log(users.login));
+const open = document.getElementById('submit-signin')
+console.log(open);
+
 
 const handleModal = event => {
     Swal.fire({
         title: 'Welcome!',
         text: 'In your collection',
         width: 600,
+        // animation: false,
         showConfirmButton: false,
-        customClass: {
-            popup: 'animated tada',
-        },
+        customClass: 'animated bounce',
         // timer: 1500,
         type: 'success',
         padding: '10em',
         // background: '#fff url("http://www.coolwebmasters.com/uploads/posts/2010-10/1287573191_patterns-42.jpg")',
         backdrop: `
-          rgba(0,0,123,0.4)
-          url("https://i.gifer.com/PYh.gif")
-          center left
-          no-repeat
-        `
+        rgba(0,0,123,0.4)
+        url("https://i.gifer.com/PYh.gif")
+        center left
+        no-repeat
+        `,
+        
+
     });
 };
+
+
 
 open.addEventListener('click', handleModal)
 
@@ -110,7 +115,6 @@ function openCard(event) {
         refs.filmsList.addEventListener('click', closedCard);
 
         function closedCard(event) {
-            console.log(event.target);
 
 
             if (event.target === exitButton || event.target === image || event.target === list || event.target.nodeName === 'IMG') {
@@ -133,32 +137,44 @@ function openCard(event) {
 
 
 let filmId = null;
-let commentUserName = null;
 let commentToPost = null;
+const commentItem = {};
 
 const handleComment = event => {
     if (event.target.closest('li').nodeName !== 'LI') return
-    console.log(event.target)
     const parentItem = event.target.closest('li');
-    // if (event.target.closest('li') !== parentItem) return
     const id = parentItem.id;
     const commentsList = parentItem.querySelector('.comments-list');
-    commentsList.innerHTML = '';
-    commentsList.style.overflow = 'scroll';
-
-
-    films.getComments().then(comments => {
-        comments.map(comment => {
-            if (comment.filmId === id) {
-                commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date);
-            }
+    commentsList.classList.add('scroll')
+    if (event.target.nodeName === 'IMG') {
+        commentsList.innerHTML = '';
+        films.getComments().then(comments => {
+            comments.sort((a, b) => b.id - a.id)
+                .map(comment => {
+                    if (comment.filmId === id) {
+                        commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date)
+                    }
+                })
         })
-    })
+    }
+
+    if (event.target.className === 'refresh-comments-button') {
+        commentsList.innerHTML = '';
+        films.getComments().then(comments => {
+            comments.sort((a, b) => b.id - a.id)
+                .map(comment => {
+                    if (comment.filmId === id) {
+                        commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date)
+                    }
+                })
+        })
+    }
 
     event.target.closest('li') === parentItem ? filmId = parentItem.id : null;
     if (event.target.className === 'comments-button') {
         MicroModal.show('modal-1')
     }
+
 }
 
 const handleCommentSubmit = event => {
@@ -167,7 +183,9 @@ const handleCommentSubmit = event => {
 
     if (comment.value.trim() === '') return console.log('Заполни все поля!');
     commentToPost = comment.value;
-    getUserName(sessionStorage.getItem('id')).then(user => {
+    const id = sessionStorage.getItem('id') === null ? localStorage.getItem('key') : sessionStorage.getItem('id')
+
+    getUserName(id).then(user => {
         const newComment = {
             filmId: filmId,
             name: user.login,
@@ -175,15 +193,38 @@ const handleCommentSubmit = event => {
             date: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
         }
 
+
         films.updateComment(newComment)
-        MicroModal.close('modal-1')
+        commentItem.name = newComment.name;
+        commentItem.comment = newComment.comment;
+        commentItem.date = newComment.date;
+        MicroModal.close('modal-1');
     })
     event.currentTarget.reset();
-
 }
 
+const cardRotation = event => {
+    // if (event.target.closest('li').nodeName !== 'LI') return
+    // const card = event.target.closest('li');
+    if (event.target.nodeName !== 'IMG') return
+    const card = event.target;
+
+    const startRotate = event => {
+        const halfHieight = card.offsetHeight / 2;
+        const halfWidth = card.offsetWidth / 2;
+        card.style.transform = 'rotateX(' + -(event.offsetY - halfHieight) / 8 + 'deg) rotateY(' + (event.offsetX - halfWidth) / 8 + 'deg)';
+    }
+
+    const stopRotate = event => {
+        card.style.transform = 'rotate(0)';
+    }
+
+    card.addEventListener('mousemove', startRotate);
+    card.addEventListener('mouseout', stopRotate);
+}
 
 refs.filmsList.addEventListener('click', openCard);
 refs.filmsList.addEventListener('click', handleComment);
-commentForm.addEventListener('submit', handleCommentSubmit)
+commentForm.addEventListener('submit', handleCommentSubmit);
+// refs.filmsList.addEventListener('mouseover', cardRotation)
 // refs.searchForm.addEventListener('input', onSearch)

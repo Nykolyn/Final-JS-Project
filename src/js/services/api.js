@@ -24,7 +24,7 @@ export const getUserName = async (id) => {
         return user;
 
     } catch (error) {
-        throw new Error('Erro while getting user', error)
+        throw new Error('Error while getting user', error)
     }
 }
 

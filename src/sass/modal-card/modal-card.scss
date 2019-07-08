@@ -7,7 +7,7 @@
 
     position: absolute;
     // left: 0;  //work nolmal 
-    
+
     top: 43vh;
     left: 50%;
     transform: translate(-50%, -65%);
@@ -30,9 +30,7 @@
 }
 
 //div image wrap (left)
-.image-wrap {
-
-}
+.image-wrap {}
 
 .img-markup {
     // max-width: 40%;
@@ -51,6 +49,15 @@
     // background-color: tomato; //rigth block bg
 
     display: none; //hide block
+}
+
+//buttons wrap 
+
+.button-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
 }
 
 //div card-wrap for visually block
@@ -77,18 +84,13 @@
 //comments div wrap
 .comments-wrap {
     display: flex;
+    flex-direction: column;
     // padding-left: 80px;
 
 }
 
 
 //comments ul
-.comments-list {
-    width: 80%;
-    height: 30%;
-    background-color: #fff;
-}
-
 
 
 

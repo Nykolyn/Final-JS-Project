@@ -9,7 +9,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,11 +16,11 @@
 
 .modal__container {
 
-    background-color: #fff;
-    padding: 30px;
+    background-color: #505260a9;
+    padding: 10px;
     max-width: 500px;
     max-height: 100vh;
-    border-radius: 4px;
+    border-radius: 10px;
     overflow-y: auto;
     box-sizing: border-box;
 }
@@ -59,70 +58,102 @@
 }
 
 .modal__btn {
-    font-size: .875rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    background-color: #e6e6e6;
-    color: rgba(0, 0, 0, .8);
-    border-radius: .25rem;
-    border-style: none;
-    border-width: 0;
     cursor: pointer;
-    -webkit-appearance: button;
-    text-transform: none;
-    overflow: visible;
-    line-height: 1.15;
-    margin: 0;
+
+    text-decoration: none;
+    text-align: center;
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    margin: 10px;
+    margin-top: 0;
+    color: #ccc;
+    background-color: #555;
+    background-image: linear-gradient(to top, #888 0%, #555 100%);
+    border: none;
+    border-radius: 3px;
+    text-shadow: 0px -1px 0px #000;
+    box-shadow: 0px 1px 0px #666, 0px 5px 0px #444, 0px 6px 6px rgba(0, 0, 0, .6);
+    transition: ease .15s all;
+
+
+    &:hover,
+
+
+    &:focus {
+        animation: linear 1.2s light infinite;
+    }
+
+    &:active {
+        color: #fff;
+        text-shadow: 0px -1px 0px #444, 0px 0px 5px #ffd, 0px 0px 8px #fff;
+        box-shadow: 0px 1px 0px #666, 0px 2px 0px #444, 0px 2px 2px rgba(0, 0, 0, .9);
+        transform: translateY(3px);
+    }
+
     will-change: transform;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    transition: -webkit-transform .25s ease-out;
-    transition: transform .25s ease-out;
-    transition: transform .25s ease-out, -webkit-transform .25s ease-out;
-}
-
-.modal__btn:focus,
-.modal__btn:hover {
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05);
-}
-
-.modal__btn-primary {
-    background-color: #00449e;
-    color: #fff;
 }
 
 .comment-form {
     display: flex;
-    flex-direction: column;
+}
+
+.comment-modal__button-wrapp {
+    display: flex;
+}
+
+.modal-comment__texarea {
+    resize: none;
+    width: 200px;
+    height: 50px;
+    background-color: #50526065;
+    border: none;
+    transition: all .2s;
+    color: #fff;
+    border-radius: 10px;
+
+    &:focus {
+        outline: none;
+        background-color: #505260de;
+
+    }
 }
 
 
-
 /**************************\
-    Demo Animation Style
-  \**************************/
+  Demo Animation Style
+\**************************/
+
 @keyframes mmfadeIn {
     from {
+        -webkit-transform-origin: right bottom;
+        transform-origin: right bottom;
+        -webkit-transform: rotate3d(0, 0, 1, -90deg);
+        transform: rotate3d(0, 0, 1, -90deg);
         opacity: 0;
     }
 
     to {
+        -webkit-transform-origin: right bottom;
+        transform-origin: right bottom;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
         opacity: 1;
     }
 }
 
 @keyframes mmfadeOut {
     from {
+        -webkit-transform-origin: right bottom;
+        transform-origin: right bottom;
         opacity: 1;
     }
 
     to {
+        -webkit-transform-origin: right bottom;
+        transform-origin: right bottom;
+        -webkit-transform: rotate3d(0, 0, 1, -45deg);
+        transform: rotate3d(0, 0, 1, -45deg);
         opacity: 0;
     }
 }
@@ -156,22 +187,24 @@
 }
 
 .micromodal-slide[aria-hidden="false"] .modal__overlay {
-    animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+    animation: mmfadeIn 1s;
 }
 
 .micromodal-slide[aria-hidden="false"] .modal__container {
-    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+    animation: mmslideIn 1s;
 }
 
 .micromodal-slide[aria-hidden="true"] .modal__overlay {
-    animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+    animation: mmfadeOut 1s;
 }
 
 .micromodal-slide[aria-hidden="true"] .modal__container {
-    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+    animation: mmslideOut 1s;
 }
 
 .micromodal-slide .modal__container,
 .micromodal-slide .modal__overlay {
     will-change: transform;
 }
+
+//  box - shadow 
