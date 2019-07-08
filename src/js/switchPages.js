@@ -8,7 +8,7 @@ import {
 
 const prvsBtn = document.querySelector('.prvs');
 const nextBtn = document.querySelector('.next');
-const buttonDiv = document.querySelector('.switchPages');
+export const buttonDiv = document.querySelector('.switchPages');
 
 buttonDiv.addEventListener('click', switchPages)
 prvsBtn.disabled = true;
@@ -18,14 +18,15 @@ let counter = 1;
 if (counter < 2) {
     prvsBtn.classList.add('disabled')
 }
-//-----------------------------------------------------------   
+
 
 
 
 //------------------------------------------------------------
-function switchPages(event) {
+export function switchPages(event) {
 
     if (event.target.nodeName !== 'BUTTON') return
+
 
     refs.filmsList.innerHTML = '';
 
