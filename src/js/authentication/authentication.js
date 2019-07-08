@@ -6,7 +6,7 @@ import {
 const forms = document.querySelectorAll('form');
 const formSingIn = forms[0];
 const formSingUp = forms[1];
-const LogedIn =()=>{
+const LogedIn = () => {
     document.querySelector('.cd-signin-modal').classList.remove('cd-signin-modal--is-visible')
     document.querySelector('.films-list').style.filter = "blur(0px)"
     document.querySelector('.films-list').style.transition = "1000ms"
@@ -27,7 +27,8 @@ const submitSingUp = (event) => {
     const user = {
         login: `${document.getElementById("signup-username").value}`,
         email: `${document.getElementById("signup-email").value}`,
-        password: `${document.getElementById("signup-password").value}`
+        password: `${document.getElementById("signup-password").value}`,
+        icon: `${document.getElementById("signup-icon").value}`
     };
     getUser().then(data => {
         if (data.find(el => el.login.toLowerCase() === document.getElementById("signup-username").value.toLowerCase() || el.email === document.getElementById("signup-email").value.toLowerCase())) {
@@ -55,11 +56,11 @@ const submitSingIn = (event) => {
         event.target.reset()
     })
 };
-getUser().then(data=>{
-    if(data.find(el => el.id === localStorage.getItem('key'))){
-      LogedIn()
-        }
-    })
+getUser().then(data => {
+    if (data.find(el => el.id === localStorage.getItem('key'))) {
+        LogedIn()
+    }
+})
 
 
 document.querySelector('.cd-signin-modal').classList.add('cd-signin-modal--is-visible')
