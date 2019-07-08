@@ -22,6 +22,9 @@ import {
 import {
     onSearch
 } from './search';
+import './nanobar';
+import './elevator';
+import './sal'
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -57,7 +60,7 @@ function openCard(event) {
 
 
     const cardStyle = window.getComputedStyle(targetCard);
-    // console.log('cardStyle :', cardStyle);
+
 
     // mouse cord
     const clientX = event.layerX;
@@ -77,6 +80,11 @@ function openCard(event) {
         refs.filmsList.addEventListener('click', closedCard);
 
         function closedCard(event) {
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
             if (event.target === exitButton || event.target === image || event.target === list || event.target.nodeName === 'IMG') {
                 targetCard.classList.remove('modal-card')
                 targetDiv.classList.remove('card-block');
@@ -115,32 +123,44 @@ document.addEventListener('click', (e) => {
 refs.searchForm.addEventListener('input', onSearch)
 
 let filmId = null;
-let commentUserName = null;
 let commentToPost = null;
+const commentItem = {};
 
 const handleComment = event => {
     if (event.target.closest('li').nodeName !== 'LI') return
-    console.log(event.target)
     const parentItem = event.target.closest('li');
-    // if (event.target.closest('li') !== parentItem) return
     const id = parentItem.id;
     const commentsList = parentItem.querySelector('.comments-list');
-    commentsList.innerHTML = '';
-    commentsList.style.overflow = 'scroll';
-
-
-    films.getComments().then(comments => {
-        comments.map(comment => {
-            if (comment.filmId === id) {
-                commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date);
-            }
+    commentsList.classList.add('scroll')
+    if (event.target.nodeName === 'IMG') {
+        commentsList.innerHTML = '';
+        films.getComments().then(comments => {
+            comments.sort((a, b) => b.id - a.id)
+                .map(comment => {
+                    if (comment.filmId === id) {
+                        commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date)
+                    }
+                })
         })
-    })
+    }
+
+    if (event.target.className === 'refresh-comments-button') {
+        commentsList.innerHTML = '';
+        films.getComments().then(comments => {
+            comments.sort((a, b) => b.id - a.id)
+                .map(comment => {
+                    if (comment.filmId === id) {
+                        commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date)
+                    }
+                })
+        })
+    }
 
     event.target.closest('li') === parentItem ? filmId = parentItem.id : null;
     if (event.target.className === 'comments-button') {
         MicroModal.show('modal-1')
     }
+
 }
 
 const handleCommentSubmit = event => {
@@ -149,7 +169,9 @@ const handleCommentSubmit = event => {
 
     if (comment.value.trim() === '') return console.log('Заполни все поля!');
     commentToPost = comment.value;
-    getUserName(localStorage.getItem('key')).then(user => {
+    const id = sessionStorage.getItem('id') === null ? localStorage.getItem('key') : sessionStorage.getItem('id')
+
+    getUserName(id).then(user => {
         const newComment = {
             filmId: filmId,
             name: user.login,
@@ -157,15 +179,43 @@ const handleCommentSubmit = event => {
             date: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
         }
 
+
         films.updateComment(newComment)
-        MicroModal.close('modal-1')
+        commentItem.name = newComment.name;
+        commentItem.comment = newComment.comment;
+        commentItem.date = newComment.date;
+        MicroModal.close('modal-1');
     })
     event.currentTarget.reset();
-
 }
 
+const cardRotation = event => {
+    // if (event.target.closest('li').nodeName !== 'LI') return
+    // const card = event.target.closest('li');
+    if (event.target.nodeName !== 'IMG') return
+    const card = event.target;
+
+    const startRotate = event => {
+        const halfHieight = card.offsetHeight / 2;
+        const halfWidth = card.offsetWidth / 2;
+        card.style.transform = 'rotateX(' + -(event.offsetY - halfHieight) / 8 + 'deg) rotateY(' + (event.offsetX - halfWidth) / 8 + 'deg)';
+    }
+
+    const stopRotate = event => {
+        card.style.transform = 'rotate(0)';
+    }
+
+    card.addEventListener('mousemove', startRotate);
+    card.addEventListener('mouseout', stopRotate);
+}
 
 refs.filmsList.addEventListener('click', openCard);
 refs.filmsList.addEventListener('click', handleComment);
+<<<<<<< HEAD
 commentForm.addEventListener('submit', handleCommentSubmit)
 refs.searchForm.addEventListener('input', onSearch)
+=======
+commentForm.addEventListener('submit', handleCommentSubmit);
+// refs.filmsList.addEventListener('mouseover', cardRotation)
+// refs.searchForm.addEventListener('input', onSearch)
+>>>>>>> master

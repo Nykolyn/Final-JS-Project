@@ -12,7 +12,6 @@ export const createListItem = (film) => {
     const filmsList = document.querySelector('.films-list');
 
     const liToCreate = createElementWithClass('li', 'films-list__item');
-
     setIdToElem(liToCreate, film.id)
     const poster = createElementWithClass('img', 'films_list__poster');
     const filmTitle = createElementWithClass('p', 'film-list__title');
@@ -45,8 +44,17 @@ export const createListItem = (film) => {
     const commWrap = createElementWithClass('div', 'comments-wrap');
     const commList = createElementWithClass('ul', 'comments-list');
     const commButton = createElementWithClass('button', 'comments-button')
+<<<<<<< HEAD
     commButton.textContent = 'Comments';
     
+=======
+    const commRefresh = createElementWithClass('button', 'refresh-comments-button')
+    commButton.textContent = 'Add comment';
+    commRefresh.textContent = 'Refresh comments';
+
+
+    const buttonsWrapp = createElementWithClass('div', 'buttons-wrap')
+>>>>>>> master
     poster.setAttribute('src', `https://image.tmdb.org/t/p/w500/${film.poster_path}`);
     filmTitle.textContent = film.title;
     
@@ -62,9 +70,13 @@ export const createListItem = (film) => {
     
     //append DOM 
     titleWrap.append(cardTitle, release, voteCount, voteAverage, overviewFils);
-    commWrap.append(commList, commButton)
+    commWrap.append(commList)
 
-    cardWrap.append(exitButton, titleWrap, commWrap, favButton);
+    // button wrapper
+
+    buttonsWrapp.append(favButton, commButton, commRefresh)
+
+    cardWrap.append(exitButton, titleWrap, commWrap, buttonsWrapp);
 
     imageWrap.appendChild(poster)
     
@@ -77,19 +89,21 @@ export const createListItem = (film) => {
 
 
 export const commentItemCreate = (name, comment, date) => {
-    return `<li class="comments-link">
-                <p class="comments-name">${name}</p>
+    return `<li class="comments-item">
+                <p class="comments-name"><span class="comments-span_name">Name: </span>${name}</p>
                 <p class="comments-comment">${comment}</p>
-                <span class="comments-date">${date}</span>
+                <p class="comments-date"><span class="comments-span_name">When: </span>${date}</p>
             </li>`
 }
 
-export const commentListRender = (link, arr) => {
-    link.innerHtml = arr.map(comment =>
-        `<li class="comments-link">
-            <p class="comments-name">${comment.name}</p>
-            <p class="comments-comment">${comment.comment}</p>
-            <span class="comments-date">${comment.date}</span>
-        </li>`
-    )
+export const commentListRender = (link, arr, id) => {
+    const render = arr.reduce((acc, cur) => {
+        if (cur.filmId === id) {
+            return acc + commentItemCreate(cur.name, cur.comment, cur.date)
+        }
+
+    }, '');
+    console.log(render);
+
+    return link.innerHTML = render;
 }
