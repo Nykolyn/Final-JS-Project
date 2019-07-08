@@ -67,7 +67,7 @@ Login/Signup modal window - by CodyHouse.co
   top: 160%;
   transform: translate(-50%, -50%);
   color: #2f889a;
-  font-size:50px;
+  font-size: 50px;
   text-shadow: rgb(204, 204, 204) 0px 1px 0px, rgb(201, 201, 201) 0px 2px 0px, rgb(187, 187, 187) 0px 3px 0px, rgb(185, 185, 185) 0px 4px 0px, rgb(170, 170, 170) 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 6px 1px, rgba(0, 0, 0, 0.1) 0px 0px 5px, rgba(0, 0, 0, 0.3) 0px 1px 3px, rgba(0, 0, 0, 0.15) 0px 3px 5px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.2) 0px 10px 10px, rgba(0, 0, 0, 0.1) 0px 20px 20px;
 
 }
@@ -332,6 +332,10 @@ x sigin/signup popup
   background-position: 50% 0;
 }
 
+.cd-signin-modal__label.cd-signin-modal__label--icon {
+  background-image: url("../img/cd-icon-icon.svg");
+}
+
 .cd-signin-modal__label.cd-signin-modal__label--username {
   background-image: url("../img/cd-icon-username.svg");
 }
@@ -534,7 +538,7 @@ x sigin/signup popup
 }
 
 
-@media only screen and (max-width: 1170px){
+@media only screen and (max-width: 1170px) {
   #time {
     display: none;
   }
