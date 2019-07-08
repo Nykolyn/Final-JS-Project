@@ -55,26 +55,7 @@ const handleModalWelcome = () => {
       
 
     )
-    // Swal.fire({
-    //     title: `Welcome ${getUserName(welcomeId).then(user => user.login)}! `,
-    //     text: 'In your collection',
-    //     width: 600,
-    //     // animation: false,
-    //     showConfirmButton: false,
-    //     customClass: 'animated bounce',
-    //     // timer: 1500,
-    //     type: 'success',
-    //     padding: '10em',
-    //     // background: '#fff url("http://www.coolwebmasters.com/uploads/posts/2010-10/1287573191_patterns-42.jpg")',
-    //     backdrop: `
-    //     rgba(0,0,123,0.4)
-    //     url("https://i.gifer.com/PYh.gif")
-    //     center left
-    //     no-repeat
-    //     `,
-        
 
-    // });
 };
 
 
@@ -93,13 +74,7 @@ setInterval(function () {
     s = (s < 10) ? '0' + s : s;
     document.getElementById('time').innerHTML = h + ':' + m + ':' + s;
 });
-// import { getUserName } from './services/api';
-// import { isString, log } from 'util';
-// import { onSearch } from './search';
-// import './nanobar';
-// import './elevator';
-// import './sal';
-// import './favorites';
+
 
 // ------------  TIME  --------------------
 export const films = new Films();
