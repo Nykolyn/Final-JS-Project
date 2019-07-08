@@ -92,6 +92,7 @@ setInterval(function () {
     m = (m < 10) ? '0' + m : m;
     s = (s < 10) ? '0' + s : s;
     document.getElementById('time').innerHTML = h + ':' + m + ':' + s;
+});
 // import { getUserName } from './services/api';
 // import { isString, log } from 'util';
 // import { onSearch } from './search';

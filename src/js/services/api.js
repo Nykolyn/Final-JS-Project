@@ -51,15 +51,6 @@ export const deleteFilm = async id => {
   }
 };
 
-export const getUserName = async id => {
-  try {
-    const result = await fetch(`${USER_URL}/${id}`);
-    const user = result.json();
-    return user;
-  } catch (error) {
-    throw new Error('Erro while getting user', error);
-  }
-};
 
 export const getComments = async () => {
   try {
