@@ -51,6 +51,28 @@ export const createListItem = (film) => {
     filmTitle.textContent = film.title;
 
 
+    //like dis button 
+    const buttonInner = createElementWithClass('div', 'button-inner');
+    buttonInner.classList.add('button-none');
+
+    const buttonInnerLike = createElementWithClass('div', 'button-inner-like');
+    const buttonInnerDislike = createElementWithClass('div', 'button-inner-dislike');
+
+    const buttonLike = createElementWithClass('button', 'button-like');
+    const buttonDislike = createElementWithClass('button', 'button-dislike');
+
+    const likeCount = createElementWithClass('p', 'like-count');
+    likeCount.textContent = '0';
+    const dislikeCount = createElementWithClass('p', 'dislike-count');
+    dislikeCount.textContent = '0';
+
+    buttonInnerLike.append(buttonLike, likeCount);
+    buttonInnerDislike.append(buttonDislike, dislikeCount);
+
+    buttonInner.append(buttonInnerLike, buttonInnerDislike);
+    liToCreate.appendChild(buttonInner);
+
+
     //append DOM 
     titleWrap.append(cardTitle, release, voteCount, voteAverage, overviewFils);
     commWrap.append(commList)

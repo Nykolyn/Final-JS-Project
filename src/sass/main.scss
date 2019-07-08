@@ -16,6 +16,11 @@
 @import './nanobar.scss';
 @import './elevator.scss';
 
+//like dis button
+@import './likeDisButton/innerButton.scss';
+@import './likeDisButton/likeButton.scss';
+@import './likeDisButton/disButton.scss';
+
 img {
     max-width: 100%;
     display: block;
