@@ -1,17 +1,33 @@
 import Films from './Fims/Films';
 import {
-    refs
+    refs,
+    commentForm,
+    list,
 } from './constants';
 import {
-    getFilms
-} from './services/api';
-import {
-    createListItem
+    createListItem,
+    commentItemCreate,
+    commentListRender,
 } from './view';
+
 import {switchPages} from './switchPages';
-// import './authentication/authentication'
-import { isString, log } from 'util';
-import {onSearch} from './search';
+import './authentication/authentication';
+import MicroModal from 'micromodal';
+import '../sass/micromodal.scss';
+import {
+    getUserName
+} from './services/api'
+import {
+    isString,
+    log
+} from 'util';
+import {
+    onSearch
+} from './search';
+import './nanobar';
+import './elevator';
+import './sal'
+
 
 // ------------  TIME  -------------------- 
 setInterval(function () {
@@ -31,14 +47,6 @@ films.getFilms().then(result =>
     result.forEach(item => createListItem(item))
 );
 
-// timer
-
-
-
-
-//modal card 
-refs.filmsList.addEventListener('click', openCard);
-
 function openCard(event) {
 
     const list = document.querySelector('.container');
@@ -55,7 +63,7 @@ function openCard(event) {
 
 
     const cardStyle = window.getComputedStyle(targetCard);
-    // console.log('cardStyle :', cardStyle);
+
 
     // mouse cord
     const clientX = event.layerX;
@@ -75,7 +83,6 @@ function openCard(event) {
         refs.filmsList.addEventListener('click', closedCard);
         
         function closedCard(event) {
-            console.log(event.target);
 
 
             if (event.target === exitButton || event.target === image || event.target === list || event.target.nodeName === 'IMG') {
@@ -96,4 +103,96 @@ function openCard(event) {
 }
 
 
-refs.searchForm.addEventListener('input', onSearch)
+
+let filmId = null;
+let commentToPost = null;
+const commentItem = {};
+
+const handleComment = event => {
+    if (event.target.closest('li').nodeName !== 'LI') return
+    const parentItem = event.target.closest('li');
+    const id = parentItem.id;
+    const commentsList = parentItem.querySelector('.comments-list');
+    commentsList.classList.add('scroll')
+    if (event.target.nodeName === 'IMG') {
+        commentsList.innerHTML = '';
+        films.getComments().then(comments => {
+            comments.sort((a, b) => b.id - a.id)
+                .map(comment => {
+                    if (comment.filmId === id) {
+                        commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date)
+                    }
+                })
+        })
+    }
+
+    if (event.target.className === 'refresh-comments-button') {
+        commentsList.innerHTML = '';
+        films.getComments().then(comments => {
+            comments.sort((a, b) => b.id - a.id)
+                .map(comment => {
+                    if (comment.filmId === id) {
+                        commentsList.innerHTML += commentItemCreate(comment.name, comment.comment, comment.date)
+                    }
+                })
+        })
+    }
+
+    event.target.closest('li') === parentItem ? filmId = parentItem.id : null;
+    if (event.target.className === 'comments-button') {
+        MicroModal.show('modal-1')
+    }
+
+}
+
+const handleCommentSubmit = event => {
+    event.preventDefault();
+    const [comment] = event.currentTarget.elements;
+
+    if (comment.value.trim() === '') return console.log('Заполни все поля!');
+    commentToPost = comment.value;
+    const id = sessionStorage.getItem('id') === null ? localStorage.getItem('key') : sessionStorage.getItem('id')
+
+    getUserName(id).then(user => {
+        const newComment = {
+            filmId: filmId,
+            name: user.login,
+            comment: commentToPost,
+            date: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
+        }
+
+
+        films.updateComment(newComment)
+        commentItem.name = newComment.name;
+        commentItem.comment = newComment.comment;
+        commentItem.date = newComment.date;
+        MicroModal.close('modal-1');
+    })
+    event.currentTarget.reset();
+}
+
+const cardRotation = event => {
+    // if (event.target.closest('li').nodeName !== 'LI') return
+    // const card = event.target.closest('li');
+    if (event.target.nodeName !== 'IMG') return
+    const card = event.target;
+
+    const startRotate = event => {
+        const halfHieight = card.offsetHeight / 2;
+        const halfWidth = card.offsetWidth / 2;
+        card.style.transform = 'rotateX(' + -(event.offsetY - halfHieight) / 8 + 'deg) rotateY(' + (event.offsetX - halfWidth) / 8 + 'deg)';
+    }
+
+    const stopRotate = event => {
+        card.style.transform = 'rotate(0)';
+    }
+
+    card.addEventListener('mousemove', startRotate);
+    card.addEventListener('mouseout', stopRotate);
+}
+
+refs.filmsList.addEventListener('click', openCard);
+refs.filmsList.addEventListener('click', handleComment);
+commentForm.addEventListener('submit', handleCommentSubmit);
+// refs.filmsList.addEventListener('mouseover', cardRotation)
+// refs.searchForm.addEventListener('input', onSearch)

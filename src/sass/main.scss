@@ -4,12 +4,17 @@
 @import './header/style.scss';
 @import './switchPages.scss';
 @import './search-form.scss';
+@import './micromodal.scss';
 @import './main-section.scss';
+@import '../../node_modules/sal.js/dist/sal.css';
 
 //modal card
 @import './modal-card/modal-card.scss';
 @import './modal-card/modal-card-text.scss';
 @import './modal-card/modal-card-button.scss';
+@import './comments.scss';
+@import './nanobar.scss';
+@import './elevator.scss';
 
 img {
     max-width: 100%;
@@ -30,5 +35,5 @@ html {
 *,
 *::after,
 *::before {
-    box-sizing:inherit;
+    box-sizing: inherit;
 }
