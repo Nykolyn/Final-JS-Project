@@ -20,21 +20,22 @@ const signinForm = document.getElementById('login-form')
 const signupForm = document.getElementById('signup-form')
 const accountName = document.getElementById('accountName')
 
-
-
-
 const LogedIn = () => {
     document.querySelector('.cd-signin-modal').classList.remove('cd-signin-modal--is-visible')
     document.querySelector('.films-list').style.filter = "blur(0px)"
     document.querySelector('.films-list').style.transition = "1000ms"
     document.querySelector('.cd-main-header__logo').style.opacity = '1'
     document.querySelector('.search-form').style.opacity = '1'
+    document.querySelector('.elevator').style.opacity ='1'
+    document.querySelector('.elevatorDown').style.opacity ='1'
     const buttons = document.querySelectorAll('.cd-main-nav__item')
     buttons[1].style.backgroundColor = '#2f889a'
     buttons[0].style.display = 'block'
     buttons[1].style.display = 'block'
     buttons[1].addEventListener('click', (event) => {
         avatar.textContent = ''
+        document.querySelector('.elevator').style.opacity ='0'
+        document.querySelector('.elevatorDown').style.opacity ='0'
         document.querySelector('.cd-main-header__logo').style.opacity = '0'
         document.querySelector('.search-form').style.opacity = '0'
         localStorage.removeItem('key')
@@ -47,15 +48,28 @@ const LogedIn = () => {
 };
 
 const submitSignUp = (event) => {
-    // // Form Data
-    // const formData = new FormData();
-    //     const file = signupImg.files[0]
-    //     formData.set("file", file, file.name);
+
+//     const test =()=> {
+//        const files = signupImg.files;
+//     if (FileReader && files && files.length) {
+//         const reader = new FileReader();
+//         reader.onload = function () {
+//             avatar.src = reader.result;
+//             console.log(reader.result);
+            
+//         }
+//         reader.readAsDataURL(files[0]); 
+//     }
+//     else {
+//     }
+// }
+// test()
 
     const user = {
         login: `${signupUserName.value}`,
         email: `${signupEmail.value.toLowerCase()}`,
-        password: `${signupPassword.value}`
+        password: `${signupPassword.value}`,
+        avatar:`${avatar.src}`
     };
 
     getUser().then(data => {
@@ -128,7 +142,7 @@ const submitSignUp = (event) => {
                 postUser(user).then(data => {
                     sessionStorage.setItem('id', data.id);
                     accountName.textContent = data.login;
-                    // avatar.src = 
+                    test()
                 }),
                 LogedIn(),
                 signupModal.classList.remove('cd-selected'),
@@ -203,13 +217,27 @@ const submitSignIn = (event) => {
     })
 };
 
-
 const switcher = (event) => {
 
     signupModal.classList.toggle('cd-selected', event.target === signupModal)
     signupForm.classList.toggle('cd-signin-modal__block--is-selected', event.target === signupModal)
     signinModal.classList.toggle('cd-selected', event.target === signinModal)
     signinForm.classList.toggle('cd-signin-modal__block--is-selected', event.target === signinModal)
+};
+
+signupImg.onchange = function (event) {
+    const target= event.target || window.event.srcElement,
+        files = target.files;
+    if (FileReader && files && files.length) {
+        const reader = new FileReader();
+        reader.onload = function () {
+            avatar.src = reader.result;
+            return reader.result;
+        }
+        reader.readAsDataURL(files[0]); 
+    }
+    else {
+    }
 };
 
 modalSwitcher.addEventListener('click', switcher)
@@ -220,6 +248,7 @@ formSingIn.addEventListener('submit', submitSignIn);
 getUser().then(data => {
     if (data.find(el => el.id === localStorage.getItem('key'))) {
         accountName.textContent = data.find(el => el.id === localStorage.getItem('key')).login;
+        avatar.src = data.find(el => el.id === localStorage.getItem('key')).avatar
         LogedIn()
         modal.handleModalWelcome()
     }
