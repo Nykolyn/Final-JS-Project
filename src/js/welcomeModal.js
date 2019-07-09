@@ -3,9 +3,7 @@ import {
     getUserName
 } from './services/api'
 
-const open = document.getElementById('submit-signin')
-
-const welcomeModale = () => {
+ const welcomeModale = () => {
     const welcomeId = sessionStorage.getItem('id') === null ? localStorage.getItem('key') : sessionStorage.getItem('id')
     getUserName(welcomeId).then(user => {
         Swal.fire({
@@ -20,21 +18,22 @@ const welcomeModale = () => {
             padding: '10em',
             // background: '#fff url("http://www.coolwebmasters.com/uploads/posts/2010-10/1287573191_patterns-42.jpg")',
             backdrop: `
-        rgba(0,0,123,0.4)
-        url("https://i.gifer.com/PYh.gif")
-        center left
-        no-repeat
-        `,
+            rgba(0,0,123,0.4)
+            url("https://i.gifer.com/PYh.gif")
+            center left
+            no-repeat
+            `,
         });
     })
 }
 
-const handleModalWelcome = () => {
+export const handleModalWelcome = () => {
     welcomeModale()
 };
 
-if (localStorage.getItem('key')) {
-    welcomeModale()
-}
+// const open = document.getElementById('submit-signin')
+// if (localStorage.getItem('key')) {
+//     welcomeModale()
+// }
 
-open.addEventListener('click', handleModalWelcome);
+// open.addEventListener('click', handleModalWelcome);
