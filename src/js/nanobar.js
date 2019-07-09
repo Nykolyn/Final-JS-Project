@@ -12,7 +12,12 @@ const nanoBarFn = () => {
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
     const percentage = winScroll / height * 100;
 
-    nanobar.go(percentage)
+    if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+        options.target.style.display = 'block'
+        nanobar.go(percentage)
+    } else {
+        options.target.style.display = 'none'
+    }
 }
 window.onscroll = () => {
     nanoBarFn();

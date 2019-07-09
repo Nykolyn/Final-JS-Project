@@ -12,6 +12,11 @@ import {
   getFilmsFavorite,
   deleteFilm
 } from './services/api';
+import Swal from 'sweetalert2';
+
+
+import * as switchP from './switchPages';
+import * as searchSwP from './search';
 
 const personalIdUser = sessionStorage.getItem('id');
 console.log('id', personalIdUser);
@@ -55,7 +60,26 @@ export const handleFavBtnClick = ({
     // ПЕРЕВІРКА НА НАЯВНІСТЬ ФІЛЬМА В МАСИВІ
     getFilmsFavorite(idUser).then(result => {
       const resultSearch = result.some(film => film.title === title && film.idUser === idUser);
-      !resultSearch ? saveFilm(film) : null;
+      if (!resultSearch) {
+        Swal.fire({
+          position: 'center-center',
+          type: 'success',
+          title: 'ADDED TO MY MOVIES',
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        saveFilm(film)
+      } else {
+        Swal.fire({
+          position: 'center-center',
+          type: 'info',
+          title: 'MOVIE IS ALREADY ADDED',
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+
+
     });
   } else {
     let titleDelete = target.closest('li').children[1].textContent;
@@ -64,6 +88,13 @@ export const handleFavBtnClick = ({
       .then(result => {
         let deleteObj = result.find(film => film.title === titleDelete);
         deleteFilm(deleteObj.id);
+        Swal.fire({
+          position: 'center-center',
+          type: 'success',
+          title: 'REMOVED FROM MY MOVIES',
+          showConfirmButton: false,
+          timer: 1000,
+        });
         return result.filter(el => el.id !== deleteObj.id);
       })
       .then(data => {
@@ -76,8 +107,10 @@ export const handleFavBtnClick = ({
 
 //ВИХІД НА ГОЛОВНУ СТОРІНКУ
 function exitToFilm() {
+  refs.searchForm.classList.remove('delete-form')
   favorite.textContent = 'My Movies';
   refs.filmsList.innerHTML = '';
+  switchP.buttonDiv.style.display = 'flex'
   getFilms().then(result => {
     result.results.forEach(item => createListItem(item));
   });
@@ -91,8 +124,20 @@ favorite.addEventListener('click', showFavoriteFilm);
 
 // ПОКАЗАННЯ УЛЮБЛЕННИХ ФІЛЬМІВ
 function showFavoriteFilm(e) {
+
+  if (e.target.closest('body').querySelector('.main-section .outer-div')) {
+    e.target.closest('body').querySelector('.main-section .outer-div').style.height = '10px';
+    e.target.closest('body').querySelector('.main-section .outer-div').innerHTML = '';
+  }
+
+  refs.searchForm.classList.add('delete-form')
   favorite.textContent = 'All Movies';
   refs.filmsList.innerHTML = '';
+
+
+  switchP.buttonDiv.style.display = 'none';
+  searchSwP.searchButtonDiv.style.display = 'none'
+
   getFilmsFavorite(idUser).then(result => {
     result.forEach(film => {
       film.idUser === idUser ? createListItem(film, true) : null;

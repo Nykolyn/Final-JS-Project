@@ -49,7 +49,7 @@ class Star {
         this.x = Math.random() * canvas.width - canvas.width / 2;
         this.y = Math.random() * canvas.height - canvas.height / 2;
         this.px, this.py;
-        this.z = Math.random() * 2;
+        this.z = Math.random() * 7;
     }
     update() {
         this.px = this.x;
@@ -169,6 +169,7 @@ let filmId = null;
 let commentToPost = null;
 
 const handleComment = event => {
+
     if (event.target.closest('li').nodeName !== 'LI') return;
     const parentItem = event.target.closest('li');
     const id = parentItem.id;

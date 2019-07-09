@@ -16,6 +16,7 @@
 @import './nanobar.scss';
 @import './elevator.scss';
 @import './backgroundAnimation.scss';
+@import './modal-card/buttonInner.scss';
 
 
 html {
@@ -42,18 +43,18 @@ html {
 
 }
 
-.timer {
-    display: block;
-    position: fixed;
-    top: 10%;
-    left: 3%;
-    transition: all 1s;
-    z-index: 9999;
-    animation-name: heartBeat;
-    animation-iteration-count: infinite;
-    animation-duration: 1.3s;
-    animation-timing-function: ease-in-out;
-}
+// .timer {
+//     display: block;
+//     position: fixed;
+//     top: 10%;
+//     left: 3%;
+//     transition: all 1s;
+//     z-index: 9999;
+//     animation-name: heartBeat;
+//     animation-iteration-count: infinite;
+//     animation-duration: 1.3s;
+//     animation-timing-function: ease-in-out;
+// }
 
 body {
     margin: 0;

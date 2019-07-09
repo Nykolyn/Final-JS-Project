@@ -11,7 +11,7 @@ import * as switchP from './switchPages';
 
 const searchPrvsBtn = document.querySelector('.searchPrvs');
 const searchNextBtn = document.querySelector('.searchNext');
-const searchButtonDiv = document.querySelector('.searchSwitchPages');
+export const searchButtonDiv = document.querySelector('.searchSwitchPages');
 //------------------------------------
 
 searchPrvsBtn.disabled = true;
@@ -63,7 +63,7 @@ export const onSearch = event => {
                         break;
                 }
 
-                refs.mainSection.insertAdjacentHTML('afterbegin', `<p class="total-films">${result.join('')} films were found.</p>`)
+                refs.mainSection.insertAdjacentHTML('afterbegin', `<div class="outer-div"><p class="total-films">${result.join('')} films were found.</p></div>`)
 
                 console.log(films.results.length);
                 if (films.results.length <= 19) {

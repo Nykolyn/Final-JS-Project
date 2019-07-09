@@ -2,7 +2,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    opacity:0;
+    opacity: 0;
     transform: translate(-50%, -50%);
 }
 
@@ -43,4 +43,8 @@
 .search-form-button:hover .button-svg,
 .search-form-button:focus .button-svg {
     fill: #2f889a;
+}
+
+.delete-form {
+    display: none;
 }
