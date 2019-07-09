@@ -11,7 +11,7 @@ import * as switchP from './switchPages';
 
 const searchPrvsBtn = document.querySelector('.searchPrvs');
 const searchNextBtn = document.querySelector('.searchNext');
-const searchButtonDiv = document.querySelector('.searchSwitchPages');
+export const searchButtonDiv = document.querySelector('.searchSwitchPages');
 //------------------------------------
 
 searchPrvsBtn.disabled = true;

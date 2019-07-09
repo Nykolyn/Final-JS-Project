@@ -12,6 +12,8 @@ import {
   getFilmsFavorite,
   deleteFilm
 } from './services/api';
+import * as switchP from './switchPages';
+import * as searchSwP from './search';
 
 const personalIdUser = sessionStorage.getItem('id');
 console.log('id', personalIdUser);
@@ -78,6 +80,9 @@ export const handleFavBtnClick = ({
 function exitToFilm() {
   favorite.textContent = 'My Movies';
   refs.filmsList.innerHTML = '';
+  //-------
+  switchP.buttonDiv.style.display = "flex";
+  //-------
   getFilms().then(result => {
     result.results.forEach(item => createListItem(item));
   });
@@ -93,6 +98,10 @@ favorite.addEventListener('click', showFavoriteFilm);
 function showFavoriteFilm(e) {
   favorite.textContent = 'All Movies';
   refs.filmsList.innerHTML = '';
+  //-------
+  switchP.buttonDiv.style.display = "none";
+  searchSwP.searchButtonDiv.style.display = "none";
+  //-------
   getFilmsFavorite(idUser).then(result => {
     result.forEach(film => {
       film.idUser === idUser ? createListItem(film, true) : null;
