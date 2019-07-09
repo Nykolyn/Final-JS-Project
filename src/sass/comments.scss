@@ -8,12 +8,12 @@
     color: #fff;
 }
 
+
 .comments-item {
     position: relative;
     padding: 5px;
-    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
-    ;
-    transition: all 1s;
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.75);
+    transition: all 0.4s ease;
     // border-bottom: 1px solid rgb(245, 233, 64);
 
     border-radius: 10px;
@@ -25,7 +25,7 @@
 
 .comments-item:hover {
     // box-shadow: 1px 2px 8px 2px rgb(243, 227, 10);
-    box-shadow: 0px 3px 18px 0px rgba(196, 188, 188, 0.75);
+    box-shadow: 0px 2px 12px 0px rgba(196, 188, 188, 0.527);
     border-radius: 15px;
     transform: translateY(-3px);
 }
