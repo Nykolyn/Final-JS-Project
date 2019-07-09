@@ -34,6 +34,7 @@ const LogedIn = () => {
         avatar.src = '../../img/Missing_avatar.svg'
         document.querySelector('.cd-main-header__logo').style.opacity = '0'
         document.querySelector('.search-form').style.opacity = '0'
+        sessionStorage.clear()
         localStorage.removeItem('key')
         document.querySelector('.cd-signin-modal').classList.add('cd-signin-modal--is-visible')
         document.querySelector('.films-list').style.filter = "blur(15px)"
@@ -119,17 +120,16 @@ const submitSignUp = (event) => {
                 console.log('fail')
             } else(
                 event.target.reset(),
-                postUser(user).then(data => {
-                    sessionStorage.setItem('id', data.id);
-                    accountName.textContent = data.login;
-                    avatar.src = comprasion.avatar;
-                    test()
-                }),
                 LogedIn(),
-                signupModal.classList.remove('cd-selected'),
-                signupForm.classList.remove('cd-signin-modal__block--is-selected'),
-                modal.handleModalWelcome(),
-                console.log('added'))
+                postUser(user).then(data => {
+                    sessionStorage.setItem('id', data.id),
+                        modal.handleModalWelcome(),
+                        signupModal.classList.remove('cd-selected'),
+                        signupForm.classList.remove('cd-signin-modal__block--is-selected'),
+                        accountName.textContent = data.login,
+                        avatar.src = comprasion.avatar
+                })
+            )
         }
     })
     event.preventDefault()
@@ -181,18 +181,17 @@ const submitSignIn = (event) => {
         }
         if (signinEmail.value !== '' && signinPassword.value !== '') {
             if (!a && !b) {
-                LogedIn()
-                document.getElementById('sign-in-modal').classList.remove('cd-selected')
-                document.getElementById('login-form').classList.remove('cd-signin-modal__block--is-selected')
-                sessionStorage.setItem('id', comprasion.id)
-                accountName.textContent = comprasion.login
-                avatar.src = comprasion.avatar
-                console.log(document.getElementById("remember-me").checked);
-
                 if (document.getElementById("remember-me").checked) {
                     localStorage.setItem('key', comprasion.id)
                 }
+                LogedIn()
+                sessionStorage.setItem('id', comprasion.id)
+                document.getElementById('sign-in-modal').classList.remove('cd-selected')
+                document.getElementById('login-form').classList.remove('cd-signin-modal__block--is-selected')
+                accountName.textContent = comprasion.login
+                avatar.src = comprasion.avatar
                 event.target.reset()
+                sessionStorage.setItem('id', comprasion.id)
                 modal.handleModalWelcome()
             }
         }
@@ -228,6 +227,7 @@ formSingIn.addEventListener('submit', submitSignIn);
 
 // ______________________Cheking local storage after init on page__________________________________
 getUser().then(data => {
+    // sessionStorage.clear()
     if (data.find(el => el.id === localStorage.getItem('key'))) {
         accountName.textContent = data.find(el => el.id === localStorage.getItem('key')).login;
         avatar.src = data.find(el => el.id === localStorage.getItem('key')).avatar
