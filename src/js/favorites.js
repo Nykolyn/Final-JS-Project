@@ -60,7 +60,7 @@ export const handleFavBtnClick = ({
         Swal.fire({
           position: 'center-center',
           type: 'info',
-          title: 'MOVIES ADDED',
+          title: 'MOVIE ADDED',
           showConfirmButton: false,
           timer: 1000,
         });
