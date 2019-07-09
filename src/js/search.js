@@ -24,7 +24,7 @@ export const onSearch = event => {
     event.preventDefault();
     //----------------------------------
     searchCounter = 1;
-    if (searchCounter < 2) { 
+    if (searchCounter < 2) {
         searchPrvsBtn.classList.add('disabled')
     }
     //-----------------------------------
@@ -66,16 +66,16 @@ export const onSearch = event => {
                 }
 
                 refs.mainSection.insertAdjacentHTML('afterbegin', `<p class="total-films">${result.join('')} films were found.</p>`)
-                
-                console.log(films.results.length );
-                        if (films.results.length  <= 19 ){
-                            switchP.buttonDiv.style.display = "none";
-                        };        
-                        if (films.results.length  >=  20){
-                            switchP.buttonDiv.style.display = "none";
 
-                            searchButtonDiv.style.display = "flex";
-                        };
+                console.log(films.results.length);
+                if (films.results.length <= 19) {
+                    switchP.buttonDiv.style.display = "none";
+                };
+                if (films.results.length >= 20) {
+                    switchP.buttonDiv.style.display = "none";
+
+                    searchButtonDiv.style.display = "flex";
+                };
             }
         })
     } else {
@@ -85,50 +85,50 @@ export const onSearch = event => {
         searchCounter = 1;
         searchButtonDiv.style.display = "none";
     };
-//--------------------------------------------------------------------
-    if (searchCounter < 2) { 
+    //--------------------------------------------------------------------
+    if (searchCounter < 2) {
         searchPrvsBtn.classList.add('disabled')
     }
 }
-    export function searchSwitchPages (event)  {
-        refs.filmsList.innerHTML = '';
-        
-        
-        if ( searchCounter >= 1 ){
-            searchPrvsBtn.classList.remove('disabled')
-        } 
-         
-        if (event.target === searchNextBtn){
-            searchCounter++;
-            searchPrvsBtn.disabled = false;
-    
-            return fetch (api.FIND_FILM_URL + value + `&page=${searchCounter}`) 
+export function searchSwitchPages(event) {
+    refs.filmsList.innerHTML = '';
+
+
+    if (searchCounter >= 1) {
+        searchPrvsBtn.classList.remove('disabled')
+    }
+
+    if (event.target === searchNextBtn) {
+        searchCounter++;
+        searchPrvsBtn.disabled = false;
+
+        return fetch(api.FIND_FILM_URL + value + `&page=${searchCounter}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data);  
+                console.log(data);
                 data.results.map(el => createListItem(el));
             })
-            
-            
-        }   else if(event.target === searchPrvsBtn ){
-            searchCounter -= 1;
-            if(searchCounter <= 1 ){
-                searchCounter = 1;
-                searchPrvsBtn.disabled = true;
-            }
-            if (searchCounter < 2) { 
-                searchPrvsBtn.classList.add('disabled')
-            }
-        
-    
-            return fetch (api.FIND_FILM_URL + value + `&page=${searchCounter}`) 
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    data.results.map(el => createListItem(el));
-                });
-    
-            
+
+
+    } else if (event.target === searchPrvsBtn) {
+        searchCounter -= 1;
+        if (searchCounter <= 1) {
+            searchCounter = 1;
+            searchPrvsBtn.disabled = true;
+        }
+        if (searchCounter < 2) {
+            searchPrvsBtn.classList.add('disabled')
         }
 
+
+        return fetch(api.FIND_FILM_URL + value + `&page=${searchCounter}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                data.results.map(el => createListItem(el));
+            });
+
+
     }
+
+}
