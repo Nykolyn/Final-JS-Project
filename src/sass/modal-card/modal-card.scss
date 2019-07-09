@@ -3,17 +3,15 @@
     background-color: #343642;
     border-radius: 4px;
     justify-content: space-between;
-    width: 98%;
+    width: 100%;
 
     position: absolute;
-    // left: 0;  //work nolmal 
 
-    top: 43vh;
+    top: 48vh;
     left: 50%;
-    transform: translate(-50%, -65%);
+    transform: translate(-50%, -68%);
 
     margin-bottom: 60px;
-    // background-color: aqua;
 }
 
 // p in li
@@ -52,7 +50,6 @@
 }
 
 //buttons wrap 
-
 .button-wrap {
     display: flex;
     flex-wrap: wrap;
@@ -69,8 +66,15 @@
 
 //title div
 .title-wrap {
-    padding-top: 16px;
-    padding-left: 6px;
+
+    padding: 16px 26px 8px 16px;
+
+    border: 1px solid red; //border
+
+    // padding-top: 16px;
+    // padding-left: 20px;
+    // padding-right: 24px;
+
     // position: absolute;
     // top: 50%;
     // left: 50%;
@@ -85,14 +89,13 @@
 .comments-wrap {
     display: flex;
     flex-direction: column;
-    // padding-left: 80px;
+    flex-direction: row-reverse;
+    width: 100%;
+    max-height: 50%;
+    padding-right: 8px;
 
+    // margin: 0 auto;
 }
-
-
-//comments ul
-
-
 
 
 
@@ -100,4 +103,10 @@
 .display-none {
     display: none;
     opacity: 0;
+}
+
+.buttons-wrap {
+    display: block;
+    position: absolute;
+    bottom: -30px;
 }
