@@ -28,7 +28,7 @@ export const createListItem = (film, content) => {
   favButton.textContent = content ? 'delete' : 'my movies';
   const titleWrap = createElementWithClass('div', 'title-wrap');
   const cardTitle = createElementWithClass('p', 'film-card_title');
-  cardTitle.textContent = film.title;
+  cardTitle.textContent = film.title.toUpperCase();
   const release = createElementWithClass('p', 'film-release');
   release.textContent = `Release - ${film.release_date}`;
   const voteCount = createElementWithClass('p', 'film-vote_count');

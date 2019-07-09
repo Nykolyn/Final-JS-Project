@@ -1,6 +1,8 @@
 // li
 .modal-card {
-    background-color: #343642;
+    // background-color: #343642;
+    background: rgba(52, 54, 66, 0.99);  //background li
+
     border-radius: 4px;
     justify-content: space-between;
     width: 100%;
@@ -14,7 +16,6 @@
     margin-bottom: 60px;
 
 
-    // box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 2px 3px 14px 0px rgba(196, 188, 188, 0.527);
     transition: all 0.3s ease;
 }
