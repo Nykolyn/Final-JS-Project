@@ -6,7 +6,7 @@ import {
 const open = document.getElementById('submit-signin')
 
 const welcomeModale = () => {
-    const welcomeId = sessionStorage.getItem('id') === null ? localStorage.getItem('key') : sessionStorage.getItem('id')
+    const welcomeId = sessionStorage.getItem('id')
     getUserName(welcomeId).then(user => {
         Swal.fire({
             title: `Welcome ${user.login}! `,
