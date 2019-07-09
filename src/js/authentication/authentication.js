@@ -51,15 +51,28 @@ const LogedIn = () => {
 };
 
 const submitSignUp = (event) => {
-    // // Form Data
-    // const formData = new FormData();
-    //     const file = signupImg.files[0]
-    //     formData.set("file", file, file.name);
+
+//     const test =()=> {
+//        const files = signupImg.files;
+//     if (FileReader && files && files.length) {
+//         const reader = new FileReader();
+//         reader.onload = function () {
+//             avatar.src = reader.result;
+//             console.log(reader.result);
+            
+//         }
+//         reader.readAsDataURL(files[0]); 
+//     }
+//     else {
+//     }
+// }
+// test()
 
     const user = {
         login: `${signupUserName.value}`,
         email: `${signupEmail.value.toLowerCase()}`,
-        password: `${signupPassword.value}`
+        password: `${signupPassword.value}`,
+        avatar:`${avatar.src}`
     };
 
     getUser().then(data => {
@@ -132,7 +145,7 @@ const submitSignUp = (event) => {
                 postUser(user).then(data => {
                     sessionStorage.setItem('id', data.id);
                     accountName.textContent = data.login;
-                    // avatar.src = 
+                    test()
                 }),
                 LogedIn(),
                 signupModal.classList.remove('cd-selected'),
@@ -194,6 +207,7 @@ const submitSignIn = (event) => {
                 document.getElementById('login-form').classList.remove('cd-signin-modal__block--is-selected')
                 sessionStorage.setItem('id', comprasion.id)
                 accountName.textContent = comprasion.login
+                avatar.src = comprasion.avatar
                 console.log(document.getElementById("remember-me").checked);
 
                 if (document.getElementById("remember-me").checked) {
@@ -207,13 +221,27 @@ const submitSignIn = (event) => {
     })
 };
 
-
 const switcher = (event) => {
 
     signupModal.classList.toggle('cd-selected', event.target === signupModal)
     signupForm.classList.toggle('cd-signin-modal__block--is-selected', event.target === signupModal)
     signinModal.classList.toggle('cd-selected', event.target === signinModal)
     signinForm.classList.toggle('cd-signin-modal__block--is-selected', event.target === signinModal)
+};
+
+signupImg.onchange = function (event) {
+    const target= event.target || window.event.srcElement,
+        files = target.files;
+    if (FileReader && files && files.length) {
+        const reader = new FileReader();
+        reader.onload = function () {
+            avatar.src = reader.result;
+            return reader.result;
+        }
+        reader.readAsDataURL(files[0]); 
+    }
+    else {
+    }
 };
 
 modalSwitcher.addEventListener('click', switcher)
@@ -224,6 +252,7 @@ formSingIn.addEventListener('submit', submitSignIn);
 getUser().then(data => {
     if (data.find(el => el.id === localStorage.getItem('key'))) {
         accountName.textContent = data.find(el => el.id === localStorage.getItem('key')).login;
+        avatar.src = data.find(el => el.id === localStorage.getItem('key')).avatar
         LogedIn()
         modal.handleModalWelcome()
     }
