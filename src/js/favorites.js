@@ -2,6 +2,7 @@ import { refs } from './constants';
 import { createListItem } from './view';
 import { getFilms, saveFilm } from '../js/services/api';
 import { getFilmsFavorite, deleteFilm } from './services/api';
+import Swal from 'sweetalert2';
 
 const personalIdUser = sessionStorage.getItem('id');
 console.log('id', personalIdUser);
@@ -45,7 +46,25 @@ export const handleFavBtnClick = ({
 
     getFilmsFavorite(idUser).then(result => {
       const resultSearch = result.some(film => film.title === title && film.idUser === idUser);
-      !resultSearch ? saveFilm(film) : null;
+      if (!resultSearch) {
+        saveFilm(film);
+
+        Swal.fire({
+          position: 'center-center',
+          type: 'success',
+          title: 'ADDED TO MY MOVIES',
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else {
+        Swal.fire({
+          position: 'center-center',
+          type: 'success',
+          title: 'ADDED TO MY MOVIES',
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
     });
   } else {
     let titleDelete = target.closest('li').children[1].textContent;
@@ -54,6 +73,13 @@ export const handleFavBtnClick = ({
       .then(result => {
         let deleteObj = result.find(film => film.title === titleDelete);
         deleteFilm(deleteObj.id);
+        Swal.fire({
+          position: 'center-center',
+          type: 'success',
+          title: 'REMOVED FROM MY MOVIES',
+          showConfirmButton: false,
+          timer: 1000,
+        });
         return result.filter(el => el.id !== deleteObj.id);
       })
       .then(data => {
