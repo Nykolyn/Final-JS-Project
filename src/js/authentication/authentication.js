@@ -37,6 +37,8 @@ const LogedIn = () => {
     buttons[1].style.display = 'block'
     buttons[1].addEventListener('click', (event) => {
         avatar.textContent = ''
+        document.querySelector('.elevator').style.opacity ='0'
+        document.querySelector('.elevatorDown').style.opacity ='0'
         document.querySelector('.cd-main-header__logo').style.opacity = '0'
         document.querySelector('.search-form').style.opacity = '0'
         localStorage.removeItem('key')
