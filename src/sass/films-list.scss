@@ -3,7 +3,7 @@
     align-items: center;
     flex-wrap: wrap;
     align-content: center;
-    z-index: 2;
+    filter:blur(15px);
 
     &__item {
 

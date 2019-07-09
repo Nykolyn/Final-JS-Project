@@ -64,8 +64,10 @@ Login/Signup modal window - by CodyHouse.co
 }
 
 .cd-main-header__logo {
+  opacity: 0;
+  display: flex;
   float: left;
-  margin: 4px 0 0 5%;
+  margin: 0 0 0 5%;
   /* reduce logo size on mobile and make sure it is left aligned with the transform-origin property */
   -webkit-transform-origin: 0 50%;
   -ms-transform-origin: 0 50%;
@@ -73,6 +75,21 @@ Login/Signup modal window - by CodyHouse.co
   -webkit-transform: scale(0.8);
   -ms-transform: scale(0.8);
   transform: scale(0.8);
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+}
+
+.accountName {
+  padding-top: 24px;
+  padding-left: 20px;
+  font-size: 20px;
+}
+input[type="file"] {
+  opacity: 1;
 }
 
 .cd-main-header__logo img {
@@ -85,7 +102,8 @@ Login/Signup modal window - by CodyHouse.co
   }
 
   .cd-main-header__logo {
-    margin: 20px 0 0 5%;
+    margin: 0 0 0 5%;
+    padding-top: 5px;
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
