@@ -204,6 +204,7 @@ const submitSignIn = (event) => {
                 document.getElementById('login-form').classList.remove('cd-signin-modal__block--is-selected')
                 sessionStorage.setItem('id', comprasion.id)
                 accountName.textContent = comprasion.login
+                avatar.src = comprasion.avatar
                 console.log(document.getElementById("remember-me").checked);
 
                 if (document.getElementById("remember-me").checked) {
