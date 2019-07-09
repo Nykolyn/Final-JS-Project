@@ -5,7 +5,7 @@ import { getFilmsFavorite, deleteFilm } from './services/api';
 import Swal from 'sweetalert2';
 
 const personalIdUser = sessionStorage.getItem('id');
-console.log('id', personalIdUser);
+// console.log('id', personalIdUser);
 const idUser = personalIdUser;
 
 // ДОДАЄМО В МОЇ УЛЮБЛЕНІ
@@ -91,6 +91,7 @@ export const handleFavBtnClick = ({
 };
 
 function exitToFilm() {
+  refs.searchForm.classList.remove('delete-form');
   favorite.textContent = 'My Movies';
   refs.filmsList.innerHTML = '';
   getFilms().then(result => {
@@ -104,12 +105,19 @@ const favorite = document.querySelector('.favorite');
 favorite.addEventListener('click', showFavoriteFilm);
 
 function showFavoriteFilm(e) {
+  if (e.target.closest('body').querySelector('.main-section .outer-div')) {
+    e.target.closest('body').querySelector('.main-section .outer-div').style.height = '10px';
+    e.target.closest('body').querySelector('.main-section .outer-div').innerHTML = '';
+  }
+
+  refs.searchForm.classList.add('delete-form');
   favorite.textContent = 'All Movies';
+  // refs.mainSection.innerHTML = '';
   refs.filmsList.innerHTML = '';
   getFilmsFavorite(idUser).then(result => {
     result.forEach(film => {
-      console.log(film);
-      console.log(film.title);
+      // console.log(film);
+      // console.log(film.title);
       film.idUser === idUser ? createListItem(film, true) : null;
     });
   });
