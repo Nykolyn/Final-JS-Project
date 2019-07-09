@@ -7,7 +7,12 @@ const personalIdUser = sessionStorage.getItem('id');
 console.log('id', personalIdUser);
 const idUser = personalIdUser;
 
-export const handleFavBtnClick = ({ target = { textContent } }) => {
+// ДОДАЄМО В МОЇ УЛЮБЛЕНІ
+export const handleFavBtnClick = ({
+  target = {
+    textContent,
+  },
+}) => {
   if (target.textContent === 'my movies') {
     const release = target.closest('li').children[0].children[1].children[1].children[1]
       .textContent;

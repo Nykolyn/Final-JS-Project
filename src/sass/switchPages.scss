@@ -1,9 +1,14 @@
-.switchPages{
+.switchPages, .searchSwitchPages{
     height: 60px;
     display: flex;
     align-content: space-between;
     justify-content: space-evenly;
 }
+
+.searchSwitchPages{
+    display: none;
+}
+
 
 .pageBtn { 
     text-transform: uppercase;
@@ -29,11 +34,11 @@
     opacity: 1;
 }
 
-.prvs{
+.prvs, .searchPrvs{
     left: -10%;
 }
 
-.next{
+.next, .searchNext{
     right: -10%;
 }
 
@@ -61,13 +66,13 @@
         // position: fixed;
     }
 
-    .prvs{
+    .prvs, .searchPrvs{
         left: 30%;
 
         // left: 0%;
     }
     
-    .next{
+    .next, .searchNext{
         right: 30%;
         // right: 0%;
     }
@@ -75,13 +80,13 @@
 }
 
 @media (min-width: 1400px){
-    .prvs{
+    .prvs, .searchPrvs{
         left: 36%;
 
         // left: 5%;       
     }
     
-    .next{
+    .next, .searchNext{
         right: 36%;
         
         // right: 5%;

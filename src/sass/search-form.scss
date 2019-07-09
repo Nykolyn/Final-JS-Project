@@ -12,6 +12,10 @@
     outline: none;
     height: 35px;
 
+    &::placeholder {
+        padding-left: 10px;
+    }
+
 }
 
 .search-form-button {
@@ -20,18 +24,22 @@
     border-radius: 50%;
     border: 1px solid white;
     background: transparent;
+    transition: all 200ms;
     cursor: pointer;
-}
 
-.search-form-button:hover, .search-form-button:focus {
-    border-color: #2f889a;
+    &:hover,
+    &:focus {
+        border-color: #2f889a;
+        outline: none;
+        box-shadow: 0 0 8px 3px #2f889a
+    }
 }
 
 .button-svg {
     fill: white;
 }
 
-.search-form-button:hover .button-svg, .search-form-button:focus .button-svg {
+.search-form-button:hover .button-svg,
+.search-form-button:focus .button-svg {
     fill: #2f889a;
 }
-
