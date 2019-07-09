@@ -45,6 +45,9 @@ export const onSearch = event => {
                 noFilmText.textContent = "Sorry, no films are found... :(";
                 refs.mainSection.prepend(noFilmDiv);
                 switchP.buttonDiv.style.display = "none";
+                //--
+                searchButtonDiv.style.display = "none";
+                //--
             } else {
                 films.results.forEach(film => createListItem(film))
                 const result = films.total_results.toString().split('');
@@ -92,7 +95,7 @@ export const onSearch = event => {
 }
 export function searchSwitchPages(event) {
     refs.filmsList.innerHTML = '';
-
+    
 
     if (searchCounter >= 1) {
         searchPrvsBtn.classList.remove('disabled')
