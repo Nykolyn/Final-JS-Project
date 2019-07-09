@@ -17,6 +17,7 @@ const searchButtonDiv = document.querySelector('.searchSwitchPages');
 searchPrvsBtn.disabled = true;
 let value;
 let searchCounter = 1;
+let  totalPages;
 searchButtonDiv.addEventListener('click', searchSwitchPages)
 
 export const onSearch = event => {
@@ -47,7 +48,8 @@ export const onSearch = event => {
             } else {
                 films.results.forEach(film => createListItem(film))
                 const result = films.total_results.toString().split('');
-
+                totalPages = films.total_pages.toString();
+                console.log(totalPages);
                 switch (result.length) {
                     case 7:
                         result.splice(4, 0, ' ');
