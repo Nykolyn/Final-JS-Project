@@ -59,8 +59,8 @@ export const handleFavBtnClick = ({
       } else {
         Swal.fire({
           position: 'center-center',
-          type: 'success',
-          title: 'ADDED TO MY MOVIES',
+          type: 'info',
+          title: 'MOVIES ADDED',
           showConfirmButton: false,
           timer: 1000,
         });
