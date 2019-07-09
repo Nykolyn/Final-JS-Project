@@ -58,8 +58,32 @@
     <div class="elevatorDown" data-sal="flip-right" data-sal-delay="300">
       <img src="./img/rocket.png" alt="" />
     </div>
+    <div class="elevator" data-sal="fade" data-sal-delay="300">
+      <img src="./img/rocket.png" alt="" />
+    </div>
     <span id="time">00:00:00</span>
-
+    <span class="timer"></span>
+    <canvas id="c1"></canvas>
+    <!-- <div class="waveWrapper waveAnimation">
+      <div class="waveWrapperInner bgTop">
+        <div
+          class="wave waveTop"
+          style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"
+        ></div>
+      </div>
+      <div class="waveWrapperInner bgMiddle">
+        <div
+          class="wave waveMiddle"
+          style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"
+        ></div>
+      </div>
+      <div class="waveWrapperInner bgBottom">
+        <div
+          class="wave waveBottom"
+          style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"
+        ></div>
+      </div>
+    </div> -->
     <div class="cd-signin-modal  js-signin-modal cd-signin-modal--is-visible">
       <!-- this is the entire modal form, including the background -->
       <div class="cd-signin-modal__container">
@@ -286,70 +310,63 @@
 
     <section class="main-section" id="main">
       <ul class="films-list container fly"></ul>
+      <div class="modal micromodal-slide " id="modal-1" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+          <div
+            class="modal__container"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-1-title"
+          >
+            <main class="modal__content">
+              <form class="comment-form">
+                <textarea
+                  class="modal-comment__texarea"
+                  name="userComment"
+                  id="userComment"
+                  cols="30"
+                  rows="10"
+                  placeholder="Insert your comment here"
+                  required
+                ></textarea>
+                <div class="comment-modal__button-wrapp">
+                  <button class="modal__btn modal__btn-primary">Post</button>
+                  <button
+                    class="modal__btn"
+                    data-micromodal-close
+                    aria-label="Close this dialog window"
+                  >
+                    Close
+                  </button>
+                </div>
+              </form>
+            </main>
+          </div>
+        </div>
+      </div>
       <!-- Switch  -->
       <div class="switchPages container">
         <button class="prvs pageBtn"><< back</button>
         <button class="next pageBtn">next >></button>
       </div>
-      <div class="searchSwitchPages container">
-          <button class="searchPrvs pageBtn"> << back </button>
-          <button class="searchNext pageBtn"> next >> </button>
-      </div>
     </section>
-
-    <!-- MODAL COMMENT -->
-
-    <div class="modal micromodal-slide " id="modal-1" aria-hidden="true">
-      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-        <div
-          class="modal__container"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-1-title"
-        >
-          <main class="modal__content">
-            <form class="comment-form">
-              <textarea
-                class="modal-comment__texarea"
-                name="userComment"
-                id="userComment"
-                cols="30"
-                rows="10"
-                placeholder="Insert your comment here"
-                required
-              ></textarea>
-              <div class="comment-modal__button-wrapp">
-                <button class="modal__btn modal__btn-primary">Post</button>
-                <button
-                  class="modal__btn"
-                  data-micromodal-close
-                  aria-label="Close this dialog window"
-                >
-                  Close
-                </button>
-              </div>
-            </form>
-          </main>
-        </div>
-      </div>
-    </div>
-
-    <div class="elevator" data-sal="fade" data-sal-delay="300">
-      <img src="./img/rocket.png" alt="" />
+    <div class="searchSwitchPages container">
+      <button class="searchPrvs pageBtn"><< back</button>
+      <button class="searchNext pageBtn">next >></button>
     </div>
 
     <script src="js/placeholders.min.js"></script>
     <!-- polyfill for the HTML5 placeholder attribute -->
     <script src="js/main.js"></script>
     <!-- Resource JavaScript -->
-    <!-- END MODAL COMMENT -->
     <script src="./js/three.r92.min.js"></script>
-    <script src="./js/vanta.clouds.min.js"></script>
+    <script src="./js/vanta.waves.min.js"></script>
     <!-- <script>
-        VANTA.CLOUDS({
-          el: ".cd-main-header"
+        VANTA.WAVES({
+          el: "#nanobar"
         });
       </script> -->
+    <div class="nanobar-scroll-down"></div>
     <script src="js/placeholders.min.js"></script>
     <!-- polyfill for the HTML5 placeholder attribute -->
     <script src="js/main.js"></script>

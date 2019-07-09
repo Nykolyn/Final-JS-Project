@@ -31,47 +31,65 @@ import './nanobar';
 import './elevator';
 import './sal';
 import './welcomeModal';
-
-// import Swal from 'sweetalert2';
-
-
-// const open = document.getElementById('submit-signin')
-// console.log(open);
-
-// const welcomeModale = () => {
-//     const welcomeId = sessionStorage.getItem('id') === null ? localStorage.getItem('key') : sessionStorage.getItem('id')
-//     getUserName(welcomeId).then(user => {
-//         Swal.fire({
-//             title: `Welcome ${user.login}! `,
-//             text: 'In your collection',
-//             width: 600,
-//             // animation: false,
-//             showConfirmButton: false,
-//             customClass: 'animated bounce',
-//             timer: 10500,
-//             type: 'success',
-//             padding: '10em',
-//             // background: '#fff url("http://www.coolwebmasters.com/uploads/posts/2010-10/1287573191_patterns-42.jpg")',
-//             backdrop: `
-//         rgba(0,0,123,0.4)
-//         url("https://i.gifer.com/PYh.gif")
-//         center left
-//         no-repeat
-//         `,
-//         });
-//     })
-// }
-
-// const handleModalWelcome = () => {
-//     welcomeModale()
-// };
-
-// if (localStorage.getItem('key')) {
-//     welcomeModale()
-// }
+import './timer';
 
 
-// open.addEventListener('click', handleModalWelcome);
+const canvas = document.getElementById('c1');
+const c = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+window.addEventListener('wheel', (event) => {
+    if (event.deltaY < 0) speed *= .1;
+    else speed *= 0.1;
+    if (speed < 0.01) speed = 0.01;
+    else if (speed > 0.1) speed = 0.1;
+});
+class Star {
+    constructor() {
+        this.x = Math.random() * canvas.width - canvas.width / 2;
+        this.y = Math.random() * canvas.height - canvas.height / 2;
+        this.px, this.py;
+        this.z = Math.random() * 2;
+    }
+    update() {
+        this.px = this.x;
+        this.py = this.y;
+        this.z += speed;
+        this.x += this.x * (speed * 0.2) * this.z;
+        this.y += this.y * (speed * 0.2) * this.z;
+        if (this.x > canvas.width / 2 + 50 || this.x < -canvas.width / 2 - 50 ||
+            this.y > canvas.height / 2 + 50 || this.y < -canvas.height / 2 - 50) {
+            this.x = Math.random() * canvas.width - canvas.width / 2;
+            this.y = Math.random() * canvas.height - canvas.height / 2;
+            this.px = this.x;
+            this.py = this.y;
+            this.z = 0;
+        }
+    }
+    show() {
+        c.lineWidth = this.z;
+        c.beginPath();
+        c.moveTo(this.x, this.y);
+        c.lineTo(this.px, this.py);
+        c.stroke();
+    }
+}
+let speed = 0.01;
+let stars = [];
+for (let i = 0; i < 800; i++) stars.push(new Star());
+c.fillStyle = 'rgba(0, 0, 0, 0.4)';
+c.strokeStyle = 'rgb(255, 255, 255)';
+c.translate(canvas.width / 2, canvas.height / 2);
+
+function draw() {
+    requestAnimationFrame(draw);
+    c.fillRect(-canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+    for (let s of stars) {
+        s.update();
+        s.show();
+    }
+}
+draw();
 
 
 // ------------  TIME  -------------------- 
@@ -117,7 +135,7 @@ function openCard(event) {
         image.classList.add('img-markup');
         filmListTitle.classList.add('display-none');
 
-        window.scroll(0, 100);
+        window.scroll(0, 50);
 
         //toggle event click
         refs.filmsList.removeEventListener('click', openCard);
@@ -149,7 +167,6 @@ function openCard(event) {
 
 let filmId = null;
 let commentToPost = null;
-const commentItem = {};
 
 const handleComment = event => {
     if (event.target.closest('li').nodeName !== 'LI') return;
@@ -197,16 +214,15 @@ const handleComment = event => {
     }
 };
 
+
+
 const handleCommentSubmit = event => {
     event.preventDefault();
     const [comment] = event.currentTarget.elements;
 
     if (comment.value.trim() === '') return console.log('Заполни все поля!');
     commentToPost = comment.value;
-    const id =
-        sessionStorage.getItem('id') === null ?
-        localStorage.getItem('key') :
-        sessionStorage.getItem('id');
+    const id = sessionStorage.getItem('id');
 
     getUserName(id).then(user => {
         const newComment = {
@@ -217,9 +233,13 @@ const handleCommentSubmit = event => {
         };
 
         films.updateComment(newComment);
-        commentItem.name = newComment.name;
-        commentItem.comment = newComment.comment;
-        commentItem.date = newComment.date;
+
+        const commentsList = document.querySelector(`li[id="${filmId}"] .comments-list`)
+        commentsList.insertAdjacentHTML('afterbegin', commentItemCreate(
+            newComment.name,
+            newComment.comment,
+            newComment.date,
+        ))
         MicroModal.close('modal-1');
     });
     event.currentTarget.reset();
@@ -251,7 +271,7 @@ const cardRotation = event => {
 };
 
 refs.filmsList.addEventListener('click', openCard);
-refs.filmsList.addEventListener('click', handleComment);
+refs.mainSection.addEventListener('click', handleComment);
 refs.searchForm.addEventListener('submit', onSearch);
 commentForm.addEventListener('submit', handleCommentSubmit);
 // refs.filmsList.addEventListener('mouseover', cardRotation)

@@ -3,7 +3,9 @@
     text-align: center;
     margin-bottom: 20px;
     font-size: 30px;
-    font-weight: bold
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
 }
 
 .outer-div {
@@ -14,6 +16,8 @@
 
 .film-not-found-div {
     width: 320px;
+    position: relative;
+    z-index: 2;
     height: 240px;
     background-position: bottom;
     background-repeat: no-repeat;
