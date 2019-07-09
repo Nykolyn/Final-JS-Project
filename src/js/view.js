@@ -1,4 +1,6 @@
-import { handleFavBtnClick } from './favorites';
+import {
+  handleFavBtnClick
+} from './favorites';
 export const createElementWithClass = (tag, classTitle) => {
   const elementToCreate = document.createElement(tag);
   elementToCreate.classList.add(classTitle);
@@ -42,9 +44,7 @@ export const createListItem = (film, content) => {
   const commWrap = createElementWithClass('div', 'comments-wrap');
   const commList = createElementWithClass('ul', 'comments-list');
   const commButton = createElementWithClass('button', 'comments-button');
-  const commRefresh = createElementWithClass('button', 'refresh-comments-button');
   commButton.textContent = 'Add comment';
-  commRefresh.textContent = 'Refresh comments';
 
   const buttonsWrapp = createElementWithClass('div', 'buttons-wrap');
   poster.setAttribute('src', `https://image.tmdb.org/t/p/w500/${film.poster_path}`);
@@ -56,7 +56,7 @@ export const createListItem = (film, content) => {
 
   // button wrapper
 
-  buttonsWrapp.append(favButton, commButton, commRefresh);
+  buttonsWrapp.append(favButton, commButton);
 
   cardWrap.append(exitButton, titleWrap, commWrap, buttonsWrapp);
 
