@@ -1,0 +1,25 @@
+.film-not-found,
+.total-films {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+}
+
+.outer-div {
+    margin: 0 auto;
+    width: 320px;
+    height: 300px;
+}
+
+.film-not-found-div {
+    width: 320px;
+    position: relative;
+    z-index: 2;
+    height: 240px;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background: url('https://media1.tenor.com/images/e21a8ade81fdaadf27d3f1c17db1008f/tenor.gif?itemid=4668611');
+}

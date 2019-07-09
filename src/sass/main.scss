@@ -2,9 +2,20 @@
 @import './header/demo.scss';
 @import './header/reset.scss';
 @import './header/style.scss';
+@import './switchPages.scss';
+@import './search-form.scss';
+@import './micromodal.scss';
+@import './main-section.scss';
+@import '../../node_modules/sal.js/dist/sal.css';
+
+//modal card
 @import './modal-card/modal-card.scss';
 @import './modal-card/modal-card-text.scss';
 @import './modal-card/modal-card-button.scss';
+@import './comments.scss';
+@import './nanobar.scss';
+@import './elevator.scss';
+@import './backgroundAnimation.scss';
 
 img {
     max-width: 100%;
@@ -14,7 +25,7 @@ img {
 
 .container {
     position: relative;
-    width: 70vw;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -25,5 +36,44 @@ html {
 *,
 *::after,
 *::before {
-    box-sizing:inherit;
+    box-sizing: inherit;
+}
+
+#time {
+    position: fixed;
+    left: 5%;
+    top: 50%;
+    transform: rotate(-90deg) translateY(-50%);
+
+    // transform: translate(-50%, -50%);
+    color: #2f889a;
+    font-size: 50px;
+    z-index: 2;
+    text-shadow: rgb(204, 204, 204) 0px 1px 0px, rgb(201, 201, 201) 0px 2px 0px, rgb(187, 187, 187) 0px 3px 0px, rgb(185, 185, 185) 0px 4px 0px, rgb(170, 170, 170) 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 6px 1px, rgba(0, 0, 0, 0.1) 0px 0px 5px, rgba(0, 0, 0, 0.3) 0px 1px 3px, rgba(0, 0, 0, 0.15) 0px 3px 5px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.2) 0px 10px 10px, rgba(0, 0, 0, 0.1) 0px 20px 20px;
+
+}
+
+.timer {
+    display: block;
+    position: fixed;
+    top: 10%;
+    left: 3%;
+    transition: all 1s;
+    z-index: 9999;
+    animation-name: heartBeat;
+    animation-iteration-count: infinite;
+    animation-duration: 1.3s;
+    animation-timing-function: ease-in-out;
+}
+
+body {
+    margin: 0;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgb(0, 0, 0);
 }

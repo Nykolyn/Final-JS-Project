@@ -46,12 +46,14 @@ textarea::-ms-clear {
 Login/Signup modal window - by CodyHouse.co
 
 -------------------------------- */
+
 .cd-main-header {
   position: relative;
   z-index: 1;
+  width: 100%;
   height: 50px;
   background: #343642;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .cd-main-header::after {
@@ -61,22 +63,11 @@ Login/Signup modal window - by CodyHouse.co
   clear: both;
 }
 
-#time {
-  position: fixed;
-  left: 2%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  transform: rotate(-90deg);
-  color: #2f889a;
-  font-size:50px;
-  text-shadow: rgb(204, 204, 204) 0px 1px 0px, rgb(201, 201, 201) 0px 2px 0px, rgb(187, 187, 187) 0px 3px 0px, rgb(185, 185, 185) 0px 4px 0px, rgb(170, 170, 170) 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 6px 1px, rgba(0, 0, 0, 0.1) 0px 0px 5px, rgba(0, 0, 0, 0.3) 0px 1px 3px, rgba(0, 0, 0, 0.15) 0px 3px 5px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.2) 0px 10px 10px, rgba(0, 0, 0, 0.1) 0px 20px 20px;
-
-}
-
-
 .cd-main-header__logo {
+  opacity: 0;
+  display: flex;
   float: left;
-  margin: 4px 0 0 5%;
+  margin: 0 0 0 5%;
   /* reduce logo size on mobile and make sure it is left aligned with the transform-origin property */
   -webkit-transform-origin: 0 50%;
   -ms-transform-origin: 0 50%;
@@ -84,6 +75,21 @@ Login/Signup modal window - by CodyHouse.co
   -webkit-transform: scale(0.8);
   -ms-transform: scale(0.8);
   transform: scale(0.8);
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+}
+
+.accountName {
+  padding-top: 24px;
+  padding-left: 20px;
+  font-size: 20px;
+}
+input[type="file"] {
+  opacity: 1;
 }
 
 .cd-main-header__logo img {
@@ -96,7 +102,8 @@ Login/Signup modal window - by CodyHouse.co
   }
 
   .cd-main-header__logo {
-    margin: 20px 0 0 5%;
+    margin: 0 0 0 5%;
+    padding-top: 5px;
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
@@ -185,15 +192,11 @@ Login/Signup modal window - by CodyHouse.co
   .cd-main-nav__item.cd-main-nav__item--signup {
     padding: .6em 1em;
     border-radius: 50em;
-    display:none;
+    display: none;
   }
 
   .cd-main-nav__item.cd-main-nav__item--signin {
     border: 1px solid rgba(255, 255, 255, 0.6);
-  }
-
-  .cd-main-nav__item.cd-main-nav__item--signup {
-    background: #2f889a;
   }
 }
 
@@ -413,6 +416,7 @@ x sigin/signup popup
   color: #343642;
 }
 
+
 .cd-signin-modal__error {
   display: inline-block;
   position: absolute;
@@ -426,10 +430,15 @@ x sigin/signup popup
   border-radius: 0.25em;
   /* prevent click and touch events */
   pointer-events: none;
-  visibility: hidden;
+  visibility: none;
   opacity: 0;
   -webkit-transition: opacity 0.2s 0s, visibility 0s 0.2s;
   transition: opacity 0.2s 0s, visibility 0s 0.2s;
+}
+
+.error {
+  opacity: 1;
+  visibility: visible;
 }
 
 .cd-signin-modal__error::after {
@@ -534,9 +543,4 @@ x sigin/signup popup
   display: block;
 }
 
-
-@media only screen and (max-width: 1170px){
-  #time {
-    display: none;
-  }
-}
+// 
