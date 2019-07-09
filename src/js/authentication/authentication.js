@@ -29,6 +29,8 @@ const LogedIn = () => {
     document.querySelector('.films-list').style.transition = "1000ms"
     document.querySelector('.cd-main-header__logo').style.opacity = '1'
     document.querySelector('.search-form').style.opacity = '1'
+    document.querySelector('.elevator').style.opacity ='1'
+    document.querySelector('.elevatorDown').style.opacity ='1'
     const buttons = document.querySelectorAll('.cd-main-nav__item')
     buttons[1].style.backgroundColor = '#2f889a'
     buttons[0].style.display = 'block'
