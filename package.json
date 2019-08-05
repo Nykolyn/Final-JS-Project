@@ -4,7 +4,7 @@
   "description": "Vanilla JS Notepad app",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --env.mode development --env.port 8080",
+    "start": "webpack-dev-server --env.mode development --port 34879",
     "build": "webpack --env.mode production"
   },
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
@@ -38,6 +38,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "animate.css": "^3.7.2",
+    "axios": "^0.19.0",
     "brusher": "^0.1.4",
     "express-fileupload": "^1.1.5",
     "formidable": "^1.2.1",
