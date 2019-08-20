@@ -22,7 +22,7 @@ export const searchFilm = value => {
 };
 
 export const getFilmsFavorite = async () => {
-  const response = await fetch(`http://localhost:34880/films`);
+  const response = await fetch(FAVOURITE_FILMS_URL);
   try {
     if (response.ok) {
       console.log(response);
@@ -47,7 +47,7 @@ export const deleteFilm = async id => {
   const settings = {
     method: "DELETE"
   };
-  const response = await fetch(`http://localhost:34880/films/${id}`, settings);
+  const response = await fetch(`${FAVOURITE_FILMS_URL}/${id}`, settings);
   try {
     if (response.ok) {
       return response.json();
