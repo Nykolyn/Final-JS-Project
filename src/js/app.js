@@ -1,7 +1,6 @@
 import Films from "./Fims/Films";
 import { refs, commentForm } from "./constants";
 import { createListItem, commentItemCreate } from "./view";
-
 import "./authentication/authentication";
 import MicroModal from "micromodal";
 import "../sass/micromodal.scss";
@@ -139,7 +138,7 @@ const handleCommentSubmit = event => {
   event.preventDefault();
   const [comment] = event.currentTarget.elements;
 
-  if (comment.value.trim() === "") return console.log("Заполни все поля!");
+  if (comment.value.trim() === "") return;
   commentToPost = comment.value;
   const id = sessionStorage.getItem("id");
 
