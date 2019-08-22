@@ -43,16 +43,6 @@
 				});
 			})(i);
 		}
-
-		//IMPORTANT - REMOVE THIS - it's just to show/hide error messages in the demo
-		// this.blocks[0].getElementsByTagName('form')[0].addEventListener('submit', function(event){
-		// 	event.preventDefault();
-		// 	self.toggleError(document.getElementById('signin-email'), true);
-		// });
-		// this.blocks[1].getElementsByTagName('form')[0].addEventListener('submit', function(event){
-		// 	event.preventDefault();
-		// 	self.toggleError(document.getElementById('signup-username'), true);
-		// });
 	};
 
 	ModalSignin.prototype.togglePassword = function (target) {
@@ -62,32 +52,6 @@
 		putCursorAtEnd(password);
 	}
 
-	// ModalSignin.prototype.showSigninForm = function (type) {
-	// 	// 	// show modal if not visible
-	// 	!hasClass(this.element, 'cd-signin-modal--is-visible') && addClass(this.element, 'cd-signin-modal--is-visible');
-	// 	// show selected form
-	// 	for (var i = 0; i < this.blocks.length; i++) {
-	// 		this.blocks[i].getAttribute('data-type') == type ? addClass(this.blocks[i], 'cd-signin-modal__block--is-selected') : removeClass(this.blocks[i], 'cd-signin-modal__block--is-selected');
-	// 	}
-	// 	// 	update switcher appearance
-	// 	var switcherType = (type == 'signup') ? 'signup' : 'login';
-	// 	for (var i = 0; i < this.switchers.length; i++) {
-	// 		this.switchers[i].getAttribute('data-type') == switcherType ? addClass(this.switchers[i], 'cd-selected') : removeClass(this.switchers[i], 'cd-selected');
-	// 	}
-	// };
-
-	// ModalSignin.prototype.toggleError = function(input, bool) {
-	// 	// used to show error messages in the form
-	// 	toggleClass(input, 'cd-signin-modal__input--has-error', bool);
-	// 	toggleClass(input.nextElementSibling, 'cd-signin-modal__error--is-visible', bool);
-	// }
-
-	// var signinModal = document.getElementsByClassName("js-signin-modal")[0];
-	// if( signinModal ) {
-	// 	new ModalSignin(signinModal);
-	// }
-
-	// toggle main navigation on mobile
 	var mainNav = document.getElementsByClassName('js-main-nav')[0];
 	if (mainNav) {
 		mainNav.addEventListener('click', function (event) {
@@ -98,7 +62,6 @@
 		});
 	}
 
-	// class manipulations - needed if classList is not supported
 	function hasClass(el, className) {
 		if (el.classList) return el.classList.contains(className);
 		else return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
@@ -125,15 +88,4 @@
 		if (bool) addClass(el, className);
 		else removeClass(el, className);
 	}
-
-	// credits http://css-tricks.com/snippets/jquery/move-cursor-to-end-of-textarea-or-input/
-	// function putCursorAtEnd(el) {
-		// if (el.setSelectionRange) {
-	  	// 	var len = el.value.length * 2;
-	  	// 	el.focus();
-	  	// 	el.setSelectionRange(len, len);
-		// } else {
-	  	// 	el.value = el.value;
-		// }
-	// };
 })();

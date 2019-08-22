@@ -1,14 +1,3 @@
-/*!
- * Elevator.js
- *
- * MIT licensed
- * Copyright (C) 2015 Tim Holman, http://tholman.com
- */
-
-/*********************************************
- * Elevator.js
- *********************************************/
-
 var Elevator = function(options) {
   "use strict";
 
@@ -33,11 +22,6 @@ var Elevator = function(options) {
 
   var that = this;
 
-  /**
-   * Utils
-   */
-
-  // Thanks Mr Penner - http://robertpenner.com/easing/
   function easeInOutQuad(t, b, c, d) {
     t /= d / 2;
     if (t < 1) return (c / 2) * t * t + b;
@@ -69,11 +53,6 @@ var Elevator = function(options) {
     return verticalOffset;
   }
 
-  /**
-   * Main
-   */
-
-  // Time is passed through requestAnimationFrame, what a world!
   function animateLoop(time) {
     if (!startTime) {
       startTime = time;
@@ -95,20 +74,6 @@ var Elevator = function(options) {
       animationFinished();
     }
   }
-
-  //            ELEVATE!
-  //              /
-  //         ____
-  //       .'    '=====<0
-  //       |======|
-  //       |======|
-  //       [IIIIII[\--()
-  //       |_______|
-  //       C O O O D
-  //      C O  O  O D
-  //     C  O  O  O  D
-  //     C__O__O__O__D
-  //    [_____________]
   this.elevate = function() {
     if (elevating) {
       return;
@@ -117,8 +82,6 @@ var Elevator = function(options) {
     elevating = true;
     startPosition = document.documentElement.scrollTop || body.scrollTop;
     updateEndPosition();
-
-    // No custom duration set, so we travel at pixels per millisecond. (0.75px per ms)
     if (!customDuration) {
       duration = Math.abs(endPosition - startPosition) * 1.5;
     }
@@ -155,8 +118,6 @@ var Elevator = function(options) {
 
   function animationFinished() {
     resetPositions();
-
-    // Stop music!
     if (mainAudio) {
       mainAudio.pause();
       mainAudio.currentTime = 0;
@@ -172,7 +133,6 @@ var Elevator = function(options) {
   }
 
   function onWindowBlur() {
-    // If animating, go straight to the top. And play no more music.
     if (elevating) {
       cancelAnimationFrame(animation);
       resetPositions();
@@ -191,7 +151,6 @@ var Elevator = function(options) {
     if (element.addEventListener) {
       element.addEventListener("click", that.elevate, false);
     } else {
-      // Older browsers
       element.attachEvent("onclick", function() {
         updateEndPosition();
         document.documentElement.scrollTop = endPosition;
@@ -202,12 +161,9 @@ var Elevator = function(options) {
   }
 
   function init(_options) {
-    // Take the stairs instead
     if (!browserMeetsRequirements()) {
       return;
     }
-
-    // Bind to element click event.
     body = document.body;
 
     var defaults = {
