@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --env.mode development --port 34879",
-    "build": "webpack --env.mode production"
+    "build": "webpack --env.mode production",
+    "serve": "serve"
   },
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
@@ -49,6 +50,7 @@
     "nanobar": "^0.4.2",
     "notyf": "^3.0.4",
     "sal.js": "^0.6.1",
+    "serve": "^11.1.0",
     "sweetalert2": "^8.13.1",
     "uuid": "^3.3.2"
   },
