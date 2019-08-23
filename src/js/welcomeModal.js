@@ -6,7 +6,7 @@ const welcomeModale = () => {
     sessionStorage.getItem("id") === null
       ? localStorage.getItem("key")
       : sessionStorage.getItem("id");
-  getUserName(welcomeId).then(user => {
+  getUserName(welcomeId).then((user) => {
     Swal.fire({
       title: `Welcome ${user.login}! `,
       text: "In your collection",
@@ -20,7 +20,7 @@ const welcomeModale = () => {
       // background: '#fff url("http://www.coolwebmasters.com/uploads/posts/2010-10/1287573191_patterns-42.jpg")',
       backdrop: `
             rgba(0,0,123,0.4)
-            url("https://i.gifer.com/PYh.gif")
+            // url("https://i.gifer.com/PYh.gif")
             center left
             no-repeat
             `

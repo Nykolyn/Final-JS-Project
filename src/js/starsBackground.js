@@ -63,6 +63,3 @@ function draw() {
   }
 }
 draw();
-
-// jlsdfknfms@dfjosdk
-// moi4uvak@lala

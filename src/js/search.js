@@ -73,7 +73,6 @@ export const onSearch = event => {
         }
         if (films.results.length >= 20) {
           switchP.buttonDiv.style.display = "none";
-
           searchButtonDiv.style.display = "flex";
         }
       }

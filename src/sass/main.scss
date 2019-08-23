@@ -8,6 +8,7 @@
 @import "./main-section.scss";
 @import "../../node_modules/sal.js/dist/sal.css";
 
+@import "./media/timer-media.scss";
 //modal card
 @import "./modal-card/modal-card.scss";
 @import "./modal-card/modal-card-text.scss";
@@ -45,19 +46,6 @@ html {
     rgba(0, 0, 0, 0.15) 0px 3px 5px, rgba(0, 0, 0, 0.2) 0px 5px 10px,
     rgba(0, 0, 0, 0.2) 0px 10px 10px, rgba(0, 0, 0, 0.1) 0px 20px 20px;
 }
-
-// .timer {
-//     display: block;
-//     position: fixed;
-//     top: 10%;
-//     left: 3%;
-//     transition: all 1s;
-//     z-index: 9999;
-//     animation-name: heartBeat;
-//     animation-iteration-count: infinite;
-//     animation-duration: 1.3s;
-//     animation-timing-function: ease-in-out;
-// }
 
 body {
   margin: 0;
@@ -131,7 +119,7 @@ img {
   }
 
   .search-form {
-    left: 54%;
+    left: 60%;
   }
 
   .search-form-button {
@@ -151,12 +139,24 @@ img {
     height: 42px;
   }
 
+  // .modal-card {
+  //   top: 100vh;
+  // }
+
   .card-inner {
     display: block;
   }
 
   .buttons-wrap {
     left: 3px;
-    bottom: -33px;
+    bottom: -36px;
+  }
+
+  .comments-wrap {
+    height: 100px;
+  }
+
+  .comments-list {
+    height: auto;
   }
 }
