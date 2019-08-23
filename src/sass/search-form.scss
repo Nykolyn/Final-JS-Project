@@ -9,14 +9,10 @@
 .search {
     margin: 0;
     margin-right: 4px;
+    padding-left: 10px;
     border-radius: 10px 10px 10px 10px;
     outline: none;
     height: 35px;
-
-    &::placeholder {
-        padding-left: 10px;
-    }
-
 }
 
 .search-form-button {
