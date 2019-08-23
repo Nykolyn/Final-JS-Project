@@ -71,13 +71,12 @@ export const createListItem = (film, content) => {
   favButton.addEventListener("click", handleFavBtnClick);
 };
 
-export const commentItemCreate = (name, comment, date) => {
-  return `<li class="comments-item">
+export const commentItemCreate = (name, comment, date) =>
+  `<li class="comments-item">
                 <p class="comments-name"><span class="comments-span_name">Name: </span>${name}</p>
                 <p class="comments-comment">${comment}</p>
                 <p class="comments-date"><span class="comments-span_name">When: </span>${date}</p>
             </li>`;
-};
 
 export const commentListRender = (link, arr, id) => {
   const render = arr.reduce((acc, cur) => {
