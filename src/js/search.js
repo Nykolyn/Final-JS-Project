@@ -28,14 +28,15 @@ export const onSearch = event => {
 
   Array.from(refs.mainSection.children).forEach(child =>
     child.textContent.includes("Sorry, no films are found... :(") ||
-    child.textContent.includes("films were found")
+    child.textContent.includes("films were found") ||
+    child.textContent.includes("film was found")
       ? child.remove()
       : null
   );
 
   if (value !== "") {
     api.searchFilm(value).then(films => {
-      if (films.results.length < 1) {
+      if (!films.results.length) {
         const noFilmText = createElementWithClass("h2", "film-not-found");
         const noFilmDiv = createElementWithClass("div", "outer-div");
         const innerDiv = createElementWithClass("div", "film-not-found-div");
@@ -62,12 +63,19 @@ export const onSearch = event => {
             break;
         }
 
-        refs.mainSection.insertAdjacentHTML(
-          "afterbegin",
-          `<div class="outer-div"><p class="total-films">${result.join(
-            ""
-          )} films were found.</p></div>`
-        );
+        if (films.results.length === 1) {
+          refs.mainSection.insertAdjacentHTML(
+            "afterbegin",
+            `<div class="outer-div"><p class="total-films">1 film was found.</p></div>`
+          );
+        } else {
+          refs.mainSection.insertAdjacentHTML(
+            "afterbegin",
+            `<div class="outer-div"><p class="total-films">${result.join(
+              ""
+            )} films were found.</p></div>`
+          );
+        }
         if (films.results.length <= 19) {
           switchP.buttonDiv.style.display = "none";
         }
