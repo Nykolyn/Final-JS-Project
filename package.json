@@ -1,14 +1,14 @@
 {
-  "name": "notepad-js-homework",
+  "name": "filmoteque-app",
   "version": "1.0.0",
-  "description": "Vanilla JS Notepad app",
+  "description": "Vanilla JS Filmotheque app",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --env.mode development --port 34879",
     "build": "webpack --env.mode production",
     "serve": "serve"
   },
-  "author": "Alexander Repeta <alexander.repeta@gmail.com>",
+  "author": "BC-12",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.2.2",
