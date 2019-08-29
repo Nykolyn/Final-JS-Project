@@ -25,7 +25,6 @@ export const getFilmsFavorite = async () => {
   const response = await fetch(FAVOURITE_FILMS_URL);
   try {
     if (response.ok) {
-      console.log(response);
       return response.json();
     }
   } catch (error) {
@@ -95,9 +94,8 @@ export const saveFilm = async film => {
   };
   try {
     const response = await fetch(`${FAVOURITE_FILMS_URL}/`, settings);
-    // console.log('SAVE', response);
+
     const films = response.json();
-    // console.log(films);
     return films;
   } catch (err) {
     throw err;

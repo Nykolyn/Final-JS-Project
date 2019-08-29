@@ -5,7 +5,8 @@ import "./authentication/authentication";
 import MicroModal from "micromodal";
 import "../sass/micromodal.scss";
 import { getUserName } from "./services/api";
-
+import "./main";
+import "./placeholders.min.js";
 import { onSearch } from "./search";
 import "./nanobar";
 import "./elevator";
